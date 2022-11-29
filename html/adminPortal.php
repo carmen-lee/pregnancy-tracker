@@ -43,9 +43,10 @@
                 <a class="nav-link" href="appointments.html">Appointments</a>
                 <a class="nav-link" href="medication.html">Medication</a>
               </div>
-              <button type="button" class="btn btn-light" id="logoutBtn">
+              <!-- <button type="button" class="btn btn-light" id="logoutBtn">
                 Logout
-              </button>
+              </button> -->
+              <a href="logout.php">Logout</a>
             </div>
           </div>
         </nav>
