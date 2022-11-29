@@ -45,7 +45,7 @@
               <!-- <button type="button" class="btn btn-light" id="logoutBtn">
                 Logout
               </button> -->
-              <a href="logout.php">Logout</a>
+              <a href="../logout.php">Logout</a>
             </div>
           </div>
         </nav>
