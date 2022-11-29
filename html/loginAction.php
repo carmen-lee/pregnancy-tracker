@@ -1,64 +1,98 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "pregnancy");
+//establish connection
+$conn = mysqli_connect("localhost", "root", "", "pregnancy");
 
-$userName = $_POST['inputUserName'];
+
+//check connection
+if (!$conn) {
+  echo 'Connection failed' . mysqli_connect_error();
+}
+
+//create query
+$sql = "SELECT username, userpassword, role FROM Users";
+$result = mysqli_query($conn, $sql);
+
+//get user input
+$username = $_POST['inputUserName'];
 $userpassword = $_POST['inputPassword'];
-$roleType = $_POST['loginType'];
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+//find user
+foreach( $users as $user) {
+  if( $username === $user['username'] && $userpassword === $user['userpassword']) {
+    //get role of user
+    $role = $user['role'];
+  } else {
+    // incorrect login
+    header("Location: login.php? err=Incorrect username/password");
+  }
+}
+
+//start session
 session_start();
-$_SESSION['sessionUserName'] = $userName;
+$_SESSION['sessionUsername'] = $username;
 $_SESSION['sessionUserPassword'] = $userpassword;
-//print 'hello' . $_POST['loginType'];
+$_SESSION['sessionRole'] = $role;
 
-if($roleType == 'admin'){
-  $sql = "SELECT username, userpassword FROM Users";
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      if($userName == $row["username"] && $userpassword == $row["userpassword"]){
-        header("Location: admin/adminPortal.php");
-        }
-  }
+//redirect to the correct home page
+if($role == 'Admin'){
+  header("Location: admin/adminPortal.php");
 }
-else {
-    echo "0 results";
-  }
-
-
+elseif($role == 'Doctor'){
+  header("Location: doctor/doctorPortal.php");
 }
-elseif($roleType == 'doctor'){
-  $sql = "SELECT id, firstName, lastName FROM Patients";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      echo "id: " . $row["id"]. " - Name: " . $row["firstName"]. " " . $row["lastName"]. "<br>";
-      
-      }
-  }
-  else {
-    echo "0 results";
-  }
-
+elseif($role == 'Patient'){
+  header("Location: patient/patientPortal.php");
 }
-elseif($roleType == 'patient'){
-  $sql = "SELECT id, firstName, lastName FROM Patients";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      echo "id: " . $row["id"]. " - Name: " . $row["firstName"]. " " . $row["lastName"]. "<br>";
-      
-      }
-  }
-  else {
-    echo "0 results";
-  }
 
 
-}
+
+// if($roleType == 'admin'){
+//   $sql = "SELECT username, userpassword FROM Users";
+//   $result = $conn->query($sql);
+
+//   if ($result->num_rows > 0) {
+//     // output data of each row
+//     while($row = $result->fetch_assoc()) {
+//       if($userName == $row["username"] && $userpassword == $row["userpassword"]){
+//         header("Location: admin/adminPortal.php");
+//       }
+//     }
+//   } else {
+//       echo "0 results";
+//   }
+// }
+// elseif($roleType == 'doctor'){
+//   $sql = "SELECT username, userpassword FROM Users";
+//   $result = $conn->query($sql);
+
+//   if ($result->num_rows > 0) {
+//     // output data of each row
+//     while($row = $result->fetch_assoc()) {
+//       if($userName == $row["username"] && $userpassword == $row["userpassword"]){
+//         header("Location: doctor/doctorPortal.php");
+//       }
+//     }
+//   } else {
+//     echo "0 results";
+//   }
+
+// }
+// elseif($roleType == 'patient'){
+//   $sql = "SELECT username, userpassword FROM Users";
+//   $result = $conn->query($sql);
+
+//   if ($result->num_rows > 0) {
+//     // output data of each row
+//     while($row = $result->fetch_assoc()) {
+//       if($userName == $row["username"] && $userpassword == $row["userpassword"]){
+//         header("Location: patient/patientPortal.php");
+//       }
+//     }
+//   } else {
+//     echo "0 results";
+//   }
+// }
 
   
 
