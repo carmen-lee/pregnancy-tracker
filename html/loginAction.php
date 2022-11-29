@@ -35,13 +35,13 @@ $_SESSION['sessionUserPassword'] = $userpassword;
 $_SESSION['sessionRole'] = $role;
 
 //redirect to the correct home page
-if($role == 'Admin'){
+if($role == 'Admin' || $role == 'admin'){
   header("Location: admin/adminPortal.php");
 }
-elseif($role == 'Doctor'){
+elseif($role == 'Doctor' || $role == 'doctor'){
   header("Location: doctor/doctorPortal.php");
 }
-elseif($role == 'Patient'){
+elseif($role == 'Patient' || $role == 'patient'){
   header("Location: patient/patientPortal.php");
 }
 
