@@ -43,7 +43,7 @@
               <label for="type">Type</label>
               <select name="patient" id="inputPatient" form="patient" required>
                 <option value="administrator">Administrator</option>
-                <option value="doctor">Doctor</option>
+                <option value="doctor" disabled>Doctor</option>
                 <option value="patient">Patient</option>
               </select>
             </p>
