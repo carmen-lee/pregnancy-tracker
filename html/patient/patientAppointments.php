@@ -12,7 +12,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
     <title>Patient Pregnancies</title>
@@ -48,35 +48,20 @@
           </div>
         </nav>
       </header>
+
+      <?php 
+      session_start();
+      $sessionUserName = $_SESSION['sessionUsername'];
+      $sessionRole = $_SESSION['sessionRole'];
+      //check that the user has the role Patient, else logout 
+      if ($sessionRole !== "Patient") {
+        header("Location: ../login.php? err=Please login");
+      }
+      ?>
+
+
       <section>
-        <div class="card flex-row flex-wrap">
-          <div class="card-header border-0">
-            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div>
-          <h2 class="card-title">
-            <?php 
-
-            $conn = new mysqli("localhost", "root", "", "pregnancy");
-            $sql = "SELECT username, userpassword FROM Users";
-            $roleType = $_POST['loginType'];
-
-            session_start();
-            $sessionUserName = $_SESSION['sessionUserName'];
-            $sessionUserPassword = $_SESSION['sessionUserPassword'];
-
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    if($sessionUserName == $row["username"] && $sessionUserPassword == $row["userpassword"]){
-                        echo "Welcome " . $sessionUserName;
-                    }
-                }
-            }
-            $conn->close();
-            ?>
-        </div>
+      something here
       </section>
 
       <section>
@@ -89,6 +74,21 @@
           </p>
           <p>
             <label for="doctor">Doctor</label>
+            <!-- dynamically make select list
+              </select><br>
+
+              Project: <select name="pro" id="">
+
+              <option value=""></option>
+              <?php /*
+                  foreach($projects as $row){
+                    echo '<option value="',$row[0],'">',$row[1],'</option>'; 
+                  } */
+                  ?>
+
+              </select>
+              <input type="submit" value="Assign Project">
+             -->
             <select name="doctor" id="inputdoctor" form="doctor" required>
               <option value="a">a</option>
               <option value="b">b</option>

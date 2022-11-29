@@ -12,7 +12,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
     <title>Doctor Portal</title>
@@ -50,36 +50,27 @@
           </div>
         </nav>
       </header>
+
       <section>
         <div class="card flex-row flex-wrap">
-          <div class="card-header border-0">
-            <img src="../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div>
+          <!-- <div class="card-header border-0">
+            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
+          </div> -->
           <h2 class="card-title">
             <?php 
-
-            $conn = new mysqli("localhost", "root", "", "pregnancy");
-            $sql = "SELECT username, userpassword FROM Users";
-            $roleType = $_POST['loginType'];
-
             session_start();
-            $sessionUserName = $_SESSION['sessionUserName'];
-            $sessionUserPassword = $_SESSION['sessionUserPassword'];
-
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    if($sessionUserName == $row["username"] && $sessionUserPassword == $row["userpassword"]){
-                        echo "Welcome " . $sessionUserName;
-                    }
-                }
+            $sessionUserName = $_SESSION['sessionUsername'];
+            $sessionRole = $_SESSION['sessionRole'];
+            //check that the user has the role doctor, else logout 
+            if ($sessionRole !== "Doctor") {
+              header("Location: ../login.php? err=Please login");
             }
-            $conn->close();
+
+            echo "Welcome " . $sessionUserName;
             ?>
         </div>
       </section>
+
 
       <section>
         <p>[Search Bar]</p>

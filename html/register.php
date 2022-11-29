@@ -11,14 +11,17 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/login.css?v=<?php echo time(); ?>">
     <title>Register User</title>
   </head>
   <body>
+  
+    <div class="col-md-6">
     <div class="login-box">
-    <fieldset>
-      <legend>Register User</legend>
-      <form name="frmContact" method="post" action="registerAction.php">
+        <fieldset>
+          <h1>Register new user</h1>
+          <br>
+          <form name="frmContact" method="post" action="registerAction.php">
             <p>
                 <label for="username">Username </label>
                 <input type="text" name="inputUserName" id="inputUserName" required>
@@ -28,7 +31,7 @@
                 <input type="password" name="inputPassword" id="inputPassword" required>
             </p>
             <p>
-              <label class="radio-inline">
+              <!-- <label class="radio-inline">
                   <input type="radio" name="loginType" required value="admin" checked> Administrator
               </label>
               <label class="radio-inline">
@@ -36,7 +39,13 @@
               </label>
               <label class="radio-inline">
                   <input type="radio" name="loginType" required value="patient"> Patient
-              </label>
+              </label> -->
+              <label for="type">Type</label>
+              <select name="patient" id="inputPatient" form="patient" required>
+                <option value="administrator">Administrator</option>
+                <option value="doctor" disabled>Doctor</option>
+                <option value="patient">Patient</option>
+              </select>
             </p>
             <p>
                 <label for="email">Email</label>
@@ -51,9 +60,6 @@
                 <input type="date" name="inputBirthdate" id="inputBirthdate" required>
             </p>
             <p>
-              <label for="insurance">Insurance</label>
-            </p>
-            <p>
               <?php
               if(isset($_GET['err'])){
                 echo '<p style="color: red;">',$_GET['err'],'</p>';
@@ -66,13 +72,15 @@
               ?>
             </p>
             <p>
-                <a href="login.php">Back to Login</a>
-                <input type="submit" name="Submit" id="registerBtn" value="Submit" onsubmit="handleSubmit(e)">
+                <input type="submit" name="Submit" id="registerBtn" value="Register" onsubmit="handleSubmit(e)">
             </p>
-        </form>
-      </fieldset>
+            <p><a href="login.php">Back to Login</a></p>
+          </form>
+        </fieldset>
+      </div>
     </div>
-  
+    <div class="col-md-6 login-splash"></div>
+
     <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

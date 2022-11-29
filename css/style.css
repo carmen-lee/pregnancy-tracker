@@ -1,5 +1,5 @@
 body {
-    background-color: #715494;
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ header {
 }
 
 .body {
-    background-color: #e3ccff;
+    background-color: white;
     border-radius: 10pt;
     width: 80%;
     min-height: 100vh;
@@ -26,8 +26,13 @@ header {
 }
 
 section {
-    background-color: white;
+    background-color: whitesmoke;
     margin: 25px;
     padding: 15px;
     border-radius: 10pt;
+}
+
+textarea {
+    width: 80%;
+    resize: none;
 }

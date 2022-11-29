@@ -142,6 +142,7 @@
             echo"<tr>
                    <td>" . $row['firstName']. "</td>" . 
                   "<td>" . $row['lastName'] . "</td>" .
+                  "<td><a href=`del.php?a=" . $row['firstName']
                  "</tr>";
           }
           $conn->close(); //Make sure to close out the database connection
