@@ -43,6 +43,9 @@
             </p>
             <p>
               <?php
+              if(isset($_GET['err'])){
+                echo '<p style="color: red;">',$_GET['err'],'</p>';
+              }
               if(isset($_GET['registerSuccess'])){
                 echo '<p style="color: green;">',$_GET['registerSuccess'],'</p>';
               }
