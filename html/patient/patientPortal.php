@@ -55,26 +55,9 @@
           </div> -->
           <h2 class="card-title">
             <?php 
-
-            $conn = new mysqli("localhost", "root", "", "pregnancy");
-            $sql = "SELECT username, userpassword FROM Users";
-            $roleType = $_POST['loginType'];
-
             session_start();
-            $sessionUserName = $_SESSION['sessionUserName'];
-            $sessionUserPassword = $_SESSION['sessionUserPassword'];
-
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    if($sessionUserName == $row["username"] && $sessionUserPassword == $row["userpassword"]){
-                        echo "Welcome " . $sessionUserName;
-                    }
-                }
-            }
-            $conn->close();
+            $sessionUserName = $_SESSION['sessionUsername'];
+            echo "Welcome " . $sessionUserName;
             ?>
         </div>
       </section>
