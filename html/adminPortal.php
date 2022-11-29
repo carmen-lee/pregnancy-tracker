@@ -126,18 +126,27 @@
         <h3>Doctors</h3>
         <table class="table table-hover">
           <tbody>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-address-book"></i>&nbsp Full Name</th>
-              <td align="right">xx/xx/xxxx</td>
-            </tr>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-user-group"></i>&nbsp  Relationship</th>
-              <td align="right">Sibling</td>
-            </tr>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-phone"></i>&nbsp Phone Number</th>
-              <td align="right">(xxx)xxx-xxxx</td>
-            </tr>
+          <?php 
+          
+          
+          $conn = new mysqli("localhost", "root", "", "pregnancy");
+          $sql = "SELECT * FROM Doctors";
+          $result = $conn->query($sql);
+          echo "<table>"; // start a table tag in the HTML
+            echo"<tr><td>First Name </td><td><tr><td>Second Name </td><td>";
+          while($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
+            echo "<tr><td>" . htmlspecialchars($row['firstName']) . "</td><td>" . htmlspecialchars($row['lastName']) . "</td></tr>";  //$row['index'] the index here is a field name
+          }
+
+          echo "</table>"; //Close the table in HTML
+
+          $conn->close(); //Make sure to close out the database connection
+          
+          
+          ?>  
+
+
+
           </tbody>
         </table>
       </section>
