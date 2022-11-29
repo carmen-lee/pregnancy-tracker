@@ -51,17 +51,11 @@
         </nav>
       </header>
       <section>
-        <div class="card flex-row flex-wrap">
-          <!-- <div class="card-header border-0">
-            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div> -->
-          <h2 class="card-title">
-            <?php 
-            session_start();
-            $sessionUserName = $_SESSION['sessionUsername'];
-            echo "Welcome " . $sessionUserName;
-            ?>
-        </div>
+        <?php 
+        session_start();
+        $sessionUserName = $_SESSION['sessionUsername'];
+        echo "Welcome " . $sessionUserName;
+        ?>
       </section>
 
       <section>
