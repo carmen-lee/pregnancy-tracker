@@ -12,20 +12,29 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/login.css" />
-    <title>Login Page</title>
+    <title>Register Page</title>
   </head>
   <body>
     <div class="login-box">
     <fieldset>
-      <legend>Pregnancy Login </legend>
+      <legend>Pregnancy Register </legend>
       <form name="frmContact" method="post" action="loginAction.php">
+        <!-- 
+          user
+pass
+email
+phone number
+birthdate
+add more info (from my info) or add later
+
+         -->
             <p>
                 <label for="username">Username </label>
                 <input type="text" name="inputUserName" id="inputUserName" required>
             </p>
             <p>
                 <label for="password">Password</label>
-                <input type="text" name="inputPassword" id="inputPassword" required>
+                <input type="password" name="inputPassword" id="inputPassword" required>
             </p>
             <p>
               <label class="radio-inline">
@@ -39,9 +48,22 @@
               </label>
             </p>
             <p>
-              <a href="register.php">Register</a>
+                <label for="email">Email</label>
+                <input type="email" name="inputEmail" id="inputEmail" required>
             </p>
             <p>
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" name="inputPhoneNumber" placeholder="123-456-7890" id="inputPhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            </p>
+            <p>
+                <label for="birthdate">Birthdate</label>
+                <input type="date" name="inputBirthdate" id="inputBirthdate" required>
+            </p>
+            <p>
+              <label for="insurance">Insurance</label>
+            </p>
+            <p>
+                <a href="login.php">Back to Login</a>
                 <input type="submit" name="Submit" id="Submit" value="Submit">
             </p>
         </form>
@@ -55,7 +77,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- JS -->
-    <script src="../js/login.js"></script>
+    <script src="../js/register.js"></script>
   </body>
 </html>
 
