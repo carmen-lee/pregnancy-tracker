@@ -1,0 +1,22 @@
+body {
+    background-color: hsl(267, 28%, 45%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align the box in the middle of the page */
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.login-box {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 500px;
+    border-radius: 10px;
+}
+
+#loginBtn {
+    margin: 10px;
+}
