@@ -18,7 +18,7 @@ if($roleType == 'admin'){
     // output data of each row
     while($row = $result->fetch_assoc()) {
       if($userName == $row["username"] && $userpassword == $row["userpassword"]){
-        header("Location: adminPortal.php");
+        header("Location: admin/adminPortal.php");
         }
   }
 }

@@ -12,7 +12,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/patientInfo.css" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
     <title>Admin Portal</title>
@@ -38,15 +38,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link" href="myInfo.html">Patient/My Information</a>
-                <a class="nav-link" href="">Pregnancies</a>
-                <a class="nav-link" href="appointments.html">Appointments</a>
-                <a class="nav-link" href="medication.html">Medication</a>
+                <a class="nav-link" href="adminPortal.php">Home</a>
+                <a class="nav-link" href="adminDoctors.php">Doctors</a>
+                <a class="nav-link" href="adminPatients.php">Patients</a>
               </div>
               <!-- <button type="button" class="btn btn-light" id="logoutBtn">
                 Logout
               </button> -->
-              <a href="../logout.php">Logout</a>
+              <a href="logout.php">Logout</a>
             </div>
           </div>
         </nav>
@@ -83,8 +82,8 @@
       </section>
 
       <section>
-        <h3>Create Doctors Account</h3>
-        <form name="frmContact" method="post" action="adminPortalAction.php">
+        <h3>Add New Doctor</h3>
+        <form name="frmContact" method="post" action="adminAddDoctorAction.php">
             <p>
                 <label for="firstname">First Name </label>
                 <input type="text" name="firstName" id="firstName" required> <br/>
@@ -103,8 +102,8 @@
       </section>
 
       <section>
-        <h3>Admin Records</h3>
-        <table class="table table-hover">
+        <h3>All Doctors</h3>
+        <!-- <table class="table table-hover">
           <tbody>
             <tr>
               <th scope="row"><i class="fa-solid fa-address-book"></i>&nbsp Full Name</th>
@@ -117,60 +116,30 @@
             <tr>
               <th scope="row"><i class="fa-solid fa-phone"></i>&nbsp Phone Number</th>
               <td align="right">(xxx)xxx-xxxx</td>
-            </tr>
-          </tbody>
-        </table>
+            </tr> -->
+
+            <?php 
+          
+          
+            $conn = new mysqli("localhost", "root", "", "pregnancy");
+            $sql = "SELECT * FROM Doctors";
+            $result = $conn->query($sql);
+            echo "<table>"; // start a table tag in the HTML
+              echo"<tr><td>First Name </td><td><tr><td>Second Name </td><td>";
+            while($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
+              echo "<tr><td>" . htmlspecialchars($row['firstName']) . "</td><td>" . htmlspecialchars($row['lastName']) . "</td></tr>";  //$row['index'] the index here is a field name
+            }
+
+            echo "</table>"; //Close the table in HTML
+
+            $conn->close(); //Make sure to close out the database connection
+            
+            
+            ?>  
+          <!-- </tbody>
+        </table> -->
       </section>
 
-      <section>
-        <h3>Doctors</h3>
-        <table class="table table-hover">
-          <tbody>
-          <?php 
-          
-          
-          $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Doctors";
-          $result = $conn->query($sql);
-          echo "<table>"; // start a table tag in the HTML
-            echo"<tr><td>First Name </td><td><tr><td>Second Name </td><td>";
-          while($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
-            echo "<tr><td>" . htmlspecialchars($row['firstName']) . "</td><td>" . htmlspecialchars($row['lastName']) . "</td></tr>";  //$row['index'] the index here is a field name
-          }
-
-          echo "</table>"; //Close the table in HTML
-
-          $conn->close(); //Make sure to close out the database connection
-          
-          
-          ?>  
-
-
-
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Patients</h3>
-        <table class="table table-hover">
-          <tbody>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-address-book"></i>&nbsp Full Name</th>
-              <td align="right">xx/xx/xxxx</td>
-            </tr>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-user-group"></i>&nbsp  Relationship</th>
-              <td align="right">Sibling</td>
-            </tr>
-            <tr>
-              <th scope="row"><i class="fa-solid fa-phone"></i>&nbsp Phone Number</th>
-              <td align="right">(xxx)xxx-xxxx</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      
     </div>
 
     <!-- Bootstrap JS -->

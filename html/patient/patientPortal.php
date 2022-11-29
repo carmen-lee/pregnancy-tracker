@@ -12,10 +12,10 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/patientInfo.css" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
-    <title>Admin Portal</title>
+    <title>Patient Portal</title>
   </head>
   <body>
     <div class="body">
@@ -24,7 +24,7 @@
           class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill"
         >
           <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="home.html">Admin Portal</a>
+            <a class="navbar-brand mb-0 h1" href="patientPortal.php">Patient Portal</a>
             <button
               class="navbar-toggler custom-toggler"
               type="button"
@@ -38,14 +38,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link" href="myInfo.html">Patient/My Information</a>
-                <a class="nav-link" href="">Pregnancies</a>
-                <a class="nav-link" href="appointments.html">Appointments</a>
-                <a class="nav-link" href="medication.html">Medication</a>
+                <a class="nav-link" href="patientPortal.php">My Information</a>
+                <a class="nav-link" href="patientPregnancies.php">Pregnancies</a>
+                <a class="nav-link" href="patientAppointments.php">Appointments</a>
+                <a class="nav-link" href="patientMedications.php">Medications</a>
               </div>
-              <!-- <button type="button" class="btn btn-light" id="logoutBtn">
-                Logout
-              </button> -->
               <a href="../logout.php">Logout</a>
             </div>
           </div>
@@ -54,7 +51,7 @@
       <section>
         <div class="card flex-row flex-wrap">
           <div class="card-header border-0">
-            <img src="../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
+            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
           </div>
           <h2 class="card-title">
             <?php 
@@ -83,27 +80,40 @@
       </section>
 
       <section>
-        <h3>Create Doctors Account</h3>
-        <form name="frmContact" method="post" action="adminPortalAction.php">
-            <p>
-                <label for="firstname">First Name </label>
-                <input type="text" name="firstName" id="firstName" required> <br/>
-                <label for="lastname">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required> <br/>
-                <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" required> <br/>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required> <br/>
-                <label for="password">Password</label>
-                <input type="text" name="password" id="password" required> <br/>
-                
-                <input type="submit" name="Submit" id="Submit" value="Submit">
-            </p>
-        </form>
+        <h3>My Information</h3>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th scope="row"><i class="fa-solid fa-cake-candles"></i>&nbsp Date of Birth</th>
+              <td align="right">xx/xx/xxxx</td>
+            </tr>
+            <tr>
+              <th scope="row"><i class="fa-solid fa-envelope"></i>&nbsp  Email</th>
+              <td align="right">xxxx@example.com</td>
+            </tr>
+            <tr>
+              <th scope="row"><i class="fa-solid fa-phone"></i>&nbsp Phone Number</th>
+              <td align="right">(xxx)xxx-xxxx</td>
+            </tr>
+            <tr>
+              <th scope="row"><i class="fa-solid fa-house-user"></i>&nbsp  Address</th>
+              <td align="right">4505 S Maryland Pkwy, Las Vegas, NV 89154</td>
+            </tr>
+            <tr>
+              <th scope="row"><i class="fa-solid fa-at"></i>&nbsp  Handle</th>
+              <td align="right">@xxx</td>
+            </tr>
+            <!-- <tr>
+              <th scope="row"><i class="fa-solid fa-lock"></i>&nbsp Password</th>
+              <td align="right">***</td>
+            </tr> -->
+          </tbody>
+        </table>
+        
       </section>
 
       <section>
-        <h3>Admin Records</h3>
+        <h3>Emergency Contact Information</h3>
         <table class="table table-hover">
           <tbody>
             <tr>
@@ -123,53 +133,25 @@
       </section>
 
       <section>
-        <h3>Doctors</h3>
-        <table class="table table-hover">
-          <tbody>
-          <?php 
-          
-          
-          $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Doctors";
-          $result = $conn->query($sql);
-          echo "<table>"; // start a table tag in the HTML
-            echo"<tr><td>First Name </td><td><tr><td>Second Name </td><td>";
-          while($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
-            echo "<tr><td>" . htmlspecialchars($row['firstName']) . "</td><td>" . htmlspecialchars($row['lastName']) . "</td></tr>";  //$row['index'] the index here is a field name
-          }
-
-          echo "</table>"; //Close the table in HTML
-
-          $conn->close(); //Make sure to close out the database connection
-          
-          
-          ?>  
-
-
-
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Patients</h3>
+        <h3>Health Insurance Information</h3>
         <table class="table table-hover">
           <tbody>
             <tr>
-              <th scope="row"><i class="fa-solid fa-address-book"></i>&nbsp Full Name</th>
-              <td align="right">xx/xx/xxxx</td>
+              <th scope="row"><i class="fa-solid fa-address-card"></i>&nbsp Insurance Name</th>
+              <td align="right">xxxxxxxxx</td>
             </tr>
             <tr>
-              <th scope="row"><i class="fa-solid fa-user-group"></i>&nbsp  Relationship</th>
-              <td align="right">Sibling</td>
+              <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Group Number</th>
+              <td align="right">xxxxxxxxx</td>
             </tr>
             <tr>
-              <th scope="row"><i class="fa-solid fa-phone"></i>&nbsp Phone Number</th>
-              <td align="right">(xxx)xxx-xxxx</td>
+              <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Member ID</th>
+              <td align="right">xxxxxxxxx</td>
             </tr>
           </tbody>
         </table>
       </section>
+    </div>
       
     </div>
 
@@ -180,6 +162,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- JavaScript Bundle with Popper -->
-    <script src="../js/patientInfo.js"></script>
+    <!-- <script src="../js/patientInfo.js"></script> -->
   </body>
 </html>
