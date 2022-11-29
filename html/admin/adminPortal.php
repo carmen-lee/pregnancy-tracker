@@ -50,19 +50,27 @@
         <h3>Add New Doctor</h3>
         <form name="frmContact" method="post" action="adminAddDoctorAction.php">
             <p>
-                <label for="firstname">First Name </label>
-                <input type="text" name="firstName" id="firstName" required> <br/>
-                <label for="lastname">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required> <br/>
-                <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" required> <br/>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required> <br/>
-                <label for="password">Password</label>
-                <input type="text" name="password" id="password" required> <br/>
-                
-                <input type="submit" name="Submit" id="Submit" value="Submit">
+              <label for="firstname">First Name </label>
+              <input type="text" name="firstName" id="firstName" required> 
+            <!-- </p>
+            <p> -->
+              <label for="lastname">Last Name</label>
+              <input type="text" name="lastName" id="lastName" required> 
             </p>
+            <p>
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" required> 
+              <!-- </p>
+              <p> -->
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required> 
+              </p>
+              <p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" required> 
+              </p>
+              
+            <input type="submit" name="Submit" id="Submit" value="Submit">
         </form>
       </section>
 
