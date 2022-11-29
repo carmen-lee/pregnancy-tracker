@@ -24,7 +24,7 @@
           class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill"
         >
           <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="home.html">Admin Portal</a>
+            <a class="navbar-brand mb-0 h1" href="adminPortal.php">Admin Portal</a>
             <button
               class="navbar-toggler custom-toggler"
               type="button"
