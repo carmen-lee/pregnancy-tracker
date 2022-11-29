@@ -48,6 +48,18 @@
           </div>
         </nav>
       </header>
+
+      <?php 
+      session_start();
+      $sessionUserName = $_SESSION['sessionUsername'];
+      $sessionRole = $_SESSION['sessionRole'];
+      //check that the user has the role Patient, else logout 
+      if ($sessionRole !== "Patient") {
+        header("Location: ../login.php? err=Please login");
+      }
+      ?>
+
+
       <section>
       something here
       </section>

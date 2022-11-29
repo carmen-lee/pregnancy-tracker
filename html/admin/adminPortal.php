@@ -42,6 +42,18 @@
           </div>
         </nav>
       </header>
+
+      <?php 
+      session_start();
+      $sessionUserName = $_SESSION['sessionUsername'];
+      $sessionRole = $_SESSION['sessionRole'];
+      //check that the user has the role Admin, else logout 
+      if ($sessionRole !== "Admin") {
+        header("Location: ../login.php? err=Please login");
+      }
+      ?>
+
+
       <section>
       something here
       </section>

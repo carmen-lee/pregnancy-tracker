@@ -50,6 +50,7 @@
           </div>
         </nav>
       </header>
+
       <section>
         <div class="card flex-row flex-wrap">
           <!-- <div class="card-header border-0">
@@ -59,6 +60,12 @@
             <?php 
             session_start();
             $sessionUserName = $_SESSION['sessionUsername'];
+            $sessionRole = $_SESSION['sessionRole'];
+            //check that the user has the role doctor, else logout 
+            if ($sessionRole !== "Doctor") {
+              header("Location: ../login.php? err=Please login");
+            }
+
             echo "Welcome " . $sessionUserName;
             ?>
         </div>
