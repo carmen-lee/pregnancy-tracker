@@ -12,7 +12,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
     <title>Doctor Appointments</title>
@@ -52,9 +52,9 @@
       </header>
       <section>
         <div class="card flex-row flex-wrap">
-          <div class="card-header border-0">
-            <img src="../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div>
+          <!-- <div class="card-header border-0">
+            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
+          </div> -->
           <h2 class="card-title">
             <?php 
 
@@ -91,6 +91,21 @@
           </p>
           <p>
             <label for="patient">Patient</label>
+            <!-- dynamically make select list
+              </select><br>
+
+              Project: <select name="pro" id="">
+
+              <option value=""></option>
+                  <?php /*
+                  foreach($projects as $row){
+                    echo '<option value="',$row[0],'">',$row[1],'</option>'; 
+                  } */
+                  ?>
+
+              </select>
+              <input type="submit" value="Assign Project">
+             -->
             <select name="patient" id="inputPatient" form="patient" required>
               <option value="a">a</option>
               <option value="b">b</option>
@@ -99,8 +114,8 @@
             </select>
           </p>
           <p>
-            <label for="Reason">Reason</label>
-            <input type="text" name="inputReason" id="inputReason" required>
+            <label for="Reason">Reason</label> <br>
+            <textarea type="text" name="inputReason" id="inputReason" required></textarea>
           </p>
         </form>
       </section>

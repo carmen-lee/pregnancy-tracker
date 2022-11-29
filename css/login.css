@@ -1,20 +1,35 @@
 body {
-    background-color: hsl(267, 28%, 45%);
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* align the box in the middle of the page */
     font-family: Helvetica, Arial, sans-serif;
+    margin:0;
+    height:100%;
+
+}
+
+input, select {
+    width: 100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 .login-box {
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 550px;
-    width: 500px;
-    border-radius: 10px;
+}
+
+.login-splash {
+    background-image: url("../imgs/splash.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center center;
+    width:50%;
+    height:100vh; 
 }
 
 #loginBtn {

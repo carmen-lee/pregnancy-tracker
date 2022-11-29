@@ -12,7 +12,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../../css/patientInfo.css" />
+    <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
     <title>Patient Medications</title>
@@ -50,9 +50,9 @@
       </header>
       <section>
         <div class="card flex-row flex-wrap">
-          <div class="card-header border-0">
+          <!-- <div class="card-header border-0">
             <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div>
+          </div> -->
           <h2 class="card-title">
             <?php 
 
