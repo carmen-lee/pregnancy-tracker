@@ -127,24 +127,29 @@
           $conn = new mysqli("localhost", "root", "", "pregnancy");
           $sql = "SELECT * FROM Doctors";
           $result = $conn->query($sql);
-          echo "<table>"; // start a table tag in the HTML
-            echo"<tr><td>First Name </td><td><tr><td>Second Name </td><td>";
-          while($row = $result->fetch_assoc()) {   //Creates a loop to loop through results
-            echo "<tr><td>" . 
-            htmlspecialchars($row['firstName']) . "</td><td>" . 
-            htmlspecialchars($row['lastName'])  . 
-            " <input type='button' value='Edit' onclick='location='test.php'' /> 
-            ". "</td></tr>";
+          
+
+          echo "
+          <table border=1>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          ";
+          while($row = $result->fetch_assoc()) { 
+            echo"<tr>
+                   <td>" . $row['firstName']. "</td>" . 
+                  "<td>" . $row['lastName'] . "</td>" .
+                 "</tr>";
           }
-
-          echo "</table>"; //Close the table in HTML
-
           $conn->close(); //Make sure to close out the database connection
           
           
           ?>  
           
-
+ 
 
           </tbody>
         </table>
