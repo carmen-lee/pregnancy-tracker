@@ -42,6 +42,13 @@
               <a href="register.php">Register</a>
             </p>
             <p>
+              <?php
+              if(isset($_GET['registerSuccess'])){
+                echo '<p style="color: green;">',$_GET['registerSuccess'],'</p>';
+              }
+              ?>
+            </p>
+            <p>
                 <input type="submit" name="Submit" id="Submit" value="Submit">
             </p>
         </form>
@@ -55,7 +62,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- JS -->
-    <script src="../js/login.js"></script>
+    <!-- <script src="../js/login.js"></script> -->
   </body>
 </html>
 

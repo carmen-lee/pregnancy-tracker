@@ -49,8 +49,8 @@ function validateUser() {
 }
 
 loginBtn.addEventListener("click", function() {
-    console.log("login btn clicked");
-    validateFields();
+    console.log("this is from login.js");
+    // validateFields();
 })
 
 

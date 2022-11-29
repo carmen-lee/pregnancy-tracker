@@ -12,22 +12,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/login.css" />
-    <title>Register Page</title>
+    <title>Register User</title>
   </head>
   <body>
     <div class="login-box">
     <fieldset>
-      <legend>Pregnancy Register </legend>
-      <form name="frmContact" method="post" action="loginAction.php">
-        <!-- 
-          user
-pass
-email
-phone number
-birthdate
-add more info (from my info) or add later
-
-         -->
+      <legend>Register User</legend>
+      <form name="frmContact" method="post" action="registerAction.php">
             <p>
                 <label for="username">Username </label>
                 <input type="text" name="inputUserName" id="inputUserName" required>
@@ -63,8 +54,20 @@ add more info (from my info) or add later
               <label for="insurance">Insurance</label>
             </p>
             <p>
+              <?php
+              if(isset($_GET['err'])){
+                echo '<p style="color: red;">',$_GET['err'],'</p>';
+              }
+              if(isset($_GET['success'])){
+                echo '<p style="color: green;">',$_GET['success'],'</p>';
+                // sleep(1);
+                header("Location:login.php");
+              }
+              ?>
+            </p>
+            <p>
                 <a href="login.php">Back to Login</a>
-                <input type="submit" name="Submit" id="Submit" value="Submit">
+                <input type="submit" name="Submit" id="registerBtn" value="Submit" onsubmit="handleSubmit(e)">
             </p>
         </form>
       </fieldset>
@@ -77,7 +80,7 @@ add more info (from my info) or add later
       crossorigin="anonymous"
     ></script>
     <!-- JS -->
-    <script src="../js/register.js"></script>
+    <!-- <script src="../js/register.js"></script> -->
   </body>
 </html>
 
