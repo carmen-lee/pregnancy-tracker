@@ -75,7 +75,7 @@
           echo 'Connection failed' . mysqli_connect_error();
         }
         //create query
-        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='REQUESTED'";
+        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='REQUESTED'";
         $result_apt = mysqli_query($conn, $sql_apt);
         $resultsArray_apt = mysqli_fetch_all($result_apt);
         ?>
@@ -117,18 +117,18 @@
       <section>
         <h3>Schedule New Appointment</h3>
         <br>
-        <form name="frmContact" method="post" action="doctorAddAppointment.php">
+        <form name="frmContact" method="post" action="../AddAppointment.php">
           <p>
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" required>
+          <label for="date">Date</label>
+            <input type="date" name="inputDate" id="inputDate" required>
 
             <label for="time">Time:</label>
-            <input type="time" id="time" name="time">
+            <input type="time" id="inputTime" name="inputTime">
           </p>
           <p>
             <!-- ERROR CANNOT ADD TO DB, NOT GRABBING PATIENT ID -->
             <label for="patient">Patient</label>
-            <select name="patient" id="patient" form="patient" required>
+            <select name="inputPatient" required>
               <?php
               //create query
               $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
@@ -136,8 +136,11 @@
               $resultsArray = mysqli_fetch_all($result);
               //dynamically create options
               for ($i = 0; $i < sizeof($resultsArray); $i++){
+                $patientId = $resultsArray[$i][0];
                 $fullName = $resultsArray[$i][1] . ' ' . $resultsArray[$i][2];
-                echo "<option value='{$resultsArray[$i][0]}'>{$fullName}</option>";
+                // echo "<option value={$patientId}>{$patientId}</option>";
+                echo '<option value="',$patientId, '">', $fullName, '</option>';
+                
               }
               ?>
             </select>
@@ -167,7 +170,7 @@
         <h3>Upcoming Appointments</h3>
         <?php
         //create query
-        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='SCHEDULED'";
+        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='SCHEDULED'";
         $result_apt = mysqli_query($conn, $sql_apt);
         $resultsArray_apt = mysqli_fetch_all($result_apt);
         ?>
@@ -211,7 +214,7 @@
         <h3>Previous Appointments</h3>
         <?php
         //create query
-        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='COMPLETED' or status='CANCELLED'";
+        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='COMPLETED' or status='CANCELLED'";
         $result_apt = mysqli_query($conn, $sql_apt);
         $resultsArray_apt = mysqli_fetch_all($result_apt);
         ?>
