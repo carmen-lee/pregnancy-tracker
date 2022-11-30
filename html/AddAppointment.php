@@ -16,9 +16,9 @@ $userType = $_SESSION['sessionRole'];
 if ($userType == 'DOCTOR') {
 	$sql = "INSERT INTO appointments(apptDate,apptTime,status,patientId,doctorId,reason) VALUES ('$inputDate', '$inputTime','SCHEDULED','$patientId', '$doctorId', '$reason');";
 	if ($conn->query($sql)) {
-		header("Location: doctorAppointments.php? succ= Success ");
+		header("Location: doctor/doctorAppointments.php? succ= Success ");
 	} else {
-		header("Location: doctorAppointments.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
+		header("Location: doctor/doctorAppointments.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
 	}
 	
 } else {

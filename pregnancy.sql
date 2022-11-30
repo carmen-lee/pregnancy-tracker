@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2022 at 09:57 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Dec 01, 2022 at 12:37 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,23 +29,27 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `appointments` (
   `id` int(11) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
-  `status` enum('COMPLETED','REQUESTED','SCHEDULED','CANCELLED') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'REQUESTED',
+  `apptDate` date NOT NULL,
+  `apptTime` time NOT NULL,
+  `status` enum('COMPLETED','REQUESTED','SCHEDULED','CANCELLED') CHARACTER SET utf8 NOT NULL DEFAULT 'REQUESTED',
   `patientId` int(11) NOT NULL,
   `doctorId` int(11) NOT NULL,
   `reason` varchar(255) NOT NULL DEFAULT 'No reason provided'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `date`, `time`, `status`, `patientId`, `doctorId`, `reason`) VALUES
+INSERT INTO `appointments` (`id`, `apptDate`, `apptTime`, `status`, `patientId`, `doctorId`, `reason`) VALUES
 (1, '2022-01-01', '10:00:00', 'COMPLETED', 3, 2, 'No reason provided'),
 (2, '2022-12-01', '10:00:00', 'REQUESTED', 3, 2, 'No reason provided'),
 (3, '2022-10-01', '10:00:00', 'CANCELLED', 3, 2, 'No reason provided'),
-(4, '2022-11-01', '10:00:00', 'SCHEDULED', 3, 2, 'No reason provided');
+(4, '2022-11-01', '10:00:00', 'SCHEDULED', 3, 2, 'No reason provided'),
+(5, '2022-11-01', '15:25:00', 'REQUESTED', 3, 2, 'dumb'),
+(6, '2022-11-30', '18:33:00', 'SCHEDULED', 4, 2, ''),
+(7, '2022-11-10', '15:37:00', 'SCHEDULED', 3, 2, ''),
+(8, '2022-11-10', '15:40:00', 'SCHEDULED', 4, 2, 'test');
 
 -- --------------------------------------------------------
 
@@ -60,7 +64,7 @@ CREATE TABLE `medication` (
   `medDosage` varchar(255) DEFAULT NULL,
   `medFrequency` varchar(255) DEFAULT NULL,
   `medFood` enum('With Food','Without Food') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -70,14 +74,14 @@ CREATE TABLE `medication` (
 
 CREATE TABLE `pregnancies` (
   `id` int(11) NOT NULL,
-  `patient_first` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `patient_last` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `doctor_first` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `doctor_last` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `patient_first` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `patient_last` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `doctor_first` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `doctor_last` varchar(255) CHARACTER SET utf8 NOT NULL,
   `gestation_date` date DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `status` enum('PLANNING','CURRENT','BIRTHED') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'CURRENT'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` enum('PLANNING','CURRENT','BIRTHED') CHARACTER SET utf8 NOT NULL DEFAULT 'CURRENT'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pregnancies`
@@ -108,7 +112,7 @@ CREATE TABLE `Users` (
   `emerCon_name` varchar(255) DEFAULT NULL,
   `emerCon_phone` varchar(255) DEFAULT NULL,
   `emerCon_relation` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `Users`
@@ -157,7 +161,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `medication`
