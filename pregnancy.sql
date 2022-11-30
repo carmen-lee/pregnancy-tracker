@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2022 at 07:14 PM
+-- Generation Time: Nov 30, 2022 at 09:57 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -46,6 +46,21 @@ INSERT INTO `appointments` (`id`, `date`, `time`, `status`, `patientId`, `doctor
 (2, '2022-12-01', '10:00:00', 'REQUESTED', 3, 2, 'No reason provided'),
 (3, '2022-10-01', '10:00:00', 'CANCELLED', 3, 2, 'No reason provided'),
 (4, '2022-11-01', '10:00:00', 'SCHEDULED', 3, 2, 'No reason provided');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medication`
+--
+
+CREATE TABLE `medication` (
+  `increment` int(11) NOT NULL,
+  `patientID` int(255) DEFAULT NULL,
+  `medName` varchar(255) DEFAULT NULL,
+  `medDosage` varchar(255) DEFAULT NULL,
+  `medFrequency` varchar(255) DEFAULT NULL,
+  `medFood` enum('With Food','Without Food') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -116,6 +131,13 @@ ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `medication`
+--
+ALTER TABLE `medication`
+  ADD PRIMARY KEY (`increment`),
+  ADD KEY `increment` (`increment`);
+
+--
 -- Indexes for table `pregnancies`
 --
 ALTER TABLE `pregnancies`
@@ -136,6 +158,12 @@ ALTER TABLE `Users`
 --
 ALTER TABLE `appointments`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `medication`
+--
+ALTER TABLE `medication`
+  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pregnancies`
