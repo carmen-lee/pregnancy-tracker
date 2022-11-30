@@ -78,7 +78,7 @@
                     "</tr>";
             }
             
-            //$sql = "DELETE FROM `Doctors` WHERE `Doctors`.`id` = $id";
+            $sql = "DELETE FROM `Doctors` WHERE `Doctors`.`id` = $id";
             $conn->query($sql);
             $conn->close();
             ?>
