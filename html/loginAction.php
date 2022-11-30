@@ -24,9 +24,9 @@ foreach( $users as $user ) {
     //get role of user
     $role = $user['role'];
     $userId = $user['id'];
-    $firstName = $user['first_name'];
-    $lastName = $user['last_name'];
-    $email = $user['email'];
+    // $firstName = $user['first_name'];
+    // $lastName = $user['last_name'];
+    // $email = $user['email'];
     break;
   }
 }
@@ -38,13 +38,13 @@ if( !$userFound ){
 
 //start session
 session_start();
-$_SESSION['sessionUsername'] = $username;
+// $_SESSION['sessionUsername'] = $username;
 // $_SESSION['sessionUserPassword'] = $userpassword;
 $_SESSION['sessionRole'] = $role;
 $_SESSION['sessionUserId'] = $userId;
-$_SESSION['sessionFirstName'] = $firstName;
-$_SESSION['sessionLastName'] = $lastName;
-$_SESSION['sessionEmail'] = $email;
+// $_SESSION['sessionFirstName'] = $firstName;
+// $_SESSION['sessionLastName'] = $lastName;
+// $_SESSION['sessionEmail'] = $email;
 
 //redirect to the correct home page
 if( $role == 'ADMIN' ){
@@ -58,7 +58,3 @@ elseif( $role == 'PATIENT' ){
 } 
 
 $conn->close();
-?>
-
-
-
