@@ -59,14 +59,18 @@
           <h2 class="card-title">
             <?php 
             session_start();
-            $sessionUserName = $_SESSION['sessionUsername'];
+            //get session variables
+            $sessionUserId = $_SESSION['sessionUserId'];
+            $sessionFirstName = $_SESSION['sessionFirstName'];
+            $sessionLastName = $_SESSION['sessionLastName'];
             $sessionRole = $_SESSION['sessionRole'];
+
             //check that the user has the role doctor, else logout 
-            if ($sessionRole !== "Doctor") {
+            if ($sessionRole !== "DOCTOR") {
               header("Location: ../login.php? err=Please login");
             }
 
-            echo "Welcome " . $sessionUserName;
+            echo "Welcome Dr. ", $sessionFirstName, " ",$sessionLastName;
             ?>
         </div>
       </section>
@@ -78,8 +82,39 @@
 
       <section>
         <h3>Your Patients</h3>
-        
-        
+        <?php
+        //establish connection
+        $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+        //check connection
+        if (!$conn) {
+          echo 'Connection failed' . mysqli_connect_error();
+        }
+        //create query
+        $sql = "SELECT first_name, last_name, email FROM Users WHERE assigned_doctorId=$sessionUserId";
+        $result = mysqli_query($conn, $sql);
+        $resultsArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        ?>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Email</th>
+              <!-- Add more patient information here -->
+            </tr>
+          </thead>
+          <tbody>
+        <?php
+        foreach ($resultsArray as $patient) {
+          echo "<tr>";
+          foreach ($patient as $patientAttribute) {
+            echo "<td>",$patientAttribute,"</td>";
+          }
+          echo "</tr>";
+        }
+        echo "</tbody>", "</table>";
+        $conn->close();
+        ?>
       </section>
       
     </div>

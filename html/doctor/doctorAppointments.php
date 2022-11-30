@@ -53,69 +53,206 @@
 
       <?php 
       session_start();
-      $sessionUserName = $_SESSION['sessionUsername'];
+      //get session variables
+      $sessionUserId = $_SESSION['sessionUserId'];
+      $sessionFirstName = $_SESSION['sessionFirstName'];
+      $sessionLastName = $_SESSION['sessionLastName'];
       $sessionRole = $_SESSION['sessionRole'];
+
       //check that the user has the role doctor, else logout 
-      if ($sessionRole !== "Doctor") {
+      if ($sessionRole !== "DOCTOR") {
         header("Location: ../login.php? err=Please login");
       }
       ?>
 
       <section>
-      something here
+        <h3>Requested Appointments</h3>
+        <?php
+        //establish connection
+        $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+        //check connection
+        if (!$conn) {
+          echo 'Connection failed' . mysqli_connect_error();
+        }
+        //create query
+        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='REQUESTED'";
+        $result_apt = mysqli_query($conn, $sql_apt);
+        $resultsArray_apt = mysqli_fetch_all($result_apt);
+        ?>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Patient First Name</th>
+              <th scope="col">Patient Last Name</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+        <?php
+
+        for ($i = 0; $i < sizeof($resultsArray_apt); $i++){
+          echo "<tr>";
+          for ($j = 0; $j < 5; $j++) {
+            if($j == 2) {
+              $patientId = $resultsArray_apt[$i][2];
+              $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=$patientId";
+              $result_patient = mysqli_query($conn, $sql_patient);
+              $resultArray_patient = mysqli_fetch_all($result_patient);
+              echo "<td>",$resultArray_patient[0][0],"</td>"; 
+              echo "<td>",$resultArray_patient[0][1],"</td>"; 
+              $j+=1;
+            }
+            echo "<td>",$resultsArray_apt[$i][$j],"</td>";
+          }
+          echo "</tr>";
+        }
+        echo "</tbody>", "</table>";
+
+        ?>
       </section>
 
       <section>
         <h3>Schedule New Appointment</h3>
         <br>
-        <form name="frmContact" method="post" action="">
+        <form name="frmContact" method="post" action="doctorAddAppointment.php">
           <p>
             <label for="date">Date</label>
-            <input type="date" name="inputDate" id="inputDate" required>
+            <input type="date" name="date" id="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time">
           </p>
           <p>
+            <!-- ERROR CANNOT ADD TO DB, NOT GRABBING PATIENT ID -->
             <label for="patient">Patient</label>
-            <!-- dynamically make select list
-              </select><br>
-
-              Project: <select name="pro" id="">
-
-              <option value=""></option>
-                  <?php /*
-                  foreach($projects as $row){
-                    echo '<option value="',$row[0],'">',$row[1],'</option>'; 
-                  } */
-                  ?>
-
-              </select>
-              <input type="submit" value="Assign Project">
-             -->
-            <select name="patient" id="inputPatient" form="patient" required>
-              <option value="a">a</option>
-              <option value="b">b</option>
-              <option value="c">c</option>
-              <option value="d">d</option>
+            <select name="patient" id="patient" form="patient" required>
+              <?php
+              //create query
+              $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
+              $result = mysqli_query($conn, $sql);
+              $resultsArray = mysqli_fetch_all($result);
+              //dynamically create options
+              for ($i = 0; $i < sizeof($resultsArray); $i++){
+                $fullName = $resultsArray[$i][1] . ' ' . $resultsArray[$i][2];
+                echo "<option value='{$resultsArray[$i][0]}'>{$fullName}</option>";
+              }
+              ?>
             </select>
           </p>
           <p>
             <label for="Reason">Reason</label> <br>
-            <textarea type="text" name="inputReason" id="inputReason" required></textarea>
+            <textarea type="text" name="inputReason" id="inputReason"></textarea>
+          </p>
+          <p>
+            <?php
+            if(isset($_GET['err'])){
+              echo '<p style="color: red;">',$_GET['err'],'</p>';
+            }
+            if(isset($_GET['succ'])){
+              echo '<p style="color: green;">',$_GET['succ'],'</p>';
+            }
+            ?>
+          </p>
+          <p>
+            <input type="submit" name="Submit" id="Submit" value="Schedule new appointment">
           </p>
         </form>
+
       </section>
 
       <section>
         <h3>Upcoming Appointments</h3>
+        <?php
+        //create query
+        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='SCHEDULED'";
+        $result_apt = mysqli_query($conn, $sql_apt);
+        $resultsArray_apt = mysqli_fetch_all($result_apt);
+        ?>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Patient First Name</th>
+              <th scope="col">Patient Last Name</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+        <?php
+
+        for ($i = 0; $i < sizeof($resultsArray_apt); $i++){
+          echo "<tr>";
+          for ($j = 0; $j < 5; $j++) {
+            if($j == 2) {
+              $patientId = $resultsArray_apt[$i][2];
+              $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=$patientId";
+              $result_patient = mysqli_query($conn, $sql_patient);
+              $resultArray_patient = mysqli_fetch_all($result_patient);
+              echo "<td>",$resultArray_patient[0][0],"</td>"; 
+              echo "<td>",$resultArray_patient[0][1],"</td>"; 
+              $j+=1;
+            }
+            echo "<td>",$resultsArray_apt[$i][$j],"</td>";
+          }
+          echo "</tr>";
+        }
+        echo "</tbody>", "</table>";
+        ?>
         
         
       </section>
 
       <section>
         <h3>Previous Appointments</h3>
-        
+        <?php
+        //create query
+        $sql_apt = "SELECT date,time,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='COMPLETED' or status='CANCELLED'";
+        $result_apt = mysqli_query($conn, $sql_apt);
+        $resultsArray_apt = mysqli_fetch_all($result_apt);
+        ?>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Patient First Name</th>
+              <th scope="col">Patient Last Name</th>
+              <th scope="col">Reason</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+        <?php
+
+        for ($i = 0; $i < sizeof($resultsArray_apt); $i++){
+          echo "<tr>";
+          for ($j = 0; $j < 5; $j++) {
+            if($j == 2) {
+              $patientId = $resultsArray_apt[$i][2];
+              $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=$patientId";
+              $result_patient = mysqli_query($conn, $sql_patient);
+              $resultArray_patient = mysqli_fetch_all($result_patient);
+              echo "<td>",$resultArray_patient[0][0],"</td>"; 
+              echo "<td>",$resultArray_patient[0][1],"</td>"; 
+              $j+=1;
+            }
+            echo "<td>",$resultsArray_apt[$i][$j],"</td>";
+          }
+          echo "</tr>";
+        }
+        echo "</tbody>", "</table>";
+        ?>
         
       </section>
       
+      <?php
+      $conn->close();
+      ?>
     </div>
 
     <!-- Bootstrap JS -->
