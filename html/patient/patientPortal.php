@@ -59,7 +59,7 @@
             $sessionUserName = $_SESSION['sessionUsername'];
             $sessionRole = $_SESSION['sessionRole'];
             //check that the user has the role Patient, else logout 
-            if ($sessionRole !== "Patient") {
+            if ($sessionRole !== "PATIENT") {
               header("Location: ../login.php? err=Please login");
             }
       
