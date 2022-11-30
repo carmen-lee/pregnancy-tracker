@@ -38,45 +38,52 @@
     <?php
     session_start();
     $sessionUserName = $_SESSION['sessionUsername'];
+    $sessionUserID = $_SESSION['sessionUserId'];
     $sessionRole = $_SESSION['sessionRole'];
     //check that the user has the role PATIENT, else logout 
     if ($sessionRole !== "PATIENT") {
       header("Location: ../login.php? err=Please login");
     }
 
-    // //establish connection
-    // $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-    // //check connection
-    // if (!$conn) {
-    //   echo 'Connection failed' . mysqli_connect_error();
-    // }
+    //establish connection
+    $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+    //check connection
+    if (!$conn) {
+      echo 'Connection failed' . mysqli_connect_error();
+    }
 
     // //create query
-    // $sql = "SELECT * FROM Users WHERE id = $sessionUserId";
-    // $result1 = mysqli_query($conn, $sql);
-    // $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
-    // foreach ($user as $user1) {
-    //   $first = $user1['first_name'];
-    //   $last = $user1['last_name'];
-    //   $username = $user1['username'];
-    //   $birthdate = $user1['birthdate'];
-    //   $email = $user1['email'];
-    //   $phone = $user1['phone'];
-    //   $addy = $user1['Address'];
-    //   $EC_name = $user1['emerCon_name'];
-    //   $EC_phone = $user1['emerCon_phone'];
-    //   $EC_relation = $user1['emerCon_relation'];
-    // }
+    $sql = "SELECT * FROM medication WHERE patientID = $sessionUserID";
+    $result1 = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
     ?>
 
 
-    <section>
-      something here
-    </section>
 
     <section>
       <h3>Prescribed Medications</h3>
+      <table class="table table-hover table-stripped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>With or Without Food</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($user as $row) {
+            echo "<tr>";
+            echo "<td>", $row['medName'], "</td>";
+            echo "<td>", $row['medDosage'], "</td>";
+            echo "<td>", $row['medFrequency'], "</td>";
+            echo "<td>", $row['medFood'], "</td>";
+            echo "</tr>";
+          }
+          ?>
+        </tbody>
+      </table>
 
     </section>
   </div>
