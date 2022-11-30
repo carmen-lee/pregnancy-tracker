@@ -9,20 +9,20 @@ else {
   header("Location: login.php? registerSuccess= User created");
 }
 
-/* FROM CLASS
+/* FROM CLASS */
 
-$conn = mysqli_connect('localhost', 'admin', 'Aa.123', 'db1');
+$conn = mysqli_connect('localhost', 'admin', '', 'pregnancy');
 $username = $_POST['username'];
 $password = $_POST['password'];
 $empID = $_POST['empID'];
 
-$sql = "insert into USERS values ('$username','$password','USER',$empID)";
+$sql = "insert into USERS () values ('$username','$password','USER',$empID)";
 
 if($conn->query($sql)){
 
     session_start();
     $_SESSION['username'] = $username;
-    $_SESSION['userType'] = 'USER';
+    $_SESSION['role'] = 'USER';
     $_SESSION['eid'] = $empID;
 
     header('location:homepage.php');
@@ -30,5 +30,4 @@ if($conn->query($sql)){
     echo $conn->error;
 }
 
-*/
 ?>
