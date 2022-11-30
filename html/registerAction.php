@@ -21,9 +21,9 @@ $phone = $_POST['inputPhoneNumber'];
 $birthdate = $_POST['inputBirthdate'];
 
 if ($userType == 'patient') {
-  $sql = "INSERT INTO Users(first_name, last_name, email, userpassword, roleType, username) VALUES ('$first', '$last','$email','$password', 'Patient', '$username');";
+  $sql = "INSERT INTO Users(first_name, last_name, email, userpassword, role, username, birthdate, phone) VALUES ('$first', '$last','$email','$password', 'Patient', '$username', '$birthdate', '$phone');";
 } else {
-  $sql = "INSERT INTO Users(first_name, last_name, email, userpassword, roleType, username) VALUES ('$first', '$last','$email','$password', 'Admin', '$username');";
+  $sql = "INSERT INTO Users(first_name, last_name, email, userpassword, role, username, birthdate, phone) VALUES ('$first', '$last','$email','$password', 'Admin', '$username', '$birthdate', '$phone');";
 }
 
 
