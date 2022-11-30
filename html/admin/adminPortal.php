@@ -119,7 +119,7 @@
 
       <section>
         <h3>Doctors</h3>
-        <table class="table table-hover">
+        <table class="table table-hover" style = "text-align:center">
           <tbody>
           <?php 
           
@@ -142,7 +142,9 @@
             echo"<tr>
                    <td>" . $row['firstName']. "</td>" . 
                   "<td>" . $row['lastName'] . "</td>" .
-                  "<td><a href=`del.php?a=" . $row['firstName']
+                  "<td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit</a></td>".
+                  "<td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete</a></td>".
+
                  "</tr>";
           }
           $conn->close(); //Make sure to close out the database connection
