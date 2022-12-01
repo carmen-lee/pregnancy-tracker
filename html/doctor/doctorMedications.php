@@ -44,6 +44,12 @@
     if ($sessionRole !== "DOCTOR") {
       header("Location: ../login.php? err=Please login");
     }
+    //establish connection
+    $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+    //check connection
+    if (!$conn) {
+      echo 'Connection failed' . mysqli_connect_error();
+    }
     ?>
 
     <section>
@@ -51,20 +57,66 @@
     </section>
 
     <section>
-      Table of Medications
+      <h3>Prescribed Medications</h3>
+      <?php
+      // //create query
+      // $sql = "SELECT * FROM medication WHERE patientID = $sessionUserID";
+      $sql = "SELECT * FROM medication";
+      $result1 = mysqli_query($conn, $sql);
+      $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+      ?>
+      <table class="table table-hover table-stripped">
+        <thead>
+          <tr>
+            <th style="text-align: center;">Manage</th>
+            <th>Patient</th>
+            <th>Name</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>With or Without Food</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($user as $row) {
+            echo "<tr>";
+            echo '<td style="text-align: center;"><i class="fa-solid fa-trash-can"></i></td>';
+            echo "<td>", $row['patientID'], "</td>";
+            echo "<td>", $row['medName'], "</td>";
+            echo "<td>", $row['medDosage'], "</td>";
+            echo "<td>", $row['medFrequency'], "</td>";
+            echo "<td>", $row['medFood'], "</td>";
+            echo "</tr>";
+          }
+          ?>
+        </tbody>
+      </table>
+
     </section>
 
     <section>
       <h3>Prescribe Medication</h3>
       <br>
-      <form name="frmContact" method="post" action="">
+      <form name="frmContact" method="post" action="doctorMedicationAction.php">
         <p>
           <label for="patient">Patient</label>
-          <select name="patient" id="inputPatient" form="patient" required>
-            <option value="a">a</option>
-            <option value="b">b</option>
-            <option value="c">c</option>
-            <option value="d">d</option>
+          <select name="inputPatient" required>
+            <?php
+
+
+            //create query
+            $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
+            $result = mysqli_query($conn, $sql);
+            $resultsArray = mysqli_fetch_all($result);
+            //dynamically create options
+            for ($i = 0; $i < sizeof($resultsArray); $i++) {
+              $patientId = $resultsArray[$i][0];
+              $fullName = $resultsArray[$i][1] . ' ' . $resultsArray[$i][2];
+              // echo "<option value={$patientId}>{$patientId}</option>";
+              echo '<option value="', $patientId, '">', $fullName, '</option>';
+            }
+            ?>
           </select>
         </p>
         <p>
@@ -84,6 +136,10 @@
           <select name="inputFood" id="inputFood" form="Food" required>
             <option value="With Food">With Food</option>
             <option value="Without Food">Without Food</option>
+        </p>
+
+        <p>
+          <input type="submit" name="Submit" id="Submit" value="Add Medicine">
         </p>
       </form>
     </section>
