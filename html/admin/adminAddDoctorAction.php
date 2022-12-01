@@ -6,7 +6,10 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $conn = new mysqli("localhost", "root", "", "pregnancy");
-$sql = "INSERT INTO `Doctors`(`id`, `email`, `password`, `firstName`, `lastName`, `username`) VALUES ('0','$email','$password','$firstName' , '$lastName' ,'$username')";
+$sql = "INSERT INTO `Users` (`id`, `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`) 
+VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'DOCTOR', '$username', NULL, NULL, NULL)";
+
+
 $rs = mysqli_query($conn, $sql);
 if($rs)
 {

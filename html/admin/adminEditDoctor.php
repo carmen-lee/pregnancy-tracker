@@ -65,16 +65,17 @@
               </tr> ";
             $conn = new mysqli("localhost", "root", "", "pregnancy");
             $id = $_GET['a'];
-            $sql = "SELECT * FROM Doctors where id = $id ";
+            $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' AND id = $id";
+
             $result = $conn->query($sql);
             while($row = $result->fetch_assoc()) { 
                 echo"<tr>
                     <td>" . $row['id']. "</td>" . 
-                    "<td>" . $row['firstName'] . "</td>" .
-                    "<td>" . $row['lastName']. "</td>" .
+                    "<td>" . $row['first_name'] . "</td>" .
+                    "<td>" . $row['last_name']. "</td>" .
                     "<td>" . $row['email']. "</td>" .
                     "<td>" . $row['username']. "</td>" .
-                    "<td>" . $row['password']. "</td>" .
+                    "<td>" . $row['userpassword']. "</td>" .
                     "</tr>";
             }
             
