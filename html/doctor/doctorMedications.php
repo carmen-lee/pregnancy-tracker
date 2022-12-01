@@ -53,15 +53,41 @@
     ?>
 
     <section>
-      Search for Patient and show prescribed medications table below
-    </section>
-
-    <section>
       <h3>Prescribed Medications</h3>
+      <!-- <form name="frmContact" method="post" action="doctorMedicationAction.php"> -->
+      <form name="frmContact" method="post">
+        <p>
+          <label for="patient">Patient</label>
+          <select name="inputPatient" onchange="this.form.submit()" required>
+            <option value="">Select Patient</option>
+            <?php
+            //create query
+            $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
+            $result = mysqli_query($conn, $sql);
+            $resultsArray = mysqli_fetch_all($result);
+
+            //dynamically create options
+            for ($i = 0; $i < sizeof($resultsArray); $i++) {
+              $patientId = $resultsArray[$i][0];
+              $fullName = $resultsArray[$i][1] . ' ' . $resultsArray[$i][2];
+
+              // Figure out how to keep the full name selected onchange
+
+              // if ($inputPatient == $patientId) {
+              //   echo '<option value="', $patientId, ' selected">', $fullName, '</option>';
+              // } else {
+              echo '<option value="', $patientId, '">', $fullName, '</option>';
+              // }
+            }
+            ?>
+          </select>
+        </p>
+      </form>
       <?php
+      $patientId = $_POST['inputPatient'];
       // //create query
-      // $sql = "SELECT * FROM medication WHERE patientID = $sessionUserID";
-      $sql = "SELECT * FROM medication";
+      $sql = "SELECT * FROM medication WHERE patientID = $patientId";
+      // $sql = "SELECT * FROM medication";
       $result1 = mysqli_query($conn, $sql);
       $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
 
@@ -70,7 +96,7 @@
         <thead>
           <tr>
             <th style="text-align: center;">Manage</th>
-            <th>Patient</th>
+            <!-- <th>Patient</th> -->
             <th>Name</th>
             <th>Dosage</th>
             <th>Frequency</th>
@@ -81,8 +107,8 @@
           <?php
           foreach ($user as $row) {
             echo "<tr>";
-            echo '<td style="text-align: center;"><i class="fa-solid fa-trash-can"></i></td>';
-            echo "<td>", $row['patientID'], "</td>";
+            echo '<td style="text-align: center;"><button><i class="fa-solid fa-trash-can"></i></button></td>';
+            // echo "<td>", $row['patientID'], "</td>";
             echo "<td>", $row['medName'], "</td>";
             echo "<td>", $row['medDosage'], "</td>";
             echo "<td>", $row['medFrequency'], "</td>";
@@ -102,9 +128,8 @@
         <p>
           <label for="patient">Patient</label>
           <select name="inputPatient" required>
+            <option value="">Select Patient</option>
             <?php
-
-
             //create query
             $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
             $result = mysqli_query($conn, $sql);
@@ -119,28 +144,35 @@
             ?>
           </select>
         </p>
-        <p>
-          <label for="MedicationName">Medication Name</label>
-          <input type="text" name="inputMedicationName" id="inputMedicationName" required>
-        </p>
-        <p>
-          <label for="MedicationDosage">Dosage</label>
-          <input type="text" name="inputMedicationDosage" id="inputMedicationDosage" required>
-        </p>
-        <p>
-          <label for="MedicationFrequency">Frequency</label>
-          <input type="text" name="inputMedicationFrequency" id="inputMedicationFrequency" required>
-        </p>
-        <p>
-          <label for="MedicationFood">With or Without Food</label> <br>
-          <select name="inputFood" id="inputFood" form="Food" required>
-            <option value="With Food">With Food</option>
-            <option value="Without Food">Without Food</option>
-        </p>
+        <div style="display: flex; flex-direction:column;">
+          <div>
+            <p>
+              <label for="MedicationName">Medication Name</label>
+              <input type="text" name="inputMedicationName" id="inputMedicationName" required>
+            </p>
+            <p>
+              <label for="MedicationDosage">Dosage</label>
+              <input type="text" name="inputMedicationDosage" id="inputMedicationDosage" required>
+            </p>
+            <p>
+              <label for="MedicationFrequency">Frequency</label>
+              <input type="text" name="inputMedicationFrequency" id="inputMedicationFrequency" required>
+            </p>
 
-        <p>
-          <input type="submit" name="Submit" id="Submit" value="Add Medicine">
-        </p>
+            <p>
+              <label for="MedicationFood">With or Without Food</label> <br>
+              <select name="inputFood" required>
+                <option value="With Food">With Food</option>
+                <option value="Without Food">Without Food</option>
+              </select>
+            </p>
+          </div>
+
+          <div>
+            <input type="submit" name="Submit" id="Submit" value="Add Medicine">
+          </div>
+        </div>
+
       </form>
     </section>
 
