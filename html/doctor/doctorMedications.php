@@ -137,7 +137,16 @@
             <option value="With Food">With Food</option>
             <option value="Without Food">Without Food</option>
         </p>
-
+        <p>
+          <?php
+          if (isset($_GET['err'])) {
+            echo '<p style="color: red;">', $_GET['err'], '</p>';
+          }
+          if (isset($_GET['succ'])) {
+            echo '<p style="color: green;">', $_GET['succ'], '</p>';
+          }
+          ?>
+        </p>
         <p>
           <input type="submit" name="Submit" id="Submit" value="Add Medicine">
         </p>

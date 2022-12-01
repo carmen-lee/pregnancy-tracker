@@ -1,17 +1,23 @@
 <?php
 session_start();
+
+$conn = mysqli_connect("localhost", "root", "", "pregnancy");
+
 $medNameF = $_POST['inputMedicationName'];
 $medDosageF = $_POST['inputMedicationDosage'];
 $medFrequencyF = $_POST['inputMedicationFrequency'];
-$medFoodF = $_POST['inputMedicationFood'];
-$patientId = $_POST['patient'];
+if (isset($_POST['inputFood'])) {
+    $medFoodF = $_POST['inputFood'];
+}
+if (isset($_POST['patient'])) {
+    $patientId = $_POST['patient'];
+}
 $doctorId = $_SESSION['sessionUserId'];
 
 
 
-header("Location: doctorMedications.php? succ='$medFrequencyF'");
+header("Location: doctorMedications.php? succ='$medFoodF'");
 
-$conn = mysqli_connect("localhost", "root", "", "pregnancy");
 $sql = "INSERT INTO medication(id,patientID,medName,medDosage,medFrequency,medFood) VALUES (default,'$patientId','$medNameF','$medDosageF','$medFrequencyF','$medFoodF')";
 // $sql = "INSERT INTO medication VALUES (default,3,'medNameF','medDosageF','medFrequencyF','With Food')";
 
@@ -21,4 +27,3 @@ if ($conn->query($sql) === TRUE) {
     header("Location: doctorMedications.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
 }
 $conn->close();
-?>
