@@ -24,8 +24,8 @@ foreach( $users as $user ) {
     //get role of user
     $role = $user['role'];
     $userId = $user['id'];
-    // $firstName = $user['first_name'];
-    // $lastName = $user['last_name'];
+    $firstName = $user['first_name'];
+    $lastName = $user['last_name'];
     // $email = $user['email'];
     break;
   }
@@ -42,8 +42,8 @@ session_start();
 // $_SESSION['sessionUserPassword'] = $userpassword;
 $_SESSION['sessionRole'] = $role;
 $_SESSION['sessionUserId'] = $userId;
-// $_SESSION['sessionFirstName'] = $firstName;
-// $_SESSION['sessionLastName'] = $lastName;
+$_SESSION['sessionFirstName'] = $firstName;
+$_SESSION['sessionLastName'] = $lastName;
 // $_SESSION['sessionEmail'] = $email;
 
 //redirect to the correct home page

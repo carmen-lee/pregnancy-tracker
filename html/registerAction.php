@@ -1,12 +1,12 @@
 
 <?php
-if ($_POST['inputUserName'] == "No") {
-  // think of scenario when creating a user could be an error
-  // date is in the future
-  header("Location: register.php? err= Could not create user");
-} else {
-  header("Location: login.php? registerSuccess= User created $roles");
-}
+// if ($_POST['inputUserName'] == "No") {
+//   // think of scenario when creating a user could be an error
+//   // date is in the future
+//   header("Location: register.php? err= Could not create user");
+// } else {
+//   header("Location: login.php? registerSuccess= User created $roles");
+// }
 
 /* FROM CLASS*/
 
@@ -35,9 +35,10 @@ if ($conn->query($sql)) {
   // $_SESSION['userType'] = 'USER';
   // $_SESSION['eid'] = $empID;
 
-  header('location:login.php');
+  // header('location:login.php');
+  header("Location: login.php? registerSuccess= User created $roles");
 } else {
-  echo $conn->error;
+  header("Location: register.php? err= $conn->error");
 }
 
 
