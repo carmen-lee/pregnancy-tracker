@@ -18,8 +18,6 @@ $doctorId = $_SESSION['sessionUserId'];
 ?>
 <?php
 $sql = "INSERT INTO `medication` VALUES (default,'$patientId','$medNameF','$medDosageF','$medFrequencyF','$medFoodF')";
-// $sql = "INSERT INTO `medication`(id,patientID,medName,medDosage,medFrequency,medFood) VALUES (default,'$patientId','$medNameF','$medDosageF','$medFrequencyF','$medFoodF')";
-// $sql = "INSERT INTO medication VALUES (default,3,'medNameF','medDosageF','medFrequencyF','With Food')";
 
 if ($conn->query($sql)) {
     header("Location: doctorMedications.php? succ= Success ");
