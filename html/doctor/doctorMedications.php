@@ -107,7 +107,7 @@
           <?php
           foreach ($user as $row) {
             echo "<tr>";
-            echo '<td style="text-align: center;"><i class="fa-solid fa-trash-can"></i></td>';
+            echo '<td style="text-align: center;"><button><i class="fa-solid fa-trash-can"></i></button></td>';
             // echo "<td>", $row['patientID'], "</td>";
             echo "<td>", $row['medName'], "</td>";
             echo "<td>", $row['medDosage'], "</td>";
