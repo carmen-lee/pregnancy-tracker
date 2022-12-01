@@ -155,13 +155,41 @@
           </table>
         </div>
       </div>
-      
-      
-
     </section>
 
-   
-  
+    <section>
+      <h3>Admin</h3>
+      <table class="table table-hover">
+        <caption>TABLE OF ADMINS</caption>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+        <?php
+          $conn = new mysqli("localhost", "root", "", "pregnancy");
+          $sql = "SELECT * FROM Users WHERE role = 'ADMIN' ";
+          $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) { 
+          echo "
+          <tr>
+            <td>".$row['id']."</td>
+            <td>".$row['first_name']."</td>
+            <td>".$row['last_name']."</td>
+            <td>".$row['email']."</td>
+            <td>".$row['username']."</td>
+            <td>".$row['userpassword']."</td>
+            <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit BUTTON NO WORK</a></td>
+            <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete BUTTON NO WORK</a></td>
+          </tr>
+          ";
+          }
+        ?>
+      </table>
+    </section>
 
     <section>
       <h3>Doctors</h3>
@@ -175,57 +203,77 @@
           <th>Username</th>
           <th>Password</th>
         </tr>
-<?php
-        $conn = new mysqli("localhost", "root", "", "pregnancy");
-        $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' ";
-        $result = $conn->query($sql);
-        while($row = $result->fetch_assoc()) { 
-        echo "
-        <tr>
-          <td>".$row['id']."</td>
-          <td>".$row['first_name']."</td>
-          <td>".$row['last_name']."</td>
-          <td>".$row['email']."</td>
-          <td>".$row['username']."</td>
-          <td>".$row['userpassword']."</td>
-          <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit</a></td>
-          <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete</a></td>
-        </tr>
-        ";
-        }
-?>
+        <?php
+          $conn = new mysqli("localhost", "root", "", "pregnancy");
+          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' ";
+          $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) { 
+          echo "
+          <tr>
+            <td>".$row['id']."</td>
+            <td>".$row['first_name']."</td>
+            <td>".$row['last_name']."</td>
+            <td>".$row['email']."</td>
+            <td>".$row['username']."</td>
+            <td>".$row['userpassword']."</td>
+            <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit</a></td>
+            <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete</a></td>
+          </tr>
+          ";
+          }
+        ?>
       </table>
     </section>
 
-    <!-- <section>
-      <h3>Health Insurance Information</h3>
+    <section>
+      <h3>Patient</h3>
       <table class="table table-hover">
-        <tbody>
+        <caption>TABLE OF PATIENTS</caption>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Birth Date</th>
+          <th>Phone Number</th>
+        </tr>
+        <?php
+          $conn = new mysqli("localhost", "root", "", "pregnancy");
+          $sql = "SELECT * FROM Users WHERE role = 'PATIENT' ";
+          $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) { 
+          echo "
           <tr>
-            <th scope="row"><i class="fa-solid fa-address-card"></i>&nbsp Insurance Name</th>
-            <td align="right">xxxxxxxxx</td>
+            <td>".$row['id']."</td>
+            <td>".$row['first_name']."</td>
+            <td>".$row['last_name']."</td>
+            <td>".$row['email']."</td>
+            <td>".$row['username']."</td>
+            <td>".$row['userpassword']."</td>
+            <td>".$row['birthdate']."</td>
+            <td>".$row['phone']."</td>
+            <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit BUTTON NO WORK</a></td>
+            <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete BUTTON NO WORK</a></td>
           </tr>
-          <tr>
-            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Group Number</th>
-            <td align="right">xxxxxxxxx</td>
-          </tr>
-          <tr>
-            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Member ID</th>
-            <td align="right">xxxxxxxxx</td>
-          </tr>
-        </tbody>
+          ";
+          }
+        ?>
       </table>
-    </section> -->
-  </div>
+    </section>
 
-  </div>
+
+    
+      </div>
+
+    </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
   <!-- <script src="../js/patientInfo.js"></script> -->
-</body>
-
+  </body>
 </html>
 
 
