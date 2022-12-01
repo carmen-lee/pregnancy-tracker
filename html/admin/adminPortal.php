@@ -13,6 +13,14 @@
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
   <title>Admin Portal</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+</style>
 </head>
 
 <body>
@@ -72,27 +80,83 @@
 
 
     <section>
-      <h3>Add Doctor</h3>
-      <table class="table table-hover">
-        <tbody>
-        <form name="frmContact" method="post" action="adminAddDoctorAction.php">
-            <p>
-                <label for="firstname">First Name </label>
-                <input type="text" name="firstName" id="firstName" required> <br/>
-                <label for="lastname">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required> <br/>
-                <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" required> <br/>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required> <br/>
-                <label for="password">Password</label>
-                <input type="text" name="password" id="password" required> <br/>
-                
-                <input type="submit" name="Submit" id="Submit" value="Submit">
-            </p>
-        </form>
-        </tbody>
-      </table>
+      <div class="container" >
+        <div>
+        <h3>Add Admin</h3>
+        <table class="table table-hover">
+          <tbody>
+          <form name="frmContact" method="post" action="adminAddAdminAction.php">
+              <p>
+                  <label for="firstname">First Name </label>
+                  <input type="text" name="firstName" id="firstName" required> <br/>
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastName" id="lastName" required> <br/>
+                  <label for="email">E-mail</label>
+                  <input type="text" name="email" id="email" required> <br/>
+                  <label for="username">Username</label>
+                  <input type="text" name="username" id="username" required> <br/>
+                  <label for="password">Password</label>
+                  <input type="text" name="password" id="password" required> <br/>
+                  
+                  <input type="submit" name="Submit" id="Submit" value="Submit">
+              </p>
+          </form>
+          </tbody>
+        </table>
+      </div>
+        <div>
+          <h3>Add Doctor</h3>
+          <table class="table table-hover">
+            <tbody>
+            <form name="frmContact" method="post" action="adminAddDoctorAction.php">
+                <p>
+                    <label for="firstname">First Name </label>
+                    <input type="text" name="firstName" id="firstName" required> <br/>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" required> <br/>
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" id="email" required> <br/>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required> <br/>
+                    <label for="password">Password</label>
+                    <input type="text" name="password" id="password" required> <br/>
+                    
+                    <input type="submit" name="Submit" id="Submit" value="Submit">
+                </p>
+            </form>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Add Patient</h3>
+          <table class="table table-hover">
+            <tbody>
+            <form name="frmContact" method="post" action="adminAddPatientAction.php">
+                <p>
+                    <label for="firstname">First Name </label>
+                    <input type="text" name="firstName" id="firstName" required> <br/>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" required> <br/>
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" id="email" required> <br/>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required> <br/>
+                    <label for="password">Password</label>
+                    <input type="text" name="password" id="password" required> <br/>
+                    <label for="password">Birthdate (20XX-12-XX)</label>
+                    <input type="text" name="birthdate" id="birthdate" required> <br/>
+                    <label for="password">Phone Number</label>
+                    <input type="text" name="phonenumber" id="phonenumber" required> <br/>
+                    
+                    <input type="submit" name="Submit" id="Submit" value="Submit">
+                </p>
+            </form>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      
 
     </section>
 

@@ -45,7 +45,7 @@
 
 		$conn = new mysqli("localhost", "root", "", "pregnancy");
 		$sql = "INSERT INTO `Users` (`id`, `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`) 
-		VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'DOCTOR', '$username', NULL, NULL, NULL)";
+		VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'ADMIN', '$username', NULL, NULL, NULL)";
 		$conn->query($sql);
 		$conn->close();
 
@@ -54,7 +54,7 @@
 
 
 
-      <h3>Doctor Added</h3>
+      <h3>Admin Added</h3>
       <table class="table table-hover">
         <tr>
           <th>First Name</th>
