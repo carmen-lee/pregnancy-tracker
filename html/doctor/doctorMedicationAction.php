@@ -21,3 +21,4 @@ if ($conn->query($sql) === TRUE) {
     header("Location: doctorMedications.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
 }
 $conn->close();
+?>
