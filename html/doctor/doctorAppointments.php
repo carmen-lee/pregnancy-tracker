@@ -214,7 +214,7 @@
         <h3>Previous Appointments</h3>
         <?php
         //create query
-        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='COMPLETED' or status='CANCELLED'";
+        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and (status='COMPLETED' or status='CANCELLED')";
         $result_apt = mysqli_query($conn, $sql_apt);
         $resultsArray_apt = mysqli_fetch_all($result_apt);
         ?>
