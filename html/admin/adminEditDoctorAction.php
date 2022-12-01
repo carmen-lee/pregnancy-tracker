@@ -61,9 +61,9 @@
             $id = $_POST['Key'];
             $conn = new mysqli("localhost", "root", "", "pregnancy");
 
-            $sql = "UPDATE `Doctors` SET `email` = '$email', `password` = '$password', `firstName` = '$firstName', `lastName` = '$lastName', `username` = '$userName' WHERE `Doctors`.`id` = $id";
+            $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName' WHERE `Users`.`id` = $id";
             $conn->query($sql);
-            $sql = "SELECT * FROM Doctors where id = $id ";
+            $sql = "SELECT * FROM Users where id = $id ";
             $result = $conn->query($sql);
 
             while($row = $result->fetch_assoc()) { 
@@ -81,11 +81,11 @@
 
                     <tr>
                     <td>" . $row['id']. "</td>" . 
-                    "<td>" . $row['firstName'] . "</td>" .
-                    "<td>" . $row['lastName']. "</td>" .
+                    "<td>" . $row['first_name'] . "</td>" .
+                    "<td>" . $row['last_name']. "</td>" .
                     "<td>" . $row['email']. "</td>" .
                     "<td>" . $row['username']. "</td>" .
-                    "<td>" . $row['password']. "</td>" .
+                    "<td>" . $row['userpassword']. "</td>" .
                     "</tr>";
             }
             $conn->close(); //Make sure to close out the database connection

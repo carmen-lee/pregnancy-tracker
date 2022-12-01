@@ -55,23 +55,27 @@
             <?php 
 
             $conn = new mysqli("localhost", "root", "", "pregnancy");
-            $sql = "SELECT username, userpassword FROM Users";
-            $roleType = $_POST['loginType'];
-
             session_start();
-            $sessionUserName = $_SESSION['sessionUserName'];
-            $sessionUserPassword = $_SESSION['sessionUserPassword'];
+            $sessionUserId = $_SESSION['sessionUserId'];
+            $sql = "SELECT * FROM Users WHERE id = $sessionUserId";
+            $result1 = mysqli_query($conn, $sql);
+            $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
 
-
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    if($sessionUserName == $row["username"] && $sessionUserPassword == $row["userpassword"]){
-                        echo "Welcome " . $sessionUserName;
-                    }
-                }
+            foreach ($user as $user1) {
+              $first = $user1['first_name'];
+              $last = $user1['last_name'];
+              $username = $user1['username'];
+              $birthdate = $user1['birthdate'];
+              $email = $user1['email'];
+              $phone = $user1['phone'];
+              $addy = $user1['Address'];
+              $EC_name = $user1['emerCon_name'];
+              $EC_phone = $user1['emerCon_phone'];
+              $EC_relation = $user1['emerCon_relation'];
             }
+
+            echo "Welcome " . $first  . $last;
+            
             $conn->close();
             ?>
         </div>
@@ -79,7 +83,7 @@
 
       <section>
         <h3>Create Doctors Account</h3>
-        <form name="frmContact" method="post" action="adminPortalAction.php">
+        <form name="frmContact" method="post" action="adminAddDoctorAction.php">
             <p>
                 <label for="firstname">First Name </label>
                 <input type="text" name="firstName" id="firstName" required> <br/>
@@ -125,7 +129,7 @@
           
           
           $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Doctors";
+          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' ";
           $result = $conn->query($sql);
           
 
@@ -140,8 +144,8 @@
           ";
           while($row = $result->fetch_assoc()) { 
             echo"<tr>
-                   <td>" . $row['firstName']. "</td>" . 
-                  "<td>" . $row['lastName'] . "</td>" .
+                   <td>" . $row['first_name']. "</td>" . 
+                  "<td>" . $row['last_name'] . "</td>" .
                   "<td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit</a></td>".
                   "<td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete</a></td>".
 
