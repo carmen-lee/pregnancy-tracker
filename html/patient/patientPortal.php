@@ -34,7 +34,16 @@
         </div>
       </nav>
     </header>
+
     <section>
+      <?php
+      if (isset($_GET['err'])) {
+        echo '<p style="color: red;">', $_GET['err'], '</p>';
+      }
+      if (isset($_GET['succ'])) {
+        echo '<p style="color: green;">', $_GET['succ'], '</p>';
+      }
+      ?>
       <button type="button" class="btn btn-outline-primary" style="float: right;">Edit Info</button>
       <div class="container" style="display: block;">
         <!-- <div class="card-header border-0">
@@ -82,9 +91,8 @@
 
       </div>
     </section>
-
-
     <section>
+
       <h3>My Information</h3>
       <table class="table table-hover">
         <tbody>
@@ -123,7 +131,9 @@
           <tr>
             <th scope="row"><i class="fa-solid fa-lock"></i>&nbsp Password</th>
             <td align="right">
-              <button type="button" class="btn btn-outline-primary" style="float: right;">Change</button>
+              <!-- <button onclick="window.location.href=patientPassword.php" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Change</button> -->
+              <a href='patientPassword.php?a='>Change</a>
+
             </td>
           </tr>
         </tbody>
