@@ -36,6 +36,7 @@
       <table class="table table-hover">
         <tr>
           <th>ID</th>
+          <th>Assigned Doctor ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>E-mail</th>
@@ -55,6 +56,7 @@
             echo "
             <tr>
               <td>".$row['id']."</td>
+              <td>".$row['assigned_doctorId']."</td>
               <td>".$row['first_name']."</td>
               <td>".$row['last_name']."</td>
               <td>".$row['email']."</td>
@@ -67,11 +69,44 @@
           }
           $conn->close();
         ?>
+        
       </tbody>
+    </table>
+    <table class="table table-hover">
+    <h3>Doctors to Choose From</h3>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+        <?php
+          $conn = new mysqli("localhost", "root", "", "pregnancy");
+          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' ";
+          
+          $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) { 
+            echo "
+            <tr>
+              <td>".$row['id']."</td>
+              <td>".$row['first_name']."</td>
+              <td>".$row['last_name']."</td>
+              <td>".$row['email']."</td>
+              <td>".$row['username']."</td>
+              <td>".$row['userpassword']."</td>
+            </tr>
+            ";
+          }
+          $conn->close();
+        ?>
     </table>
     <form name="frmContact" method="post" action="adminEditPatientAction.php">
             <p>
                 <input type="hidden" id="Key" name="Key" value="<?=$id ?>">
+                <label for="doctorID">Assigned Doctor ID</label>
+                <input type="text" name="assignedDoctorID" id="assignedDoctorID" required> <br/>
                 <label for="firstname">First Name </label>
                 <input type="text" name="firstName" id="firstName" required> <br/>
                 <label for="lastname">Last Name</label>

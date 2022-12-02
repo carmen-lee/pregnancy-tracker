@@ -133,6 +133,8 @@
             <tbody>
             <form name="frmContact" method="post" action="adminAddPatientAction.php">
                 <p>
+                    <label for="assDocId">Assigned Doctor ID</label>
+                    <input type="text" name="assignedDoctorId" id="assignedDoctorId" required> <br/>
                     <label for="firstname">First Name </label>
                     <input type="text" name="firstName" id="firstName" required> <br/>
                     <label for="lastname">Last Name</label>
@@ -231,6 +233,7 @@
         <caption>TABLE OF PATIENTS</caption>
         <tr>
           <th>ID</th>
+          <th>Assigned Doctor ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>E-mail</th>
@@ -247,6 +250,7 @@
           echo "
           <tr>
             <td>".$row['id']."</td>
+            <td>".$row['assigned_doctorId']."</td>
             <td>".$row['first_name']."</td>
             <td>".$row['last_name']."</td>
             <td>".$row['email']."</td>

@@ -36,17 +36,19 @@
 
     <section>
 	<?php
+    $assignedDoctorID = $_POST['assignedDoctorId'];
 		$firstName = $_POST['firstName'];
 		$lastName = $_POST['lastName'];
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-        $birthdate = $_POST['birthdate'];
-        $phonenumber = $_POST['phonenumber'];
+    $birthdate = $_POST['birthdate'];
+    $phonenumber = $_POST['phonenumber'];
+    
 
 		$conn = new mysqli("localhost", "root", "", "pregnancy");
-		$sql = "INSERT INTO `Users` (`id`, `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`) 
-		                     VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'PATIENT', '$username', NULL, '$birthdate', '$phonenumber')";
+		$sql = "INSERT INTO `Users` (`id` , `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`) 
+		                     VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'PATIENT', '$username', '$assignedDoctorID', '$birthdate', '$phonenumber')";
 		$conn->query($sql);
 		$conn->close();
 
@@ -58,6 +60,7 @@
       <h3>Patient Added</h3>
       <table class="table table-hover">
         <tr>
+          <th>Assigned Doctor ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>E-mail</th>
@@ -71,6 +74,7 @@
           
             echo "
             <tr>
+              <td>".$assignedDoctorID."</td>
               <td>".$_POST['firstName']."</td>
               <td>".$_POST['lastName']."</td>
               <td>".$_POST['email']."</td>

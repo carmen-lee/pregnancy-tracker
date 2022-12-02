@@ -36,6 +36,7 @@
       <table class="table table-hover">
         <tr>
           <th>ID</th>
+          <th>Assigned Doctor ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>E-mail</th>
@@ -55,6 +56,7 @@
             echo "
             <tr>
               <td>".$row['id']."</td>
+              <td>".$row['assigned_doctorId']."</td>
               <td>".$row['first_name']."</td>
               <td>".$row['last_name']."</td>
               <td>".$row['email']."</td>
@@ -78,6 +80,7 @@
       <table class="table table-hover">
         <tr>
           <th>ID</th>
+          <th>Assigned Doctor ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>E-mail</th>
@@ -97,8 +100,8 @@
           $password = $_POST['password'];
           $birthdate = $_POST['birthdate'];
           $phonenumber = $_POST['phonenumber'];
-
-          $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName', `birthdate` = '$birthdate', `phone` = '$phonenumber' WHERE `Users`.`id` = $id";
+          $assignedDoctorID = $_POST['assignedDoctorID'];
+          $sql = "UPDATE `Users` SET `assigned_doctorId` = '$assignedDoctorID', `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName', `birthdate` = '$birthdate', `phone` = '$phonenumber' WHERE `Users`.`id` = $id";
           $conn->query($sql);
 
 
@@ -108,6 +111,7 @@
             echo "
             <tr>
               <td>".$row['id']."</td>
+              <td>".$row['assigned_doctorId']."</td>
               <td>".$row['first_name']."</td>
               <td>".$row['last_name']."</td>
               <td>".$row['email']."</td>
