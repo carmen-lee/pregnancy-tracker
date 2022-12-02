@@ -36,16 +36,15 @@
     </header>
     <?php
     if (isset($_GET['err'])) {
-
-      echo '<section><p style="color: red;">', $_GET['err'], '</p></section>';
+      echo '<section><p style="color: red;">&nbsp', $_GET['err'], '</p></section>';
     }
     if (isset($_GET['succ'])) {
-      echo '<section><p style="color: green;">', $_GET['succ'], '</p></section>';
+      echo '<section ><p style="color: green;">&nbsp', $_GET['succ'], '</p></section>';
     }
     ?>
     <section>
 
-      <button type="button" class="btn btn-outline-primary" style="float: right;">Edit Info</button>
+      <button type="button" class="btn btn-outline-primary" style="float: right;"><a href='patientEditMyInfo.php?a=' style="text-decoration: none;">Edit Info</a></button>
       <div class="container" style="display: block;">
         <!-- <div class="card-header border-0">
             <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
@@ -77,12 +76,20 @@
             $last = $user1['last_name'];
             $username = $user1['username'];
             $birthdate = $user1['birthdate'];
+            $doctorId = $user1['assigned_doctorId'];
             $email = $user1['email'];
             $phone = $user1['phone'];
-            $addy = $user1['Address'];
+            $addy = $user1['address'];
             $EC_name = $user1['emerCon_name'];
             $EC_phone = $user1['emerCon_phone'];
             $EC_relation = $user1['emerCon_relation'];
+          }
+          $sqln = "SELECT * FROM Users WHERE id = $doctorId";
+          $result = mysqli_query($conn, $sqln);
+          $doctor = mysqli_fetch_all($result, MYSQLI_ASSOC);
+          foreach ($doctor as $doctor1) {
+            $doctorFirst = $doctor1['first_name'];
+            $doctorLast = $doctor1['last_name'];
           }
 
           echo "Welcome " . $first . " " . $last;
@@ -97,6 +104,14 @@
       <h3>My Information</h3>
       <table class="table table-hover">
         <tbody>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-user-doctor"></i>&nbsp Doctor</th>
+
+            <?php
+            echo '<td align="right"> Dr. ', $doctorFirst, ' ', $doctorLast, '</td>';
+            ?>
+
+          </tr>
           <tr>
             <th scope="row"><i class="fa-solid fa-cake-candles"></i>&nbsp Date of Birth</th>
 
@@ -132,9 +147,8 @@
           <tr>
             <th scope="row"><i class="fa-solid fa-lock"></i>&nbsp Password</th>
             <td align="right">
-              <!-- <button onclick="window.location.href=patientPassword.php" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Change</button> -->
-              <a href='patientPassword.php?a='>Change</a>
-
+              <!-- <button onclick="window.location.href=patientPassword.php" ">Change</button> -->
+              <button type="button" class="btn btn-outline-primary" style="float: right;"><a href='patientPassword.php?a=' style="text-decoration: none;">Change</a></button>
             </td>
           </tr>
         </tbody>
@@ -189,7 +203,7 @@
     </section> -->
   </div>
 
-  </div>
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
