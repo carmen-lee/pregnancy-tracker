@@ -61,6 +61,7 @@
           <select name="inputPatient" onchange="this.form.submit()" required>
             <option value="">Select Patient</option>
             <?php
+            $patientName = $_POST['inputPatient'];
             //create query
             $sql = "SELECT id,first_name,last_name FROM users WHERE role='PATIENT'";
             $result = mysqli_query($conn, $sql);
@@ -72,12 +73,11 @@
               $fullName = $resultsArray[$i][1] . ' ' . $resultsArray[$i][2];
 
               // Figure out how to keep the full name selected onchange
-
-              // if ($inputPatient == $patientId) {
-              //   echo '<option value="', $patientId, ' selected">', $fullName, '</option>';
-              // } else {
-              echo '<option value="', $patientId, '">', $fullName, '</option>';
-              // }
+              if ((isset($patientName)) && ($patientName == $patientId)) {
+                echo '<option value="', $patientId, '" selected>', $fullName, '</option>';
+              } else {
+                echo '<option value="', $patientId, '">', $fullName, '</option>';
+              }
             }
             ?>
           </select>
@@ -107,7 +107,7 @@
           <?php
           foreach ($user as $row) {
             echo "<tr>";
-            echo '<td style="text-align: center;"><button><i class="fa-solid fa-trash-can"></i></button></td>';
+            echo "<td style='text-align: center;'><a href='doctorMedicationDelete.php? increment=" . $row['increment'] . "'> <i class='fa-solid fa-trash-can'></i></a></td>";
             // echo "<td>", $row['patientID'], "</td>";
             echo "<td>", $row['medName'], "</td>";
             echo "<td>", $row['medDosage'], "</td>";
@@ -160,7 +160,7 @@
             </p>
 
             <p>
-              <label for="MedicationFood">With or Without Food</label> <br>
+              <label for="MedicationFood">With or Without Food</label>
               <select name="inputFood" required>
                 <option value="With Food">With Food</option>
                 <option value="Without Food">Without Food</option>
