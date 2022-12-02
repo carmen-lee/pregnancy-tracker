@@ -18,7 +18,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
         <div class="container-fluid">
-          <a class="navbar-brand mb-0 h1" href="./adminPortal.php">Admin Portal</a>
+          <a class="navbar-brand mb-0 h1" href="patientPortal.php">Admin Portal</a>
           <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,7 +32,7 @@
     </header>
 
     <section>
-      <h3>Doctor Editied Before</h3>
+      <h3>Record Currently Editing</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -41,12 +41,14 @@
           <th>E-mail</th>
           <th>Username</th>
           <th>Password</th>
+          <th>Birth Date</th>
+          <th>Phone Number</th>
         </tr>
 
         <?php
-          $id = $_POST['Key'];
+          $id = $_GET['a'];
           $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'PATIENT' && id = $id ";
           
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
@@ -58,67 +60,64 @@
               <td>".$row['email']."</td>
               <td>".$row['username']."</td>
               <td>".$row['userpassword']."</td>
+              <td>".$row['birthdate']."</td>
+              <td>".$row['phone']."</td>
             </tr>
             ";
           }
-         
           $conn->close();
         ?>
       </tbody>
     </table>
-      </table>
-    </section>
+    <form name="frmContact" method="post" action="adminEditPatientAction.php">
+            <p>
+                <input type="hidden" id="Key" name="Key" value="<?=$id ?>">
+                <label for="firstname">First Name </label>
+                <input type="text" name="firstName" id="firstName" required> <br/>
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastName" id="lastName" required> <br/>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" id="email" required> <br/>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required> <br/>
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" required> <br/>
+                <label for="username">Birth Date</label>
+                <input type="text" name="birthdate" id="birthdate" required> <br/>
+                <label for="password">Phone Number</label>
+                <input type="text" name="phonenumber" id="phonenumber" required> <br/>
 
-    <section>
-      <h3>Doctor Editied After</h3>
-      <table class="table table-hover">
-        <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>E-mail</th>
-          <th>Username</th>
-          <th>Password</th>
-        </tr>
-
+                <input type="submit" name="Submit" id="Submit" value="Submit">
+            </p>
+        </form>
         <?php
-          $id = $_POST['Key'];
-          $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $firstName = $_POST['firstName'];
-          $lastName = $_POST['lastName'];
-          $email = $_POST['email'];
-          $userName = $_POST['username'];
-          $password = $_POST['password'];
-
-          $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName' WHERE `Users`.`id` = $id";
-          $conn->query($sql);
-
-
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
-          $result = $conn->query($sql);
-          while($row = $result->fetch_assoc()) { 
-            echo "
-            <tr>
-              <td>".$row['id']."</td>
-              <td>".$row['first_name']."</td>
-              <td>".$row['last_name']."</td>
-              <td>".$row['email']."</td>
-              <td>".$row['username']."</td>
-              <td>".$row['userpassword']."</td>
-            </tr>
-            ";
-          }
-          $conn->close();
+          echo '<form method="POST" action="adminPortal.php">
+          <input type="submit" name="submit" value="Cancel">  
+            </form>';
         ?>
-      </tbody>
-    </table>
-    <?php
-    echo '<form method="POST" action="adminPortal.php">
-    <input type="submit" name="submit" value="Back to Admin Portal">  
-      </form>';
-?>
+
       </table>
     </section>
+
+    <!-- <section>
+      <h3>Health Insurance Information</h3>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-address-card"></i>&nbsp Insurance Name</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Group Number</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Member ID</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
   </div>
 
   </div>
@@ -130,7 +129,3 @@
 </body>
 
 </html>
-
-
-
-

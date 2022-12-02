@@ -182,8 +182,8 @@
             <td>".$row['email']."</td>
             <td>".$row['username']."</td>
             <td>".$row['userpassword']."</td>
-            <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit BUTTON NO WORK</a></td>
-            <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete BUTTON NO WORK</a></td>
+            <td><a href='adminEditAdmin.php?a="   . $row['id'] . "'>Edit</a></td>
+            <td><a href='adminDeleteAdmin.php?a=" . $row['id'] . "'>Delete</a></td>
           </tr>
           ";
           }
@@ -254,8 +254,8 @@
             <td>".$row['userpassword']."</td>
             <td>".$row['birthdate']."</td>
             <td>".$row['phone']."</td>
-            <td><a href='adminEditDoctor.php?a="   . $row['id'] . "'>Edit BUTTON NO WORK</a></td>
-            <td><a href='adminDeleteDoctor.php?a=" . $row['id'] . "'>Delete BUTTON NO WORK</a></td>
+            <td><a href='adminEditPatient.php?a="   . $row['id'] . "'>Edit</a></td>
+            <td><a href='adminDeletePatient.php?a=" . $row['id'] . "'>Delete</a></td>
           </tr>
           ";
           }

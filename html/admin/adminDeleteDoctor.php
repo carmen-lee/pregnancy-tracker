@@ -26,7 +26,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            <a href="../logout.php">Logout</a>
             </div>
             
           </div>

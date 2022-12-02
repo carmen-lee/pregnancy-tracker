@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +20,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
         <div class="container-fluid">
-          <a class="navbar-brand mb-0 h1" href="./adminPortal.php">Admin Portal</a>
+          <a class="navbar-brand mb-0 h1" href="patientPortal.php">Admin Portal</a>
           <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,7 +34,7 @@
     </header>
 
     <section>
-      <h3>Doctor Editied Before</h3>
+      <h3>Patient Deleted</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -41,12 +43,14 @@
           <th>E-mail</th>
           <th>Username</th>
           <th>Password</th>
+          <th>Birth Date</th>
+          <th>Phone Number</th>
         </tr>
 
         <?php
-          $id = $_POST['Key'];
+          $id = $_GET['a'];
           $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'Patient' && id = $id ";
           
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
@@ -58,56 +62,13 @@
               <td>".$row['email']."</td>
               <td>".$row['username']."</td>
               <td>".$row['userpassword']."</td>
+              <td>".$row['birthdate']."</td>
+              <td>".$row['phone']."</td>
             </tr>
             ";
           }
-         
-          $conn->close();
-        ?>
-      </tbody>
-    </table>
-      </table>
-    </section>
-
-    <section>
-      <h3>Doctor Editied After</h3>
-      <table class="table table-hover">
-        <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>E-mail</th>
-          <th>Username</th>
-          <th>Password</th>
-        </tr>
-
-        <?php
-          $id = $_POST['Key'];
-          $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $firstName = $_POST['firstName'];
-          $lastName = $_POST['lastName'];
-          $email = $_POST['email'];
-          $userName = $_POST['username'];
-          $password = $_POST['password'];
-
-          $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName' WHERE `Users`.`id` = $id";
+          $sql = "DELETE FROM Users WHERE role = 'PATIENT' && id = $id ";
           $conn->query($sql);
-
-
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
-          $result = $conn->query($sql);
-          while($row = $result->fetch_assoc()) { 
-            echo "
-            <tr>
-              <td>".$row['id']."</td>
-              <td>".$row['first_name']."</td>
-              <td>".$row['last_name']."</td>
-              <td>".$row['email']."</td>
-              <td>".$row['username']."</td>
-              <td>".$row['userpassword']."</td>
-            </tr>
-            ";
-          }
           $conn->close();
         ?>
       </tbody>
@@ -119,6 +80,26 @@
 ?>
       </table>
     </section>
+
+    <!-- <section>
+      <h3>Health Insurance Information</h3>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-address-card"></i>&nbsp Insurance Name</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Group Number</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+          <tr>
+            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Member ID</th>
+            <td align="right">xxxxxxxxx</td>
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
   </div>
 
   </div>
@@ -130,7 +111,3 @@
 </body>
 
 </html>
-
-
-
-

@@ -32,7 +32,7 @@
     </header>
 
     <section>
-      <h3>Doctor Editied Before</h3>
+      <h3>Patient Editied Before</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -41,12 +41,14 @@
           <th>E-mail</th>
           <th>Username</th>
           <th>Password</th>
+          <th>Birth Date</th>
+          <th>Phone Number</th>
         </tr>
 
         <?php
           $id = $_POST['Key'];
           $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'PATIENT' && id = $id ";
           
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
@@ -58,6 +60,8 @@
               <td>".$row['email']."</td>
               <td>".$row['username']."</td>
               <td>".$row['userpassword']."</td>
+              <td>".$row['birthdate']."</td>
+              <td>".$row['phone']."</td>
             </tr>
             ";
           }
@@ -70,7 +74,7 @@
     </section>
 
     <section>
-      <h3>Doctor Editied After</h3>
+      <h3>Patient Editied After</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -79,6 +83,8 @@
           <th>E-mail</th>
           <th>Username</th>
           <th>Password</th>
+          <th>Birth Date</th>
+          <th>Phone Number</th>
         </tr>
 
         <?php
@@ -89,12 +95,14 @@
           $email = $_POST['email'];
           $userName = $_POST['username'];
           $password = $_POST['password'];
+          $birthdate = $_POST['birthdate'];
+          $phonenumber = $_POST['phonenumber'];
 
-          $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName' WHERE `Users`.`id` = $id";
+          $sql = "UPDATE `Users` SET `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName', `birthdate` = '$birthdate', `phone` = '$phonenumber' WHERE `Users`.`id` = $id";
           $conn->query($sql);
 
 
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'PATIENT' && id = $id ";
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
             echo "
@@ -105,6 +113,8 @@
               <td>".$row['email']."</td>
               <td>".$row['username']."</td>
               <td>".$row['userpassword']."</td>
+              <td>".$row['birthdate']."</td>
+              <td>".$row['phone']."</td>
             </tr>
             ";
           }

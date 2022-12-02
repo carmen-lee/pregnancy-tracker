@@ -32,7 +32,7 @@
     </header>
 
     <section>
-      <h3>Doctor Editied Before</h3>
+      <h3>Admin Editied Before</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -46,7 +46,7 @@
         <?php
           $id = $_POST['Key'];
           $conn = new mysqli("localhost", "root", "", "pregnancy");
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'ADMIN' && id = $id ";
           
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
@@ -70,7 +70,7 @@
     </section>
 
     <section>
-      <h3>Doctor Editied After</h3>
+      <h3>Admin Editied After</h3>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -94,7 +94,7 @@
           $conn->query($sql);
 
 
-          $sql = "SELECT * FROM Users WHERE role = 'DOCTOR' && id = $id ";
+          $sql = "SELECT * FROM Users WHERE role = 'ADMIN' && id = $id ";
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
             echo "
