@@ -34,16 +34,17 @@
         </div>
       </nav>
     </header>
+    <?php
+    if (isset($_GET['err'])) {
 
+      echo '<section><p style="color: red;">', $_GET['err'], '</p></section>';
+    }
+    if (isset($_GET['succ'])) {
+      echo '<section><p style="color: green;">', $_GET['succ'], '</p></section>';
+    }
+    ?>
     <section>
-      <?php
-      if (isset($_GET['err'])) {
-        echo '<p style="color: red;">', $_GET['err'], '</p>';
-      }
-      if (isset($_GET['succ'])) {
-        echo '<p style="color: green;">', $_GET['succ'], '</p>';
-      }
-      ?>
+
       <button type="button" class="btn btn-outline-primary" style="float: right;">Edit Info</button>
       <div class="container" style="display: block;">
         <!-- <div class="card-header border-0">
