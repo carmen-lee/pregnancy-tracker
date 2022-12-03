@@ -57,7 +57,47 @@
         echo 'Connection failed' . mysqli_connect_error();
       }
 
-      $sql = "SELECT * FROM pregnancies WHERE patientID = $sessionUserID";
+      $sql = "SELECT * FROM pregnancies WHERE patientID = '$sessionUserID' AND status = 'CURRENT'";
+      $result = mysqli_query($conn, $sql);
+      $resultsArray = mysqli_fetch_all($result);
+
+      ?>
+
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%;">Days Left : ???</div>
+      </div>
+      <table class="table table-hover table-stripped">
+        <thead>
+          <tr>
+            <th>Due date</th>
+            <th>Baby's Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          for ($i = 0; $i < sizeof($resultsArray); $i++) {
+            echo "<tr>";
+            echo "<td>", $resultsArray[$i][4], "</td>";
+            echo "<td>", $resultsArray[$i][7], "</td>";
+            echo "</tr>";
+          }
+          ?>
+        </tbody>
+      </table>
+
+    </section>
+
+    <section>
+      <h3>Past Pregnancies</h3>
+      <?php
+      //establish connection
+      $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+      //check connection
+      if (!$conn) {
+        echo 'Connection failed' . mysqli_connect_error();
+      }
+
+      $sql = "SELECT * FROM pregnancies WHERE patientID = '$sessionUserID' AND status = 'PAST'";
       $result = mysqli_query($conn, $sql);
       $resultsArray = mysqli_fetch_all($result);
 
@@ -66,37 +106,19 @@
       <table class="table table-hover table-stripped">
         <thead>
           <tr>
-            <th style="text-align: center;">Manage</th>
-            <!-- <th>Patient</th> -->
-            <th>Name</th>
-            <th>Dosage</th>
-            <th>Frequency</th>
-            <th>With or Without Food</th>
+            <th>Due date</th>
+            <th>Baby's Name</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          foreach ($resultsArray as $row) {
+          for ($i = 0; $i < sizeof($resultsArray); $i++) {
             echo "<tr>";
-            echo "<td style='text-align: center;'><a href='doctorMedicationDelete.php? increment=" . $row['increment'] . "'> <i class='fa-solid fa-trash-can'></i></a></td>";
-            echo "<td>", $row['patient_first'], "</td>";
-            echo "<td>", $row['patient_last'], "</td>";
-            echo "<td>", $row['patientID'], "</td>";
-            echo "<td>", $row['status'], "</td>";
-            // echo "<td>", $row['medFood'], "</td>";
+            echo "<td>", $resultsArray[$i][4], "</td>";
+            echo "<td>", $resultsArray[$i][7], "</td>";
             echo "</tr>";
           }
           ?>
-        </tbody>
-      </table>
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%;">Days Left : 25%</div>
-      </div>
-    </section>
-
-    <section>
-      <h3>Past Pregnancies</h3>
-
     </section>
   </div>
 

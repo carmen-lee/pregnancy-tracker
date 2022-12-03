@@ -24,8 +24,9 @@
           </p>
           <p>
             <label for="password">Password</label>
-            <input type="password" name="inputPassword" id="inputPassword" required>
+            <input type="password" name="inputPassword" id="inputPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8}$" required>
           </p>
+
           <p>
             <label for="first_name">First Name</label>
             <input type="text" name="inputFirst" id="inputFirst" required>
