@@ -29,7 +29,7 @@
               <a class="nav-link" href="patientAppointments.php">Appointments</a>
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
-            <a href="../logout.php">Logout</a>
+            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
@@ -44,7 +44,9 @@
     ?>
     <section>
 
-      <button type="button" class="btn btn-light btn-sm" style="float: right;"><a href='patientEditMyInfo.php?a=' style="text-decoration: none;"><i class="fa-solid fa-user-pen"></i></a></button>
+      <button type="button" class="btn btn-light btn-sm" style="float: right;">
+        <a href='patientEditMyInfo.php?a=' style="text-decoration: none;"><i class="fa-solid fa-user-pen"></i></a>
+      </button>
       <div class="container" style="display: block;">
         <!-- <div class="card-header border-0">
             <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />

@@ -34,7 +34,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            <a href="../logout.php">Logout</a>
+            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
             </div>
             
           </div>
@@ -62,13 +62,13 @@
             $birthdate = $user1['birthdate'];
             $email = $user1['email'];
             $phone = $user1['phone'];
-            $addy = $user1['Address'];
+            $addy = $user1['address'];
             $EC_name = $user1['emerCon_name'];
             $EC_phone = $user1['emerCon_phone'];
             $EC_relation = $user1['emerCon_relation'];
           }
 
-          echo "Welcome " . $first  . $last;
+          echo "Welcome " . $first . " " . $last;
           
           $conn->close();
 
