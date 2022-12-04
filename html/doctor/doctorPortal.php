@@ -76,14 +76,14 @@
       </section>
 
 
-      <section>
-        <p>[Search Bar]</p>
-      </section>
+      
 
       <section>
         <h3>Your Patients</h3>
         <!-- $sql = "SELECT first_name, last_name, email FROM Users WHERE assigned_doctorId=$sessionUserId"; -->
-        <table class="table table-hover">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+        <table class="table table-hover" id ="myTable">
           <tr>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
@@ -98,7 +98,7 @@
             echo 'Connection failed' . mysqli_connect_error();
           }
           //create query
-          $sql = "SELECT first_name, last_name, email, phone FROM Users WHERE assigned_doctorId=$sessionUserId";
+          $sql = "SELECT id, first_name, last_name, email, phone FROM Users WHERE assigned_doctorId=$sessionUserId";
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()) { 
             echo "
@@ -107,6 +107,7 @@
                 <td>".$row['last_name']."</td>
                 <td>".$row['email']."</td>
                 <td>".$row['phone']."</td>
+                <td><a href='doctorPortalEdit.php?a="   . $row['id'] . "'>Edit</a></td>
               </tr>
             ";
           }
@@ -127,3 +128,26 @@
     <script src="../js/patientInfo.js"></script>
   </body>
 </html>
+
+<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
