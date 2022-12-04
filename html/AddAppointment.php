@@ -6,14 +6,16 @@ $conn = mysqli_connect('localhost', 'root', '', 'pregnancy');
 
 $inputDate = $_POST['inputDate'];
 $inputTime = $_POST['inputTime'];
-if(isset($_POST['inputPatient'])) {
-	$patientId = $_POST['inputPatient'];
-}
-$doctorId = $_SESSION['sessionUserId'];
 $reason = $_POST['inputReason'];
 $userType = $_SESSION['sessionRole'];
 
 if ($userType == 'DOCTOR') {
+
+	if(isset($_POST['inputPatient'])) {
+		$patientId = $_POST['inputPatient'];
+	}
+	$doctorId = $_SESSION['sessionUserId'];
+
 	$sql = "INSERT INTO appointments(apptDate,apptTime,status,patientId,doctorId,reason) VALUES ('$inputDate', '$inputTime','SCHEDULED','$patientId', '$doctorId', '$reason');";
 	if ($conn->query($sql)) {
 		header("Location: doctor/doctorAppointments.php? succ= Success ");
@@ -22,13 +24,15 @@ if ($userType == 'DOCTOR') {
 	}
 	
 } else {
+	if(isset($_POST['inputDoctor'])) {
+		$doctorId = $_POST['inputDoctor'];
+	}
+	$patientId = $_SESSION['sessionUserId'];
 	$sql = "INSERT INTO appointments(apptDate,apptTime,status,patientId,doctorId,reason) VALUES ('$inputDate', '$inputTime','REQUESTED','$patientId', '$doctorId', '$reason');";
 	if ($conn->query($sql)) {
-		// header("Location: doctorAppointments.php? succ= Success ");
-		echo "success";
+		header("Location: patient/patientAppointments.php? succ= Success ");
 	} else {
-		// header("Location: doctorAppointments.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
-		echo $conn->error;
+		header("Location: patient/patientAppointments.php? err= 'Error: ' . $sql . '<br>' . $conn->error");
 	}
 	
 }

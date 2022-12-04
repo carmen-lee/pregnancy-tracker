@@ -65,7 +65,14 @@
 
       <section>
         <h3>Request New Appointment</h3>
-        <br>
+        <?php
+        if(isset($_GET['cancelErr'])){
+          echo '<p style="color: red;">',$_GET['cancelErr'],'</p>';
+        }
+        if(isset($_GET['cancelSucc'])){
+          echo '<p style="color: green;">',$_GET['cancelSucc'],'</p>';
+        }
+        ?>
         <form name="frmContact" method="post" action="../AddAppointment.php">
           <p>
           <label for="date">Date</label>

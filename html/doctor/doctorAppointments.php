@@ -68,50 +68,57 @@
       <section>
         <h3>Requested Appointments</h3>
         <?php
-        //establish connection
-        $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-        //check connection
-        if (!$conn) {
-          echo 'Connection failed' . mysqli_connect_error();
+        if(isset($_GET['requestErr'])){
+          echo '<p style="color: red;">',$_GET['requestErr'],'</p>';
         }
-        //create query
-        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='REQUESTED'";
-        $result_apt = mysqli_query($conn, $sql_apt);
-        $resultsArray_apt = mysqli_fetch_all($result_apt);
+        if(isset($_GET['requestSucc'])){
+          echo '<p style="color: green;">',$_GET['requestSucc'],'</p>';
+        }
         ?>
         <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Patient First Name</th>
-              <th scope="col">Patient Last Name</th>
-              <th scope="col">Reason</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-        <?php
-
-        for ($i = 0; $i < sizeof($resultsArray_apt); $i++){
-          echo "<tr>";
-          for ($j = 0; $j < 5; $j++) {
-            if($j == 2) {
-              $patientId = $resultsArray_apt[$i][2];
-              $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=$patientId";
-              $result_patient = mysqli_query($conn, $sql_patient);
-              $resultArray_patient = mysqli_fetch_all($result_patient);
-              echo "<td>",$resultArray_patient[0][0],"</td>"; 
-              echo "<td>",$resultArray_patient[0][1],"</td>"; 
-              $j+=1;
-            }
-            echo "<td>",$resultsArray_apt[$i][$j],"</td>";
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Patient First Name</th>
+            <th scope="col">Patient Last Name</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Status</th>
+          </tr>
+          <?php
+          //establish connection
+          $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+          //check connection
+          if (!$conn) {
+            echo 'Connection failed' . mysqli_connect_error();
           }
-          echo "</tr>";
-        }
-        echo "</tbody>", "</table>";
-
-        ?>
+          //create query
+          $sql_apt = "SELECT id,apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='REQUESTED'";
+          $result = $conn->query($sql_apt);
+          while($row = $result->fetch_assoc()) { 
+            echo "
+              <tr>
+                <td>".$row['apptDate']."</td>
+                <td>".$row['apptTime']."</td>
+            ";
+            $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=".$row['patientId']."";
+            $result_patient = $conn->query($sql_patient);
+            while($row_patient = $result_patient->fetch_assoc()) { 
+              echo "
+                <td>".$row_patient['first_name']."</td>
+                <td>".$row_patient['last_name']."</td> 
+              ";
+            }
+            echo "
+                <td>".$row['reason']."</td>
+                <td>
+                  <a href='doctorCancelApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm' title='Cancel'><i class='fa-solid fa-xmark'></i></a>
+                  <a href='doctorAcceptApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm'><i class='fa-solid fa-check' title='Accept'></i></a>
+                </td>
+              </tr>
+            ";
+          }
+          ?>
+        </table>
       </section>
 
       <section>
@@ -169,45 +176,57 @@
       <section>
         <h3>Upcoming Appointments</h3>
         <?php
-        //create query
-        $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='SCHEDULED'";
-        $result_apt = mysqli_query($conn, $sql_apt);
-        $resultsArray_apt = mysqli_fetch_all($result_apt);
+        if(isset($_GET['cancelErr'])){
+          echo '<p style="color: red;">',$_GET['cancelErr'],'</p>';
+        }
+        if(isset($_GET['cancelSucc'])){
+          echo '<p style="color: green;">',$_GET['cancelSucc'],'</p>';
+        }
         ?>
         <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Patient First Name</th>
-              <th scope="col">Patient Last Name</th>
-              <th scope="col">Reason</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-        <?php
-
-        for ($i = 0; $i < sizeof($resultsArray_apt); $i++){
-          echo "<tr>";
-          for ($j = 0; $j < 5; $j++) {
-            if($j == 2) {
-              $patientId = $resultsArray_apt[$i][2];
-              $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=$patientId";
-              $result_patient = mysqli_query($conn, $sql_patient);
-              $resultArray_patient = mysqli_fetch_all($result_patient);
-              echo "<td>",$resultArray_patient[0][0],"</td>"; 
-              echo "<td>",$resultArray_patient[0][1],"</td>"; 
-              $j+=1;
-            }
-            echo "<td>",$resultsArray_apt[$i][$j],"</td>";
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Patient First Name</th>
+            <th scope="col">Patient Last Name</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Status</th>
+          </tr>
+          <?php
+          //establish connection
+          $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+          //check connection
+          if (!$conn) {
+            echo 'Connection failed' . mysqli_connect_error();
           }
-          echo "</tr>";
-        }
-        echo "</tbody>", "</table>";
-        ?>
-        
-        
+          //create query
+          $sql_apt = "SELECT id,apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and status='SCHEDULED'";
+          $result = $conn->query($sql_apt);
+          while($row = $result->fetch_assoc()) { 
+            echo "
+              <tr>
+                <td>".$row['apptDate']."</td>
+                <td>".$row['apptTime']."</td>
+            ";
+            $sql_patient = "SELECT first_name,last_name FROM Users WHERE id=".$row['patientId']."";
+            $result_patient = $conn->query($sql_patient);
+            while($row_patient = $result_patient->fetch_assoc()) { 
+              echo "
+                <td>".$row_patient['first_name']."</td>
+                <td>".$row_patient['last_name']."</td> 
+              ";
+            }
+            echo "
+                <td>".$row['reason']."</td>
+                <td>
+                  <a href='doctorCancelApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm' title='Cancel'><i class='fa-solid fa-xmark'></i></a>
+                  <a href='doctorCompleteApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm' title='Complete'><i class='fa-solid fa-check'></i></a>
+                </td>
+              </tr>
+            ";
+          }
+          ?>
+        </table>
       </section>
 
       <section>
