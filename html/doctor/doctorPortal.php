@@ -45,7 +45,7 @@
               <!-- <button type="button" class="btn btn-light" id="logoutBtn">
                 Logout
               </button> -->
-              <a href="../logout.php">Logout</a>
+              <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
             </div>
           </div>
         </nav>
@@ -82,39 +82,37 @@
 
       <section>
         <h3>Your Patients</h3>
-        <?php
-        //establish connection
-        $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-        //check connection
-        if (!$conn) {
-          echo 'Connection failed' . mysqli_connect_error();
-        }
-        //create query
-        $sql = "SELECT first_name, last_name, email FROM Users WHERE assigned_doctorId=$sessionUserId";
-        $result = mysqli_query($conn, $sql);
-        $resultsArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        ?>
+        <!-- $sql = "SELECT first_name, last_name, email FROM Users WHERE assigned_doctorId=$sessionUserId"; -->
         <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Email</th>
-              <!-- Add more patient information here -->
-            </tr>
-          </thead>
-          <tbody>
-        <?php
-        foreach ($resultsArray as $patient) {
-          echo "<tr>";
-          foreach ($patient as $patientAttribute) {
-            echo "<td>",$patientAttribute,"</td>";
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+          </tr>
+          <?php
+          //establish connection
+          $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+          //check connection
+          if (!$conn) {
+            echo 'Connection failed' . mysqli_connect_error();
           }
-          echo "</tr>";
-        }
-        echo "</tbody>", "</table>";
-        $conn->close();
-        ?>
+          //create query
+          $sql = "SELECT first_name, last_name, email, phone FROM Users WHERE assigned_doctorId=$sessionUserId";
+          $result = $conn->query($sql);
+          while($row = $result->fetch_assoc()) { 
+            echo "
+              <tr>
+                <td>".$row['first_name']."</td>
+                <td>".$row['last_name']."</td>
+                <td>".$row['email']."</td>
+                <td>".$row['phone']."</td>
+              </tr>
+            ";
+          }
+          $conn->close();
+          ?>
+        </table>
       </section>
       
     </div>

@@ -43,7 +43,7 @@
                 <a class="nav-link" href="patientAppointments.php">Appointments</a>
                 <a class="nav-link" href="patientMedications.php">Medications</a>
               </div>
-              <a href="../logout.php">Logout</a>
+              <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
             </div>
           </div>
         </nav>
@@ -65,7 +65,14 @@
 
       <section>
         <h3>Request New Appointment</h3>
-        <br>
+        <?php
+        if(isset($_GET['cancelErr'])){
+          echo '<p style="color: red;">',$_GET['cancelErr'],'</p>';
+        }
+        if(isset($_GET['cancelSucc'])){
+          echo '<p style="color: green;">',$_GET['cancelSucc'],'</p>';
+        }
+        ?>
         <form name="frmContact" method="post" action="../AddAppointment.php">
           <p>
           <label for="date">Date</label>

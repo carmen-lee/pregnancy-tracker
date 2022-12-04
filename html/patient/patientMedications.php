@@ -29,7 +29,7 @@
               <a class="nav-link" href="patientAppointments.php">Appointments</a>
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
-            <a href="../logout.php">Logout</a>
+            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
@@ -37,7 +37,7 @@
 
     <?php
     session_start();
-    $sessionUserName = $_SESSION['sessionUsername'];
+    // $sessionUserName = $_SESSION['sessionUsername'];
     $sessionUserID = $_SESSION['sessionUserId'];
     $sessionRole = $_SESSION['sessionRole'];
     //check that the user has the role PATIENT, else logout 
