@@ -33,7 +33,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Patient Deleted</h3>
       <table class="table table-hover">
         <tr>
@@ -45,6 +45,10 @@
           <th>Password</th>
           <th>Birth Date</th>
           <th>Phone Number</th>
+          <th>Address</th>
+          <th>Emergency Contact Name</th>
+          <th>Emergency Contact Phone</th>
+          <th>Emergency Contact Relation</th>
         </tr>
 
         <?php
@@ -64,6 +68,10 @@
               <td>".$row['userpassword']."</td>
               <td>".$row['birthdate']."</td>
               <td>".$row['phone']."</td>
+              <td>".$row['address']."</td>
+              <td>".$row['emerCon_name']."</td>
+              <td>".$row['emerCon_phone']."</td>
+              <td>".$row['emerCon_relation']."</td>
             </tr>
             ";
           }

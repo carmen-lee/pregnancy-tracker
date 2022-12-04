@@ -44,11 +44,15 @@
 		$password = $_POST['password'];
     $birthdate = $_POST['birthdate'];
     $phonenumber = $_POST['phonenumber'];
+    $address = $_POST['address'];
+		$emerCon_name = $_POST['emerCon_name'];
+    $emerCon_phone = $_POST['emerCon_phone'];
+    $emerCon_relation = $_POST['emerCon_relation'];
     
 
 		$conn = new mysqli("localhost", "root", "", "pregnancy");
-		$sql = "INSERT INTO `Users` (`id` , `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`) 
-		                     VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'PATIENT', '$username', '$assignedDoctorID', '$birthdate', '$phonenumber')";
+		$sql = "INSERT INTO `Users` (`id` , `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`, `address`, `emerCon_name`, `emerCon_phone`, `emerCon_relation`) 
+		                     VALUES (NULL, '$firstName', '$lastName', '$email', '$password', 'PATIENT', '$username', '$assignedDoctorID', '$birthdate', '$phonenumber', '$address', '$emerCon_name', '$emerCon_phone', '$emerCon_relation')";
 		$conn->query($sql);
 		$conn->close();
 
@@ -68,6 +72,10 @@
           <th>Password</th>
           <th>Birthdate</th>
           <th>Phone Number</th>
+          <th>Address</th>
+          <th>Emergency Contact Name</th>
+          <th>Emergency Contact Phone</th>
+          <th>Emergency Contact Relation</th>
         </tr>
 
         <?php
@@ -82,6 +90,10 @@
               <td>".$_POST['password']."</td>
               <td>".$_POST['birthdate']."</td>
               <td>".$_POST['phonenumber']."</td>
+              <td>".$_POST['address']."</td>
+              <td>".$_POST['emerCon_name']."</td>
+              <td>".$_POST['emerCon_phone']."</td>
+              <td>".$_POST['emerCon_relation']."</td>
             </tr>
             ";
         ?>

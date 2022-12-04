@@ -31,7 +31,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Patient Editied Before</h3>
       <table class="table table-hover">
         <tr>
@@ -44,6 +44,10 @@
           <th>Password</th>
           <th>Birth Date</th>
           <th>Phone Number</th>
+          <th>Address</th>
+          <th>Emergency Contact Name</th>
+          <th>Emergency Contact Phone</th>
+          <th>Emergency Contact Relation</th>
         </tr>
 
         <?php
@@ -64,6 +68,10 @@
               <td>".$row['userpassword']."</td>
               <td>".$row['birthdate']."</td>
               <td>".$row['phone']."</td>
+              <td>".$row['address']."</td>
+              <td>".$row['emerCon_name']."</td>
+              <td>".$row['emerCon_phone']."</td>
+              <td>".$row['emerCon_relation']."</td>
             </tr>
             ";
           }
@@ -75,7 +83,7 @@
       </table>
     </section>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Patient Editied After</h3>
       <table class="table table-hover">
         <tr>
@@ -88,6 +96,10 @@
           <th>Password</th>
           <th>Birth Date</th>
           <th>Phone Number</th>
+          <th>Address</th>
+          <th>Emergency Contact Name</th>
+          <th>Emergency Contact Phone</th>
+          <th>Emergency Contact Relation</th>
         </tr>
 
         <?php
@@ -100,8 +112,15 @@
           $password = $_POST['password'];
           $birthdate = $_POST['birthdate'];
           $phonenumber = $_POST['phonenumber'];
+          $address = $_POST['address'];
+          $emerCon_name = $_POST['emerCon_name'];
+          $emerCon_phone = $_POST['emerCon_phone'];
+          $emerCon_relation = $_POST['emerCon_relation'];
           $assignedDoctorID = $_POST['assignedDoctorID'];
-          $sql = "UPDATE `Users` SET `assigned_doctorId` = '$assignedDoctorID', `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', `username` = '$userName', `birthdate` = '$birthdate', `phone` = '$phonenumber' WHERE `Users`.`id` = $id";
+          $sql = "UPDATE `Users` SET `assigned_doctorId` = 
+          '$assignedDoctorID', `first_name` = '$firstName', `last_name` = '$lastName', `email` = '$email', `userpassword` = '$password', 
+          `username` = '$userName', `birthdate` = '$birthdate', `phone` = '$phonenumber', `address` = '$address', `emerCon_name` = '$emerCon_name', 
+          `emerCon_phone` = '$emerCon_phone', `emerCon_relation` = '$emerCon_relation' WHERE `Users`.`id` = $id";
           $conn->query($sql);
 
 
@@ -119,6 +138,10 @@
               <td>".$row['userpassword']."</td>
               <td>".$row['birthdate']."</td>
               <td>".$row['phone']."</td>
+              <td>".$row['address']."</td>
+              <td>".$row['emerCon_name']."</td>
+              <td>".$row['emerCon_phone']."</td>
+              <td>".$row['emerCon_relation']."</td>
             </tr>
             ";
           }

@@ -149,6 +149,14 @@
                     <input type="date" name="birthdate" id="birthdate" required> <br/>
                     <label for="password">Phone Number</label>
                     <input type="text" name="phonenumber" id="phonenumber" required> <br/>
+                    <label for="password">Address</label>
+                    <input type="text" name="address" id="address" required> <br/>
+                    <label for="password">Emergency Contact Name</label>
+                    <input type="text" name="emerCon_name" id="emerCon_name" required> <br/>
+                    <label for="password">Emergency Contact Phone</label>
+                    <input type="text" name="emerCon_phone" id="emerCon_phone" required> <br/>
+                    <label for="password">Emergency Contact Relation</label>
+                    <input type="text" name="emerCon_relation" id="emerCon_relation" required> <br/>
                     
                     <input type="submit" name="Submit" id="Submit" value="Submit">
                 </p>
@@ -227,7 +235,7 @@
       </table>
     </section>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Patient</h3>
       <table class="table table-hover">
         <caption>TABLE OF PATIENTS</caption>
@@ -241,6 +249,10 @@
           <th>Password</th>
           <th>Birth Date</th>
           <th>Phone Number</th>
+          <th>Address</th>
+          <th>Emergency Contact Name</th>
+          <th>Emergency Contact Phone</th>
+          <th>Emergency Contact Relation</th>
         </tr>
         <?php
           $conn = new mysqli("localhost", "root", "", "pregnancy");
@@ -258,6 +270,10 @@
             <td>".$row['userpassword']."</td>
             <td>".$row['birthdate']."</td>
             <td>".$row['phone']."</td>
+            <td>".$row['address']."</td>
+            <td>".$row['emerCon_name']."</td>
+            <td>".$row['emerCon_phone']."</td>
+            <td>".$row['emerCon_relation']."</td>
             <td><a href='adminEditPatient.php?a="   . $row['id'] . "'>Edit</a></td>
             <td><a href='adminDeletePatient.php?a=" . $row['id'] . "'>Delete</a></td>
           </tr>
