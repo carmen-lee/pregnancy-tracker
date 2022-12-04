@@ -36,3 +36,8 @@ textarea {
     width: 80%;
     resize: none;
 }
+
+.center {
+    justify-content: center;
+    align-items: center;
+}

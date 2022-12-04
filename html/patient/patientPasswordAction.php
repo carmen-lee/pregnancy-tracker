@@ -25,24 +25,24 @@ $currentPass = $row['userpassword'];
 
 // check if old password matches from database
 if ($currentPass != $oldPass) {
-    header("Location: patientPassword.php? err= Old Password does not match '$currentPass'.");
+    header("Location: patientPortal.php? passwordErr= Incorrect password.");
 } else if (strlen($newPass) < 8) {
-    header("Location: patientPassword.php? err= Password must be at least 8 characters in length.");
+    header("Location: patientPortal.php? passwordErr= Password must be at least 8 characters in length.");
 } else if (!$lowercase) {
-    header("Location: patientPassword.php? err= Password must contain at least one lower case letter.");
+    header("Location: patientPortal.php? passwordErr= Password must contain at least one lower case letter.");
 } else if (!$uppercase) {
-    header("Location: patientPassword.php? err= Password must contain at least one upper case letter.");
+    header("Location: patientPortal.php? passwordErr= Password must contain at least one upper case letter.");
 } else if (!$number) {
-    header("Location: patientPassword.php? err= Password must contain at least one number.");
+    header("Location: patientPortal.php? passwordErr= Password must contain at least one number.");
 } else if (!$specialChars) {
-    header("Location: patientPassword.php? err= Password must contain at least one special character.");
+    header("Location: patientPortal.php? passwordErr= Password must contain at least one special character.");
 } else if ($newPass != $checkPass) {
-    header("Location: patientPassword.php? err= New passwords must match.");
+    header("Location: patientPortal.php? passwordErr= New passwords must match.");
 } else {
     $sql = "UPDATE Users SET userpassword = '$newPass' WHERE id='$patientId'";
     if ($conn->query($sql) === TRUE) {
-        header("Location: patientPortal.php? succ= Updated Password. ");
+        header("Location: patientPortal.php? passwordSucc= Updated Password. ");
     } else {
-        header("Location: patientPortal.php? err= Something went wrong. ");
+        header("Location: patientPortal.php? passwordErr= Something went wrong. ");
     }
 }

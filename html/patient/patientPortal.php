@@ -35,16 +35,16 @@
       </nav>
     </header>
     <?php
-    if (isset($_GET['err'])) {
-      echo '<section><p style="color: red;">&nbsp', $_GET['err'], '</p></section>';
+    if (isset($_GET['passwordErr'])) {
+      echo '<section><p style="color: red;">&nbsp', $_GET['passwordErr'], '</p></section>';
     }
-    if (isset($_GET['succ'])) {
-      echo '<section ><p style="color: green;">&nbsp', $_GET['succ'], '</p></section>';
+    if (isset($_GET['passwordSucc'])) {
+      echo '<section ><p style="color: green;">&nbsp', $_GET['passwordSucc'], '</p></section>';
     }
     ?>
     <section>
 
-      <button type="button" class="btn btn-outline-primary" style="float: right;"><a href='patientEditMyInfo.php?a=' style="text-decoration: none;">Edit Info</a></button>
+      <button type="button" class="btn btn-light btn-sm" style="float: right;"><a href='patientEditMyInfo.php?a=' style="text-decoration: none;"><i class="fa-solid fa-user-pen"></i></a></button>
       <div class="container" style="display: block;">
         <!-- <div class="card-header border-0">
             <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
@@ -148,13 +148,55 @@
             <th scope="row"><i class="fa-solid fa-lock"></i>&nbsp Password</th>
             <td align="right">
               <!-- <button onclick="window.location.href=patientPassword.php" ">Change</button> -->
-              <button type="button" class="btn btn-outline-primary" style="float: right;"><a href='patientPassword.php?a=' style="text-decoration: none;">Change</a></button>
+              <!-- <button type="button" class="btn btn-light btn-sm" style="float: right;"><a href='patientPassword.php?a=' style="text-decoration: none;"><i class="fa-solid fa-pen-to-square"></i></a></button> -->
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
 
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Change password</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="frmContact" method="post" action="patientPasswordAction.php">
+              <label for="oldPass">Old Password </label> <br>
+              <input type="password" name="oldPass" id="oldPass" required> <br />
+              <label for="newPass">New Password </label> <br>
+              <input type="password" name="newPass" id="newPass" required> <br />
+              <label for="checkPass">Confirm new Password </label> <br>
+              <input type="password" name="checkPass" id="checkPass" required> <br /><br />
+              <?php
+              if (isset($_GET['passwordErr'])) {
+                  echo '<p style="color: red;">', $_GET['passwordErr'], '</p>';
+              }
+              if (isset($_GET['passwordSucc'])) {
+                  echo '<p style="color: green;">', $_GET['passwordSucc'], '</p>';
+              }
+              ?>
+              <!-- <input type="submit" name="Submit" id="Submit" value="Submit"> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            <!-- <button type="button" class="btn btn-secondary">Update password</button> -->
+            <input type="submit" class="btn btn-secondary" name="Submit" id="Submit" value="Update">
+          </div>
+            </form>
+        </div>
+      </div>
+    </div>
 
     <section>
       <h3>Emergency Contact Information</h3>
