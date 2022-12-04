@@ -145,8 +145,8 @@
                     <input type="text" name="username" id="username" required> <br/>
                     <label for="password">Password</label>
                     <input type="text" name="password" id="password" required> <br/>
-                    <label for="password">Birthdate (20XX-12-XX)</label>
-                    <input type="text" name="birthdate" id="birthdate" required> <br/>
+                    <label for="password">Birthdate</label>
+                    <input type="date" name="birthdate" id="birthdate" required> <br/>
                     <label for="password">Phone Number</label>
                     <input type="text" name="phonenumber" id="phonenumber" required> <br/>
                     
