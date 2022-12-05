@@ -70,6 +70,8 @@
             <table class="table table-hover table-stripped">
                 <thead>
                     <tr>
+                        <th>Manage</th>
+                        <th>Status</th>
                         <th>Due date</th>
                         <th>Baby's Name</th>
                         <th>Baby's Health</th>
@@ -120,6 +122,8 @@
             <table class="table table-hover table-stripped">
                 <thead>
                     <tr>
+                        <th>Manage</th>
+                        <th>Status</th>
                         <th>Due date</th>
                         <th>Baby's Name</th>
                         <th>Baby's Health</th>
@@ -162,8 +166,8 @@
                     <tr>
                         <th>Status</th>
                         <th>Due date</th>
-                        <th>Babys Name</th>
-                        <th>Babys Health</th>
+                        <th>Baby's Name</th>
+                        <th>Baby's Health</th>
                         <th>Moms Health</th>
                     </tr>
                 </thead>
@@ -176,7 +180,7 @@
                     if (sizeof($resultsArray1) == 0) {
                         echo '<option value="CURRENT" >Current</option>';
                     }
-                    echo '           <option value="PAST" selected>Past</option>
+                    echo '<option value="PAST" selected>Past</option>
                                 </select></td>';
                     echo '<td>
                              <input type="date" name="inputDate" id="inputDate"></td>';
