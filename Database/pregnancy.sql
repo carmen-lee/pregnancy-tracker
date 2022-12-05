@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 05, 2022 at 05:50 AM
+-- Generation Time: Dec 05, 2022 at 10:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -82,8 +82,8 @@ INSERT INTO `medication` (`increment`, `patientID`, `medName`, `medDosage`, `med
 CREATE TABLE `pregnancies` (
   `id` int(11) NOT NULL,
   `doctor_id` int(11) DEFAULT NULL,
-  `momHealth` enum('Healthy','Unhealthy') DEFAULT NULL,
-  `Health` enum('Healthy','Unhealthy') DEFAULT NULL,
+  `momHealth` varchar(255) DEFAULT NULL,
+  `Health` varchar(255) DEFAULT NULL,
   `due_date` date DEFAULT NULL,
   `status` enum('CURRENT','PAST') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'CURRENT',
   `patientID` int(11) NOT NULL,
@@ -95,8 +95,9 @@ CREATE TABLE `pregnancies` (
 --
 
 INSERT INTO `pregnancies` (`id`, `doctor_id`, `momHealth`, `Health`, `due_date`, `status`, `patientID`, `babyName`) VALUES
-(1, NULL, NULL, NULL, '2023-03-13', 'CURRENT', 3, NULL),
-(2, NULL, 'Healthy', 'Healthy', '2022-09-01', 'PAST', 3, 'Johnny Jr.');
+(2, NULL, 'Healthy-ish', 'Healthy', '2020-02-05', 'PAST', 3, 'Johnny Jr Jr.'),
+(6, 2, 'its good', 'Its growing', '2023-06-22', 'CURRENT', 3, 'CHlid32'),
+(7, 2, 'its good', 'Healthy-ish', '2023-02-23', 'PAST', 4, 'Child#64');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,7 @@ CREATE TABLE `Users` (
 INSERT INTO `Users` (`id`, `first_name`, `last_name`, `email`, `userpassword`, `role`, `username`, `assigned_doctorId`, `birthdate`, `phone`, `address`, `emerCon_name`, `emerCon_phone`, `emerCon_relation`) VALUES
 (1, 'Admin', 'Istrator', 'admin@example.com', 'password', 'ADMIN', 'admin', NULL, NULL, NULL, NULL, NULL, '', NULL),
 (2, 'Johnny', 'Appleseed', 'JohnnyAppleseed@example.com', 'password', 'DOCTOR', 'doctor', NULL, NULL, NULL, NULL, NULL, '', NULL),
-(3, 'Jane', 'Doe', 'JaneDoe@example.com', 'password', 'PATIENT', 'patient', 2, NULL, NULL, NULL, NULL, '', NULL),
+(3, 'Jane', 'Doe', 'JaneDoe@example.com', 'password', 'PATIENT', 'patient', 2, NULL, '702-338-1379', NULL, NULL, '', NULL),
 (4, 'Cici', 'Siu', 'starxdevilx@gmail.com', 'Password1!', 'PATIENT', 'cici', 2, '2022-11-10', '123-123-1234', 'unlvsaddy', 'hi', '123-132-1234', 'whoknows'),
 (5, 'Cici1', 'Siu1', 'starxdevilx@gmail.com', 'pass1', 'PATIENT', 'cici1', 1, '2022-11-10', '123-123-1234', NULL, NULL, '', NULL);
 
@@ -181,7 +182,7 @@ ALTER TABLE `medication`
 -- AUTO_INCREMENT for table `pregnancies`
 --
 ALTER TABLE `pregnancies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `Users`
