@@ -57,6 +57,7 @@
       
       <section>
         <h3>Requested Appointments</h3>
+        <br>
         <?php
         if(isset($_GET['requestErr'])){
           echo '<p style="color: red;">',$_GET['requestErr'],'</p>';
@@ -165,6 +166,7 @@
 
       <section>
         <h3>Upcoming Appointments</h3>
+        <br>
         <?php
         if(isset($_GET['cancelErr'])){
           echo '<p style="color: red;">',$_GET['cancelErr'],'</p>';
@@ -221,6 +223,7 @@
 
       <section>
         <h3>Previous Appointments</h3>
+        <br>
         <?php
         //create query
         $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and (status='COMPLETED' or status='CANCELLED')";

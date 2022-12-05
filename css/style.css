@@ -41,3 +41,7 @@ textarea {
     justify-content: center;
     align-items: center;
 }
+
+.searchbar {
+    width: 80%;
+}

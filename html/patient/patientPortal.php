@@ -10,10 +10,58 @@
   <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Patient Portal</title>
 </head>
 
 <body>
+
+  <?php
+  session_start();
+  $sessionRole = $_SESSION['sessionRole'];
+  $sessionUserId = $_SESSION['sessionUserId'];
+  $sessionFirstName = $_SESSION['sessionFirstName'];
+  $sessionLastName = $_SESSION['sessionLastName'];
+  //check that the user has the role Patient, else logout 
+  if ($sessionRole !== "PATIENT") {
+    header("Location: ../login.php? err=Please login");
+  }
+
+  //establish connection
+  $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+  //check connection
+  if (!$conn) {
+    echo 'Connection failed' . mysqli_connect_error();
+  }
+
+  //create query
+  $sql = "SELECT * FROM Users WHERE id = $sessionUserId";
+  $result1 = mysqli_query($conn, $sql);
+  $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+
+  foreach ($user as $user1) {
+    $first = $user1['first_name'];
+    $last = $user1['last_name'];
+    $username = $user1['username'];
+    $birthdate = $user1['birthdate'];
+    $doctorId = $user1['assigned_doctorId'];
+    $email = $user1['email'];
+    $phone = $user1['phone'];
+    $addy = $user1['address'];
+    $EC_name = $user1['emerCon_name'];
+    $EC_phone = $user1['emerCon_phone'];
+    $EC_relation = $user1['emerCon_relation'];
+  }
+  $sqln = "SELECT * FROM Users WHERE id = $doctorId";
+  $result = mysqli_query($conn, $sqln);
+  $doctor = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  foreach ($doctor as $doctor1) {
+    $doctorFirst = $doctor1['first_name'];
+    $doctorLast = $doctor1['last_name'];
+  }
+  ?>
+  
   <div class="body">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
@@ -23,87 +71,39 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="patientPortal.php">My Information</a>
+            <div class="navbar-nav me-auto">
               <a class="nav-link" href="patientPregnancies.php">Pregnancies</a>
               <a class="nav-link" href="patientAppointments.php">Appointments</a>
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
+            <?php echo $first . " " . $last; ?>
             <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
     </header>
-    <?php
-    if (isset($_GET['passwordErr'])) {
-      echo '<section><p style="color: red;">&nbsp', $_GET['passwordErr'], '</p></section>';
-    }
-    if (isset($_GET['passwordSucc'])) {
-      echo '<section ><p style="color: green;">&nbsp', $_GET['passwordSucc'], '</p></section>';
-    }
-    ?>
+    
     <section>
-
-      <button type="button" class="btn btn-light btn-sm" style="float: right;">
-        <a href='patientEditMyInfo.php?a=' style="text-decoration: none;"><i class="fa-solid fa-user-pen"></i></a>
-      </button>
-      <div class="container" style="display: block;">
-        <!-- <div class="card-header border-0">
-            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div> -->
-        <h2 style="margin: 0px;">
-          <?php
-          session_start();
-          $sessionRole = $_SESSION['sessionRole'];
-          $sessionUserId = $_SESSION['sessionUserId'];
-          //check that the user has the role Patient, else logout 
-          if ($sessionRole !== "PATIENT") {
-            header("Location: ../login.php? err=Please login");
-          }
-
-          //establish connection
-          $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-          //check connection
-          if (!$conn) {
-            echo 'Connection failed' . mysqli_connect_error();
-          }
-
-          //create query
-          $sql = "SELECT * FROM Users WHERE id = $sessionUserId";
-          $result1 = mysqli_query($conn, $sql);
-          $user = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
-          foreach ($user as $user1) {
-            $first = $user1['first_name'];
-            $last = $user1['last_name'];
-            $username = $user1['username'];
-            $birthdate = $user1['birthdate'];
-            $doctorId = $user1['assigned_doctorId'];
-            $email = $user1['email'];
-            $phone = $user1['phone'];
-            $addy = $user1['address'];
-            $EC_name = $user1['emerCon_name'];
-            $EC_phone = $user1['emerCon_phone'];
-            $EC_relation = $user1['emerCon_relation'];
-          }
-          $sqln = "SELECT * FROM Users WHERE id = $doctorId";
-          $result = mysqli_query($conn, $sqln);
-          $doctor = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          foreach ($doctor as $doctor1) {
-            $doctorFirst = $doctor1['first_name'];
-            $doctorLast = $doctor1['last_name'];
-          }
-
-          echo "Welcome " . $first . " " . $last;
-
-          ?>
-        </h2>
-
-      </div>
+      <h2 class="card-title display-3">
+        Welcome Back!
+      </h2>
     </section>
-    <section>
 
-      <h3>My Information</h3>
+    <section>
+      <h3>
+        My Information
+        <button type="button" class="btn btn-light btn-sm" style="float: right;">
+          <a href='patientEditMyInfo.php?a=' style="text-decoration: none;"><i class="fa-solid fa-user-pen"></i></a>
+        </button>
+      </h3>
+      <?php
+      if (isset($_GET['passwordErr'])) {
+        echo '<section><p style="color: red;">&nbsp', $_GET['passwordErr'], '</p></section>';
+      }
+      if (isset($_GET['passwordSucc'])) {
+        echo '<section ><p style="color: green;">&nbsp', $_GET['passwordSucc'], '</p></section>';
+      }
+      ?>
       <table class="table table-hover">
         <tbody>
           <tr>

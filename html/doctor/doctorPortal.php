@@ -66,23 +66,17 @@
       </header>
 
       <section>
-        <!-- <div class="card flex-row flex-wrap"> -->
-          <!-- <div class="card-header border-0">
-            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div> -->
           <h2 class="card-title display-3">
             Welcome Back!
           </h2>
-        <!-- </div> -->
       </section>
 
-
-      
-
       <section>
-        <h3>Your Patients</h3>
-        <!-- $sql = "SELECT first_name, last_name, email FROM Users WHERE assigned_doctorId=$sessionUserId"; -->
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        <h3 class="card-title">Your Patients</h3> <br>
+        <p>
+          <label for="username">Search by Name &nbsp</label>
+          <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="">
+        </p>
 
         <table class="table table-hover" id ="myTable">
           <tr>
@@ -108,7 +102,7 @@
                 <td>".$row['last_name']."</td>
                 <td>".$row['email']."</td>
                 <td>".$row['phone']."</td>
-                <td><a href='doctorPortalEdit.php?a="   . $row['id'] . "'>Edit</a></td>
+                <td><a href='doctorPortalEdit.php?a="   . $row['id'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>
               </tr>
             ";
           }
