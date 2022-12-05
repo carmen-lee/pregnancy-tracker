@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2022 at 04:44 AM
+-- Generation Time: Dec 05, 2022 at 05:50 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -81,9 +81,9 @@ INSERT INTO `medication` (`increment`, `patientID`, `medName`, `medDosage`, `med
 
 CREATE TABLE `pregnancies` (
   `id` int(11) NOT NULL,
-  `doctor_first` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `doctor_last` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `gestation_date` date DEFAULT NULL,
+  `doctor_id` int(11) DEFAULT NULL,
+  `momHealth` enum('Healthy','Unhealthy') DEFAULT NULL,
+  `Health` enum('Healthy','Unhealthy') DEFAULT NULL,
   `due_date` date DEFAULT NULL,
   `status` enum('CURRENT','PAST') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'CURRENT',
   `patientID` int(11) NOT NULL,
@@ -94,9 +94,9 @@ CREATE TABLE `pregnancies` (
 -- Dumping data for table `pregnancies`
 --
 
-INSERT INTO `pregnancies` (`id`, `doctor_first`, `doctor_last`, `gestation_date`, `due_date`, `status`, `patientID`, `babyName`) VALUES
-(1, 'Johnny', 'Appleseed', '2022-03-01', '2022-12-01', 'CURRENT', 3, '0'),
-(2, 'Johnny', 'Appleseed', '2019-01-01', '2022-09-01', 'PAST', 3, '0');
+INSERT INTO `pregnancies` (`id`, `doctor_id`, `momHealth`, `Health`, `due_date`, `status`, `patientID`, `babyName`) VALUES
+(1, NULL, NULL, NULL, '2023-03-13', 'CURRENT', 3, NULL),
+(2, NULL, 'Healthy', 'Healthy', '2022-09-01', 'PAST', 3, 'Johnny Jr.');
 
 -- --------------------------------------------------------
 

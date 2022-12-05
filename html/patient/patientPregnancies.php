@@ -72,8 +72,7 @@
     // Calculate Percent
     $totalMonth = 9;
     $totalDays = 0;
-    $mPercent = 100 - ($monthNoFloor / $totalMonth);
-
+    $mPercent = ($monthNoFloor / $totalMonth) * 100;
 
     ?>
 
@@ -83,7 +82,7 @@
           <div class="carousel-item active">
             <?php
             if ($weeks > 26) {
-              echo '<img src="../../imgs/third-trimester.jpeg" class="d-block w-100" alt="3rd trimester">
+              echo '<img src="../../imgs/third-trimester.jpeg" class="d-block mh-50" alt="3rd trimester">
             <div class="carousel-caption d-none d-md-block">
               <h5>You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
               <p>Baby is almost here!</p>
@@ -93,11 +92,11 @@
               </div>
             </div>';
             } else if ($weeks > 12) {
-              echo '<img src="../../imgs/second-trimeseter.jpeg" alt="2nd trimester" class="d-block w-100">
+              echo '<img src="../../imgs/second-trimester.jpeg" alt="2nd trimester" class="d-block w-100 center">
             <div class="carousel-caption d-none d-md-block">
               <h5>You are ', $weeks, ' weeks into pregnancy (2nd Trimester)!</h5>
               <p>Almost there!</p>
-              <div class="progress">
+              <div class="progress bg-info">
               <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
               Time till estimated birth: ', $months, ' months ', $days, ' days 
               </div>
@@ -119,7 +118,7 @@
       </div>
     </section>
     <section>
-      <h3>Current pregnancy</h3>
+      <h3>Current Pregnancy</h3>
       <table class="table table-hover table-stripped">
         <thead>
           <tr>
@@ -170,6 +169,7 @@
             <th>Mom's Health</th>
           </tr>
         </thead>
+        <form method="post" action="patientPregnanciesAction.php"></form>
         <tbody>
           <?php
           for ($i = 0; $i < sizeof($resultsArray); $i++) {

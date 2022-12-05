@@ -18,8 +18,8 @@ $userFound = false;
 
 //find user
 //cant we just use a single query to get the user???
-foreach( $users as $user ) {
-  if( $username === $user['username'] && $userpassword === $user['userpassword']) {
+foreach ($users as $user) {
+  if ($username === $user['username'] && $userpassword === $user['userpassword']) {
     $userFound = true;
     //get role of user
     $role = $user['role'];
@@ -31,7 +31,7 @@ foreach( $users as $user ) {
   }
 }
 
-if( !$userFound ){
+if (!$userFound) {
   // incorrect login
   header("Location: login.php? err=Incorrect username/password");
 }
@@ -47,14 +47,12 @@ $_SESSION['sessionLastName'] = $lastName;
 // $_SESSION['sessionEmail'] = $email;
 
 //redirect to the correct home page
-if( $role == 'ADMIN' ){
+if ($role == 'ADMIN') {
   header("Location: admin/adminPortal.php");
-}
-elseif( $role == 'DOCTOR' ){
+} elseif ($role == 'DOCTOR') {
   header("Location: doctor/doctorPortal.php");
+} elseif ($role == 'PATIENT') {
+  header("Location: patient/patientPregnancies.php");
 }
-elseif( $role == 'PATIENT' ){
-  header("Location: patient/patientPortal.php");
-} 
 
 $conn->close();
