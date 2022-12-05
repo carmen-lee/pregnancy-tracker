@@ -72,7 +72,8 @@
       </section>
 
       <section>
-        <h3 class="card-title">Your Patients</h3> <br>
+        <h3 class="card-title">Your Patients</h3>
+        <br>
         <p>
           <label for="username">Search by Name &nbsp</label>
           <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="">
