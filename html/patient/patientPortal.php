@@ -230,7 +230,7 @@
     </section>
     <section class="footer d-flex align-self-center">
       <p>
-        Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+        Created for CS 441 by Carmen Lee, Cicelia Siu, Edward Sung
       </p>
       <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
     </section>

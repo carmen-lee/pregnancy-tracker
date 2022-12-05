@@ -92,8 +92,8 @@ if ($sessionRole !== "DOCTOR") {
                 <td>" . $row['email'] . "</td>
                 <td>" . $row['phone'] . "</td>
                 <td>
-                  <a href='doctorPortalEdit.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Edit'><i class='fa-solid fa-pen-to-square'></i> Edit patient</a>
-                  <a href='doctorPregnancy.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Delete'><i class='fa-solid fa-pen-to-square'></i> Edit record</a>
+                  <a href='doctorPortalEdit.php?a=" . $row['id'] . "' class='btn btn-light btn-sm' title='Edit'><i class='fa-solid fa-pen-to-square'></i> Edit patient</a>
+                  <a href='doctorPregnancy.php?a=" . $row['id'] . "' class='btn btn-light btn-sm' title='Delete'><i class='fa-solid fa-pen-to-square'></i> Edit record</a>
                 </td>
               </tr>
             ";
@@ -104,10 +104,10 @@ if ($sessionRole !== "DOCTOR") {
     </section>
 
     <section class="footer d-flex align-self-center">
-        <p>
-          Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
-        </p>
-        <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+      <p>
+        Created for CS 441 by Carmen Lee, Cicelia Siu, Edward Sung
+      </p>
+      <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
     </section>
 
   </div>

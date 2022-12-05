@@ -11,12 +11,14 @@
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
   <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Patient Pregnancies</title>
 </head>
 
 <body>
-  <?php 
+  <?php
   session_start();
   //get session variables
   $sessionUserId = $_SESSION['sessionUserId'];
@@ -214,16 +216,16 @@
       </table>
     </section>
     <section class="footer d-flex align-self-center">
-        <p>
-          Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
-        </p>
-        <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
-      </section>
+      <p>
+        Created for CS 441 by Carmen Lee, Cicelia Siu, Edward Sung
+      </p>
+      <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+    </section>
   </div>
 
   </div>
 
-    <!-- Bootstrap JS -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
   <!-- <script src="../js/patientInfo.js"></script> -->
