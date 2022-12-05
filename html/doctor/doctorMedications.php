@@ -68,6 +68,7 @@
         <p>
           <label for="patient">Patient</label>
           <select name="inputPatient" onchange="this.form.submit()" required>
+            <option value="">Select Patient</option>
             <!-- <option>Select Patient</option> -->
             <?php
             $patientName = $_POST['inputPatient'];
