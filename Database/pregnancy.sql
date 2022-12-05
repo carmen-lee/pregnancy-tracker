@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 05, 2022 at 10:05 AM
+-- Generation Time: Dec 05, 2022 at 01:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -71,7 +71,8 @@ CREATE TABLE `medication` (
 --
 
 INSERT INTO `medication` (`increment`, `patientID`, `medName`, `medDosage`, `medFrequency`, `medFood`) VALUES
-(2, 4, 'er', 'hjk', 'j', 'With Food');
+(2, 4, 'er', 'hjk', 'j', 'With Food'),
+(3, 3, 'Pain meds', '500mg', '2 times a day', 'With Food');
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,8 @@ CREATE TABLE `pregnancies` (
 INSERT INTO `pregnancies` (`id`, `doctor_id`, `momHealth`, `Health`, `due_date`, `status`, `patientID`, `babyName`) VALUES
 (2, NULL, 'Healthy-ish', 'Healthy', '2020-02-05', 'PAST', 3, 'Johnny Jr Jr.'),
 (6, 2, 'its good', 'Its growing', '2023-06-22', 'CURRENT', 3, 'CHlid32'),
-(7, 2, 'its good', 'Healthy-ish', '2023-02-23', 'PAST', 4, 'Child#64');
+(7, 2, 'its good', 'Healthy-ish', '2019-06-05', 'PAST', 4, 'Child#64'),
+(8, 2, 'Healthy-ish', 'yes', '2023-06-01', 'CURRENT', 4, 'CHlid32');
 
 -- --------------------------------------------------------
 
@@ -130,8 +132,7 @@ INSERT INTO `Users` (`id`, `first_name`, `last_name`, `email`, `userpassword`, `
 (1, 'Admin', 'Istrator', 'admin@example.com', 'password', 'ADMIN', 'admin', NULL, NULL, NULL, NULL, NULL, '', NULL),
 (2, 'Johnny', 'Appleseed', 'JohnnyAppleseed@example.com', 'password', 'DOCTOR', 'doctor', NULL, NULL, NULL, NULL, NULL, '', NULL),
 (3, 'Jane', 'Doe', 'JaneDoe@example.com', 'password', 'PATIENT', 'patient', 2, NULL, '702-338-1379', NULL, NULL, '', NULL),
-(4, 'Cici', 'Siu', 'starxdevilx@gmail.com', 'Password1!', 'PATIENT', 'cici', 2, '2022-11-10', '123-123-1234', 'unlvsaddy', 'hi', '123-132-1234', 'whoknows'),
-(5, 'Cici1', 'Siu1', 'starxdevilx@gmail.com', 'pass1', 'PATIENT', 'cici1', 1, '2022-11-10', '123-123-1234', NULL, NULL, '', NULL);
+(4, 'Cici', 'Siu', 'starxdevilx@gmail.com', 'Password1!', 'PATIENT', 'cici', 2, '2022-11-10', '123-123-1234', 'unlvsaddy', 'hi', '123-132-1234', 'whoknows');
 
 --
 -- Indexes for dumped tables
@@ -176,19 +177,19 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `medication`
 --
 ALTER TABLE `medication`
-  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pregnancies`
 --
 ALTER TABLE `pregnancies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
