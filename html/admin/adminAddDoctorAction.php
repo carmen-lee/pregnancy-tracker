@@ -34,7 +34,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
 	<?php
 		$firstName = $_POST['firstName'];
 		$lastName = $_POST['lastName'];

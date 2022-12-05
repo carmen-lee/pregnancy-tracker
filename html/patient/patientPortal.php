@@ -91,7 +91,7 @@
       </h2>
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>
         My Information
         <button type="button" class="btn btn-light btn-sm" style="float: right;">
@@ -203,7 +203,7 @@
       </div>
     </div>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Emergency Contact Information</h3>
       <table class="table table-hover">
         <tbody>
@@ -230,7 +230,7 @@
     </section>
     <section class="footer d-flex align-self-center">
       <p>
-        Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+        Created for CS 441 by Carmen Lee, Cicelia Siu, Edward Sung
       </p>
       <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
     </section>

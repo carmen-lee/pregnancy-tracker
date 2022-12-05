@@ -31,7 +31,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Record Currently Editing</h3>
       <table class="table table-hover">
         <tr>
