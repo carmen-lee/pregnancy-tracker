@@ -74,6 +74,8 @@
             <th scope="col">Patient Last Name</th>
             <th scope="col">Reason</th>
             <th scope="col">Status</th>
+            <th scope="col">Full Info</th>
+
           </tr>
           <?php
           //establish connection
@@ -104,6 +106,7 @@
                 <td>
                   <a href='doctorCancelApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm' title='Cancel'><i class='fa-solid fa-xmark'></i></a>
                   <a href='doctorAcceptApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm'><i class='fa-solid fa-check' title='Accept'></i></a>
+                  <a href='doctorPregnancy.php?a=".$row['patientId']."' class='btn btn-light btn-sm'><i class='fa-solid fa-check' title='Accept'></i></a>
                 </td>
               </tr>
             ";
