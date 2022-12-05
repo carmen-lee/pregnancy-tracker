@@ -26,6 +26,12 @@ $docID = mysqli_query($conn, $sqln);
 $row = mysqli_fetch_assoc($docID);
 $docId = $row['assigned_doctorId'];
 
+
+$number = preg_match('@[0-9]@', $password);
+$uppercase = preg_match('@[A-Z]@', $password);
+$lowercase = preg_match('@[a-z]@', $passwords);
+$specialChars = preg_match('@[^\w]@', $password);
+
 // header("Location: register.php? err= $conn->error");
 
 if ($userType == 'patient') {
@@ -47,6 +53,5 @@ if ($conn->query($sql)) {
 } else {
   header("Location: register.php? err= $conn->error");
 }
-
 
 ?>

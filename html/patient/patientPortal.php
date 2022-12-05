@@ -11,7 +11,9 @@
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
   <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Patient Portal</title>
 </head>
 
@@ -61,7 +63,7 @@
     $doctorLast = $doctor1['last_name'];
   }
   ?>
-  
+
   <div class="body">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
@@ -82,7 +84,7 @@
         </div>
       </nav>
     </header>
-    
+
     <section>
       <h2 class="card-title display-3">
         Welcome Back!
@@ -177,16 +179,17 @@
               <label for="oldPass">Old Password </label> <br>
               <input type="password" name="oldPass" id="oldPass" required> <br />
               <label for="newPass">New Password </label> <br>
-              <input type="password" name="newPass" id="newPass" required> <br />
+              <input type="password" name="newPass" id="newPass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" title="Password must be at least 8 characters in length, at least one lower case letter, one upper case letter, one number, and  one special character." required> <br />
               <label for="checkPass">Confirm new Password </label> <br>
               <input type="password" name="checkPass" id="checkPass" required> <br /><br />
               <?php
-              if (isset($_GET['passwordErr'])) {
-                  echo '<p style="color: red;">', $_GET['passwordErr'], '</p>';
-              }
-              if (isset($_GET['passwordSucc'])) {
-                  echo '<p style="color: green;">', $_GET['passwordSucc'], '</p>';
-              }
+              // if (isset($_GET['passwordErr'])) {
+              //   echo '<p style="color: red;">', $_GET['passwordErr'], '</p>';
+              // }
+              // if (isset($_GET['passwordSucc'])) {
+              //   echo '<p style="color: green;">', $_GET['passwordSucc'], '</p>';
+              // }
+              // 
               ?>
               <!-- <input type="submit" name="Submit" id="Submit" value="Submit"> -->
           </div>
@@ -195,7 +198,7 @@
             <!-- <button type="button" class="btn btn-secondary">Update password</button> -->
             <input type="submit" class="btn btn-secondary" name="Submit" id="Submit" value="Update">
           </div>
-            </form>
+          </form>
         </div>
       </div>
     </div>

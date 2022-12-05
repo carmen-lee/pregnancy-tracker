@@ -24,7 +24,7 @@
           </p>
           <p>
             <label for="password">Password</label>
-            <input type="password" name="inputPassword" id="inputPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8}$" required>
+            <input type="password" name="inputPassword" id="inputPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" title="Password must be at least 8 characters in length, at least one lower case letter, one upper case letter, one number, and  one special character." required>
           </p>
 
           <p>
