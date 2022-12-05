@@ -74,71 +74,77 @@
         $result = mysqli_query($conn, $sql);
         $resultsArray = mysqli_fetch_all($result);
         ?>
-        <section>
-            <h3>Current Pregnancy</h3>
-            <table class="table table-hover table-stripped">
-                <thead>
-                    <tr>
-                        <th>Due date</th>
-                        <th>Baby's Name</th>
-                        <th>Baby's Health</th>
-                        <th>Mom's Health</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for ($i = 0; $i < sizeof($resultsArray); $i++) {
-                        echo "<tr>";
-                        echo "<td>", $resultsArray[$i][4], "</td>";
-                        echo "<td>", $resultsArray[$i][7], "</td>";
-                        echo "<td>", $resultsArray[$i][3], "</td>";
-                        echo "<td>", $resultsArray[$i][2], "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </section>
+        <form method="post" action="doctorPregnancyAction.php">
+            <section>
+                <h3>Current Pregnancy</h3>
+                <table class="table table-hover table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Due date</th>
+                            <th>Baby's Name</th>
+                            <th>Baby's Health</th>
+                            <th>Mom's Health</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        for ($i = 0; $i < sizeof($resultsArray); $i++) {
+                            echo "<tr>";
+                            
+                            echo '<td> <label for="MedicationFrequency">Frequency</label>
+                            <input type="text" name="inputMedicationFrequency" id="inputMedicationFrequency" >', $resultsArray[$i][4], '</td>';
+                            echo "<td>", $resultsArray[$i][7], "</td>";
+                            echo "<td>", $resultsArray[$i][3], "</td>";
+                            echo "<td>", $resultsArray[$i][2], "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h3>Past Pregnancies</h3>
-            <?php
-            //establish connection
-            $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-            //check connection
-            if (!$conn) {
-                echo 'Connection failed' . mysqli_connect_error();
-            }
+            <section>
+                <h3>Past Pregnancies</h3>
+                <?php
+                //establish connection
+                $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+                //check connection
+                if (!$conn) {
+                    echo 'Connection failed' . mysqli_connect_error();
+                }
 
-            $sql = "SELECT * FROM pregnancies WHERE patientID = '$_GET[a]' AND status = 'PAST'";
-            $result = mysqli_query($conn, $sql);
-            $resultsArray = mysqli_fetch_all($result);
+                $sql = "SELECT * FROM pregnancies WHERE patientID = '$_GET[a]' AND status = 'PAST'";
+                $result = mysqli_query($conn, $sql);
+                $resultsArray = mysqli_fetch_all($result);
 
 
-            ?>
-            <table class="table table-hover table-stripped">
-                <thead>
-                    <tr>
-                        <th>Due date</th>
-                        <th>Baby's Name</th>
-                        <th>Baby's Health</th>
-                        <th>Mom's Health</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for ($i = 0; $i < sizeof($resultsArray); $i++) {
-                        echo "<tr>";
-                        echo "<td>", $resultsArray[$i][4], "</td>";
-                        echo "<td>", $resultsArray[$i][7], "</td>";
-                        echo "<td>", $resultsArray[$i][3], "</td>";
-                        echo "<td>", $resultsArray[$i][2], "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </section>
+                ?>
+                <table class="table table-hover table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Due date</th>
+                            <th>Baby's Name</th>
+                            <th>Baby's Health</th>
+                            <th>Mom's Health</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        for ($i = 0; $i < sizeof($resultsArray); $i++) {
+                            echo "<tr>";
+                            echo "<td>", $resultsArray[$i][4], "</td>";
+                            echo "<td>", $resultsArray[$i][7], "</td>";
+                            echo "<td>", $resultsArray[$i][3], "</td>";
+                            echo "<td>", $resultsArray[$i][2], "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+            <input type="submit" name="Submit" id="Submit" value="Update Record">
+
+        </form>
 
     </div>
 
