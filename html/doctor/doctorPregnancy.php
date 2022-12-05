@@ -39,9 +39,6 @@
 
         <section>
             <div class="card">
-                <!-- <div class="card-header border-0">
-            <img src="../../imgs/default-avatar.png" width="50px" alt="Profile Picture" />
-          </div> -->
                 <h2 class="card-title">
                     <?php
                     session_start();
@@ -50,6 +47,7 @@
                     $sessionFirstName = $_SESSION['sessionFirstName'];
                     $sessionLastName = $_SESSION['sessionLastName'];
                     $sessionRole = $_SESSION['sessionRole'];
+                    $patientID = $_GET['a'];
 
                     //check that the user has the role doctor, else logout 
                     if ($sessionRole !== "DOCTOR") {
@@ -61,48 +59,72 @@
                 </h2>
             </div>
         </section>
-        <?php
+        <section>
+            <?php
 
-        //establish connection
-        $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-        //check connection
-        if (!$conn) {
-            echo 'Connection failed' . mysqli_connect_error();
-        }
+            //establish connection
+            $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+            //check connection
+            if (!$conn) {
+                echo 'Connection failed' . mysqli_connect_error();
+            }
 
-        $sql = "SELECT * FROM pregnancies WHERE patientID = '$_GET[a]' AND status = 'CURRENT'";
-        $result = mysqli_query($conn, $sql);
-        $resultsArray = mysqli_fetch_all($result);
-        ?>
-        <form method="post" action="doctorPregnancyAction.php">
+            $sql = "SELECT first_name, last_name FROM Users WHERE id = '$_GET[a]'";
+            $result1 = mysqli_query($conn, $sql);
+            $resultsArray = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+            echo "<h3> Patient Record for " . $resultsArray[0]['first_name']  . " " . $resultsArray[0]['last_name'] . "</h3>";
+
+            $sql = "SELECT * FROM pregnancies WHERE patientID = '$_GET[a]' AND status = 'CURRENT'";
+            $result = mysqli_query($conn, $sql);
+            $resultsArray1 = mysqli_fetch_all($result);
+            ?>
             <section>
-                <h3>Current Pregnancy</h3>
-                <table class="table table-hover table-stripped">
-                    <thead>
+                <?php
+                if (sizeof($resultsArray1) == 0) {
+                    echo '<h3>Current Pregnancy</h3>';
+                    echo '<p>No Current Pregnancies</p>';
+                } else {
+                    echo '<h3>Current Pregnancy</h3>
+                            <table class="table table-hover table-stripped">
+                            <thead>';
+                    echo ' <thead>
                         <tr>
+                            <th>Manage</th>
+                            <th>Status</th>
                             <th>Due date</th>
-                            <th>Baby's Name</th>
-                            <th>Baby's Health</th>
-                            <th>Mom's Health</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        for ($i = 0; $i < sizeof($resultsArray); $i++) {
-                            echo "<tr>";
-                            
-                            echo '<td> <label for="MedicationFrequency">Frequency</label>
-                            <input type="text" name="inputMedicationFrequency" id="inputMedicationFrequency" >', $resultsArray[$i][4], '</td>';
-                            echo "<td>", $resultsArray[$i][7], "</td>";
-                            echo "<td>", $resultsArray[$i][3], "</td>";
-                            echo "<td>", $resultsArray[$i][2], "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </section>
+                            <th>Baby Name</th>
+                            <th>Baby Health</th>
+                            <th>Mom Health</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                    for ($i = 0; $i < sizeof($resultsArray1); $i++) {
+                        echo '<form method="post" action="doctorPregnancyAction.php?a=', $patientID, '&arryInd=', $resultsArray1[$i][0], '">';
+                        echo "<tr>";
+                        echo "<td style='text-align: center;'><a href='doctorPregnancyDelete.php?a=", $patientID, "&increment=" . $resultsArray1[$i][0] . "'> <i class='fa-solid fa-trash-can'></i></a></td>";
+                        echo '<td><select name="inputStatus">
+                                    <option value="CURRENT" selected>Current</option>
+                                    <option value="PAST">Past</option>
+                                </select></td>';
+                        echo '<td>
+                             <input type="date" name="inputDate" id="inputDate"> <br>Current: ',
+                        $resultsArray1[$i][4],
+                        '</td>';
+                        echo '<td> <input type="text" name="inputBabyName" id="inputBabyName" placeholder ="', $resultsArray1[$i][7], '"></td>';
+                        echo '<td> <input type="text" name="inputBabyHealth" id="inputBabyHealth" placeholder ="', $resultsArray1[$i][3], '"></td>';
+                        echo '<td> <input type="text" name="inputMomHealth" id="inputMomHealth" placeholder ="', $resultsArray1[$i][2], '"></td>';
+                        echo '<td><input type="submit" name="Submit" id="Submit" value="Update Record"></td>';
+                        echo "</tr>";
 
+                        echo '</form>';
+                    }
+                }
+                ?>
+                </tbody>
+                </table>
+
+            </section>
+            </form>
             <section>
                 <h3>Past Pregnancies</h3>
                 <?php
@@ -117,11 +139,12 @@
                 $result = mysqli_query($conn, $sql);
                 $resultsArray = mysqli_fetch_all($result);
 
-
                 ?>
-                <table class="table table-hover table-stripped">
+                <table class=" table table-hover table-stripped">
                     <thead>
                         <tr>
+                            <th>Manage</th>
+                            <th>Status</th>
                             <th>Due date</th>
                             <th>Baby's Name</th>
                             <th>Baby's Health</th>
@@ -131,20 +154,67 @@
                     <tbody>
                         <?php
                         for ($i = 0; $i < sizeof($resultsArray); $i++) {
+                            echo '<form method="post" action="doctorPregnancyAction.php?a=', $patientID, '&arryInd=', $resultsArray[$i][0], '">';
                             echo "<tr>";
-                            echo "<td>", $resultsArray[$i][4], "</td>";
-                            echo "<td>", $resultsArray[$i][7], "</td>";
-                            echo "<td>", $resultsArray[$i][3], "</td>";
-                            echo "<td>", $resultsArray[$i][2], "</td>";
+                            echo "<td style='text-align: center;'><a href='doctorPregnancyDelete.php?a=", $patientID, "&increment=" . $resultsArray[$i][0] . "'> <i class='fa-solid fa-trash-can'></i></a></td>";
+                            echo '<td><select name="inputStatus">
+                                    <option value="CURRENT">Current</option>
+                                    <option value="PAST" selected>Past</option>
+                                </select></td>';
+                            echo '<td>
+                             <input type="date" name="inputDate" id="inputDate"> <br>Current: ',
+                            $resultsArray[$i][4],
+                            '</td>';
+                            echo '<td> <input type="text" name="inputBabyName" id="inputBabyName" placeholder ="', $resultsArray[$i][7], '"></td>';
+                            echo '<td> <input type="text" name="inputBabyHealth" id="inputBabyHealth" placeholder ="', $resultsArray[$i][3], '"></td>';
+                            echo '<td> <input type="text" name="inputMomHealth" id="inputMomHealth" placeholder ="', $resultsArray[$i][2], '"></td>';
+                            echo '<td><input type="submit" name="Submit" id="Submit" value="Update Record"><td>';
                             echo "</tr>";
+
+                            echo ' </form>';
                         }
                         ?>
                     </tbody>
                 </table>
-            </section>
-            <input type="submit" name="Submit" id="Submit" value="Update Record">
 
-        </form>
+            </section>
+            <section>
+                <?php
+                echo '<h3>Add Pregnancy</h3>
+                        <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Due date</th>
+                                <th>Babys Name</th>
+                                <th>Babys Health</th>
+                                <th>Moms Health</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                echo '<form method="post" action="doctorPregnancyAdd.php?a=', $patientID, '">';
+                echo "<tr>";
+
+                echo '<td><select name="inputStatus">';
+                if (sizeof($resultsArray1) == 0) {
+                    echo '<option value="CURRENT" >Current</option>';
+                }
+                echo '           <option value="PAST" selected>Past</option>
+                                </select></td>';
+                echo '<td>
+                             <input type="date" name="inputDate" id="inputDate"></td>';
+                echo '<td> <input type="text" name="inputBabyName" id="inputBabyName" placeholder ="', $resultsArray[$i][7], '"></td>';
+                echo '<td> <input type="text" name="inputBabyHealth" id="inputBabyHealth" placeholder ="', $resultsArray[$i][3], '"></td>';
+                echo '<td> <input type="text" name="inputMomHealth" id="inputMomHealth" placeholder ="', $resultsArray[$i][2], '"></td>';
+                echo '<td><input type="submit" name="Submit" id="Submit" value="Add Record"></td>';
+                echo "</tr>";
+
+                echo '</form>';
+                ?>
+            </section>
+        </section>
+
+
 
     </div>
 

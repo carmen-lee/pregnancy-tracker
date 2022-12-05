@@ -55,24 +55,31 @@
     $result = mysqli_query($conn, $sql);
     $resultsArray = mysqli_fetch_all($result);
 
-    date_default_timezone_set('America/Los_Angeles');
-    $today = Date("Y-m-d");
-    $diff = strtotime($resultsArray[0][4]) - strtotime($today);
+    if (sizeof($resultsArray) != 0) {
 
-    // Calculate Dates
-    $years = floor($diff / (365 * 60 * 60 * 24));
-    $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-    $monthNoFloor = ($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24);
-    $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+      date_default_timezone_set('America/Los_Angeles');
+      $today = Date("Y-m-d");
+      $diff = strtotime($resultsArray[0][4]) - strtotime($today);
 
-    // Calculate Trimester
-    $weeks = 36 - floor($diff / (7 * 60 * 60 * 24));
+      // Calculate Dates
+      $years = floor($diff / (365 * 60 * 60 * 24));
+      $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+      $monthNoFloor = ($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24);
+      $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+      // Calculate Trimester
+      $weeks = 36 - floor($diff / (7 * 60 * 60 * 24));
 
 
-    // Calculate Percent
-    $totalMonth = 9;
-    $totalDays = 0;
-    $mPercent = ($monthNoFloor / $totalMonth) * 100;
+      // Calculate Percent
+      $totalMonth = 9;
+      $totalDays = 0;
+      $mPercent = ($monthNoFloor / $totalMonth) * 100;
+    } else {
+      $weeks = -1;
+      $mPercent = 0;
+    }
+
 
     ?>
 
@@ -81,7 +88,12 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <?php
-            if ($weeks > 26) {
+            if ($weeks == -1) {
+              echo '<img src="../../imgs/negative.jpeg" class="d-block mh-50" alt="negative">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 style = "color: black;">You are not pregnant!</h5>
+            </div>';
+            } else if ($weeks > 26) {
               echo '<img src="../../imgs/third-trimester.jpeg" class="d-block mh-50" alt="3rd trimester">
             <div class="carousel-caption d-none d-md-block">
               <h5>You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
