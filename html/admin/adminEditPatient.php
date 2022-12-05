@@ -114,29 +114,29 @@
             <p>
                 <input type="hidden" id="Key" name="Key" value="<?=$id ?>">
                 <label for="doctorID">Assigned Doctor ID</label>
-                <input type="text" name="assignedDoctorID" id="assignedDoctorID" required> <br/>
+                <input type="text" name="assignedDoctorID" id="assignedDoctorID"> <br/>
                 <label for="firstname">First Name </label>
-                <input type="text" name="firstName" id="firstName" required> <br/>
+                <input type="text" name="firstName" id="firstName"> <br/>
                 <label for="lastname">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required> <br/>
+                <input type="text" name="lastName" id="lastName"> <br/>
                 <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" required> <br/>
+                <input type="text" name="email" id="email"> <br/>
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" required> <br/>
+                <input type="text" name="username" id="username"> <br/>
                 <label for="password">Password</label>
-                <input type="text" name="password" id="password" required> <br/>
+                <input type="text" name="password" id="password"> <br/>
                 <label for="username">Birth Date</label>
-                <input type="date" name="birthdate" id="birthdate" required> <br/>
+                <input type="date" name="birthdate" id="birthdate"> <br/>
                 <label for="password">Phone Number</label>
-                <input type="text" name="phonenumber" id="phonenumber" required> <br/>
+                <input type="text" name="phonenumber" id="phonenumber"> <br/>
                 <label for="password">Address</label>
-                <input type="text" name="address" id="address" required> <br/>
+                <input type="text" name="address" id="address"> <br/>
                 <label for="password">Emergency Contact Name</label>
-                <input type="text" name="emerCon_name" id="emerCon_name" required> <br/>
+                <input type="text" name="emerCon_name" id="emerCon_name"> <br/>
                 <label for="password">Emergency Contact Phone</label>
-                <input type="text" name="emerCon_phone" id="emerCon_phone" required> <br/>
+                <input type="text" name="emerCon_phone" id="emerCon_phone"> <br/>
                 <label for="password">Emergency Contact Relation</label>
-                <input type="text" name="emerCon_relation" id="emerCon_relation" required> <br/>
+                <input type="text" name="emerCon_relation" id="emerCon_relation"> <br/>
 
                 <input type="submit" name="Submit" id="Submit" value="Submit">
             </p>

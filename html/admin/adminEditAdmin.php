@@ -69,15 +69,15 @@
             <p>
                 <input type="hidden" id="Key" name="Key" value="<?=$id ?>">
                 <label for="firstname">First Name </label>
-                <input type="text" name="firstName" id="firstName" required> <br/>
+                <input type="text" name="firstName" id="firstName"> <br/>
                 <label for="lastname">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required> <br/>
+                <input type="text" name="lastName" id="lastName"> <br/>
                 <label for="email">E-mail</label>
-                <input type="text" name="email" id="email" required> <br/>
+                <input type="text" name="email" id="email"> <br/>
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" required> <br/>
+                <input type="text" name="username" id="username"> <br/>
                 <label for="password">Password</label>
-                <input type="text" name="password" id="password" required> <br/>
+                <input type="text" name="password" id="password"> <br/>
                 
                 <input type="submit" name="Submit" id="Submit" value="Submit">
             </p>

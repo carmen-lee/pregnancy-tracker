@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 header {
@@ -40,4 +40,12 @@ textarea {
 .center {
     justify-content: center;
     align-items: center;
+}
+
+.searchbar {
+    width: 80%;
+}
+
+.formfield {
+    width: 100%;
 }

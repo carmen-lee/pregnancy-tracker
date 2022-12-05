@@ -15,58 +15,49 @@
     <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
-    <title>Doctor Appointments</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Doctor Portal</title>
   </head>
   <body>
+    <?php 
+    session_start();
+    //get session variables
+    $sessionUserId = $_SESSION['sessionUserId'];
+    $sessionFirstName = $_SESSION['sessionFirstName'];
+    $sessionLastName = $_SESSION['sessionLastName'];
+    $sessionRole = $_SESSION['sessionRole'];
+
+    //check that the user has the role doctor, else logout 
+    if ($sessionRole !== "DOCTOR") {
+      header("Location: ../login.php? err=Please login");
+    }
+    ?>
+
     <div class="body">
       <header>
-        <nav
-          class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill"
-        >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
           <div class="container-fluid">
             <a class="navbar-brand mb-0 h1" href="doctorPortal.php">Doctor Portal</a>
-            <button
-              class="navbar-toggler custom-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link" href="doctorPortal.php">Home</a>
+              <div class="navbar-nav me-auto">
+                <!-- <a class="nav-link" href="doctorPortal.php">Home</a> -->
                 <a class="nav-link" href="doctorAppointments.php">Appointments</a>
                 <a class="nav-link" href="doctorMedications.php">Medications</a>
               </div>
-              <!-- <button type="button" class="btn btn-light" id="logoutBtn">
-                Logout
-              </button> -->
+              <?php echo "<div>Dr. ",$sessionFirstName, " ",$sessionLastName,"</div>" ?>
               <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
             </div>
           </div>
         </nav>
       </header>
-
-      <?php 
-      session_start();
-      //get session variables
-      $sessionUserId = $_SESSION['sessionUserId'];
-      $sessionFirstName = $_SESSION['sessionFirstName'];
-      $sessionLastName = $_SESSION['sessionLastName'];
-      $sessionRole = $_SESSION['sessionRole'];
-
-      //check that the user has the role doctor, else logout 
-      if ($sessionRole !== "DOCTOR") {
-        header("Location: ../login.php? err=Please login");
-      }
-      ?>
-
+      
       <section>
         <h3>Requested Appointments</h3>
+        <br>
         <?php
         if(isset($_GET['requestErr'])){
           echo '<p style="color: red;">',$_GET['requestErr'],'</p>';
@@ -175,6 +166,7 @@
 
       <section>
         <h3>Upcoming Appointments</h3>
+        <br>
         <?php
         if(isset($_GET['cancelErr'])){
           echo '<p style="color: red;">',$_GET['cancelErr'],'</p>';
@@ -231,6 +223,7 @@
 
       <section>
         <h3>Previous Appointments</h3>
+        <br>
         <?php
         //create query
         $sql_apt = "SELECT apptDate,apptTime,patientId,reason,status FROM appointments WHERE doctorId=$sessionUserId and (status='COMPLETED' or status='CANCELLED')";

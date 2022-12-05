@@ -10,10 +10,25 @@
   <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
-  <title>Doctor Medication</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Doctor Portal</title>
 </head>
-
 <body>
+  <?php 
+  session_start();
+  //get session variables
+  $sessionUserId = $_SESSION['sessionUserId'];
+  $sessionFirstName = $_SESSION['sessionFirstName'];
+  $sessionLastName = $_SESSION['sessionLastName'];
+  $sessionRole = $_SESSION['sessionRole'];
+
+  //check that the user has the role doctor, else logout 
+  if ($sessionRole !== "DOCTOR") {
+    header("Location: ../login.php? err=Please login");
+  }
+  ?>
+
   <div class="body">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
@@ -23,27 +38,18 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="doctorPortal.php">Home</a>
+            <div class="navbar-nav me-auto">
+              <!-- <a class="nav-link" href="doctorPortal.php">Home</a> -->
               <a class="nav-link" href="doctorAppointments.php">Appointments</a>
               <a class="nav-link" href="doctorMedications.php">Medications</a>
             </div>
-            <!-- <button type="button" class="btn btn-light" id="logoutBtn">
-                Logout
-              </button> -->
+            <?php echo "<div>Dr. ",$sessionFirstName, " ",$sessionLastName,"</div>" ?>
             <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
     </header>
     <?php
-    session_start();
-    $sessionUserName = $_SESSION['sessionUsername'];
-    $sessionRole = $_SESSION['sessionRole'];
-    //check that the user has the role doctor, else logout 
-    if ($sessionRole !== "DOCTOR") {
-      header("Location: ../login.php? err=Please login");
-    }
     //establish connection
     $conn = mysqli_connect("localhost", "root", "", "pregnancy");
     //check connection
