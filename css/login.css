@@ -1,37 +1,43 @@
 body {
-    background-color: whitesmoke;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-image: url("../imgs/login-bg.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Helvetica, Arial, sans-serif;
-    margin:0;
-    height:100%;
-
+    margin-top: 100px;
 }
 
 input, select {
     width: 100%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
-.login-box {
-    /* background-color: white; */
+.login-container {
+    background-color: rgba(249, 249, 249, 0.932);
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.login-splash {
-    background-image: url("../imgs/splash.png");
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position:center center;
-    width:50%;
-    height:100vh; 
+    height: auto;
+    width: 700px;
+    padding: 100px;
 }
 
 #loginBtn {
     margin: 10px;
+}
+
+.register-container {
+    background-color: rgba(249, 249, 249, 0.932);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 700px;
+    padding: 50px;
+}
+
+p, a {
+    color: green;
 }

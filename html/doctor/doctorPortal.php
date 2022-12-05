@@ -43,7 +43,6 @@ if ($sessionRole !== "DOCTOR") {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav me-auto">
-              <!-- <a class="nav-link" href="doctorPortal.php">Home</a> -->
               <a class="nav-link" href="doctorAppointments.php">Appointments</a>
               <a class="nav-link" href="doctorMedications.php">Medications</a>
             </div>
@@ -55,7 +54,7 @@ if ($sessionRole !== "DOCTOR") {
     </header>
 
     <section>
-      <h2 class="card-title display-3">
+      <h2 class="card-title display-6">
         Welcome Back!
       </h2>
     </section>
@@ -92,14 +91,23 @@ if ($sessionRole !== "DOCTOR") {
                 <td>" . $row['last_name'] . "</td>
                 <td>" . $row['email'] . "</td>
                 <td>" . $row['phone'] . "</td>
-                <td><a href='doctorPortalEdit.php?a="   . $row['id'] . "'>Edit Info</a></td>
-                <td><a href='doctorPregnancy.php?a="   . $row['id'] . "'>Edit Record</a></td>
+                <td>
+                  <a href='doctorPortalEdit.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Edit'><i class='fa-solid fa-pen-to-square'></i> Edit patient</a>
+                  <a href='doctorPregnancy.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Delete'><i class='fa-solid fa-pen-to-square'></i> Edit record</a>
+                </td>
               </tr>
             ";
         }
         $conn->close();
         ?>
       </table>
+    </section>
+
+    <section class="footer d-flex align-self-center">
+        <p>
+          Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+        </p>
+        <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
     </section>
 
   </div>
