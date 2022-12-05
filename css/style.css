@@ -84,3 +84,7 @@ textarea {
 a, h3 {
     color: green;
 }
+
+.logout-btn {
+    margin: 10px;
+}

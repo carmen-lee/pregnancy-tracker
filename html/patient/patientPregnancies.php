@@ -45,7 +45,7 @@
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
             <?php echo $sessionFirstName . " " . $sessionLastName; ?>
-            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
+            <button type="button" class="btn btn-light logout-btn" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
