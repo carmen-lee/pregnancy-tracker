@@ -79,14 +79,14 @@
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
             <?php echo $first . " " . $last; ?>
-            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
+            <button type="button" class="btn btn-light logout-btn" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
     </header>
 
     <section>
-      <h2 class="card-title display-3">
+      <h2 class="card-title display-6">
         Welcome Back!
       </h2>
     </section>
@@ -143,7 +143,7 @@
             ?>
           </tr>
           <tr>
-            <th scope="row"><i class="fa-solid fa-at"></i>&nbsp Handle</th>
+            <th scope="row"><i class="fa-solid fa-at"></i>&nbsp Username</th>
             <?php
             echo '<td align="right">', $username, '</td>';
             ?>
@@ -228,29 +228,13 @@
         </tbody>
       </table>
     </section>
-
-    <!-- <section>
-      <h3>Health Insurance Information</h3>
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <th scope="row"><i class="fa-solid fa-address-card"></i>&nbsp Insurance Name</th>
-            <td align="right">xxxxxxxxx</td>
-          </tr>
-          <tr>
-            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Group Number</th>
-            <td align="right">xxxxxxxxx</td>
-          </tr>
-          <tr>
-            <th scope="row"><i class="fa-solid fa-hashtag"></i>&nbsp Member ID</th>
-            <td align="right">xxxxxxxxx</td>
-          </tr>
-        </tbody>
-      </table>
-    </section> -->
+    <section class="footer d-flex align-self-center">
+      <p>
+        Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+      </p>
+      <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+    </section>
   </div>
-
-
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

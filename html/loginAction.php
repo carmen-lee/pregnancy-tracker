@@ -52,7 +52,7 @@ if ($role == 'ADMIN') {
 } elseif ($role == 'DOCTOR') {
   header("Location: doctor/doctorPortal.php");
 } elseif ($role == 'PATIENT') {
-  header("Location: patient/patientPregnancies.php");
+  header("Location: patient/patientPortal.php");
 }
 
 $conn->close();

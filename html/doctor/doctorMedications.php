@@ -41,10 +41,10 @@
             <div class="navbar-nav me-auto">
               <!-- <a class="nav-link" href="doctorPortal.php">Home</a> -->
               <a class="nav-link" href="doctorAppointments.php">Appointments</a>
-              <a class="nav-link" href="doctorMedications.php">Medications</a>
+              <a class="nav-link active" href="doctorMedications.php">Medications</a>
             </div>
             <?php echo "<div>Dr. ",$sessionFirstName, " ",$sessionLastName,"</div>" ?>
-            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
+            <button type="button" class="btn btn-light logout-btn" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
@@ -65,7 +65,7 @@
         <p>
           <label for="patient">Patient</label>
           <select name="inputPatient" onchange="this.form.submit()" required>
-            <option value="">Select Patient</option>
+            <!-- <option>Select Patient</option> -->
             <?php
             $patientName = $_POST['inputPatient'];
             //create query
@@ -182,9 +182,16 @@
       </form>
     </section>
 
+    <section class="footer d-flex align-self-center">
+        <p>
+          Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+        </p>
+        <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+      </section>
+
   </div>
 
-  <!-- Bootstrap JS -->
+    <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
   <script src="../js/patientInfo.js"></script>

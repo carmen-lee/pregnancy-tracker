@@ -56,7 +56,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav me-auto"></div>
             <?php echo $sessionFirstName . " " . $sessionLastName; ?>
-            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
+            <button type="button" class="btn btn-light logout-btn" style="float: right;"><a href="../logout.php">Logout</a></button>
             
           </div>
         </div>
@@ -98,9 +98,9 @@
             <td>".$row['username']."</td>
             <td>".$row['userpassword']."</td>
             <td>
-            <a href='adminEditAdmin.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Edit'><i class='fa-solid fa-pen-to-square'></i></a>
-            <a href='adminDeleteAdmin.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Delete'><i class='fa-solid fa-trash'></i></a>
-          </td>
+              <a href='adminEditAdmin.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Edit'><i class='fa-solid fa-pen-to-square'></i></a>
+              <a href='adminDeleteAdmin.php?a=".$row['id']."' class='btn btn-light btn-sm' title='Delete'><i class='fa-solid fa-trash'></i></a>
+            </td>
 
           </tr>
           ";
@@ -301,6 +301,13 @@
       </table>
     </section>
 
+    <section class="footer d-flex align-self-center">
+      <p>
+        Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+      </p>
+      <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+    </section>
+
     <!-- Add Patient Modal -->
     <div class="modal fade" id="addPatientModal" tabindex="-1" role="dialog" aria-labelledby="addPatientModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -372,7 +379,7 @@
 
     </div>
 
-    <!-- Bootstrap JS -->
+      <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

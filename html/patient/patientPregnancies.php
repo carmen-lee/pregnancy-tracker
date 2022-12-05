@@ -10,10 +10,26 @@
   <link rel="stylesheet" href="../../css/style.css?v=<?php echo time(); ?>" />
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/ea253243da.js" crossorigin="anonymous"></script>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <title>Patient Pregnancies</title>
 </head>
 
 <body>
+  <?php 
+  session_start();
+  //get session variables
+  $sessionUserId = $_SESSION['sessionUserId'];
+  $sessionFirstName = $_SESSION['sessionFirstName'];
+  $sessionLastName = $_SESSION['sessionLastName'];
+  $sessionRole = $_SESSION['sessionRole'];
+
+  //check that the user has the role doctor, else logout 
+  if ($sessionRole !== "PATIENT") {
+    header("Location: ../login.php? err=Please login");
+  }
+  ?>
+
   <div class="body">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center nav-fill">
@@ -23,27 +39,28 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="patientPortal.php">My Information</a>
-              <a class="nav-link" href="patientPregnancies.php">Pregnancies</a>
+            <div class="navbar-nav me-auto">
+              <a class="nav-link active" href="patientPregnancies.php">Pregnancies</a>
               <a class="nav-link" href="patientAppointments.php">Appointments</a>
               <a class="nav-link" href="patientMedications.php">Medications</a>
             </div>
-            <button type="button" class="btn btn-light" style="float: right;"><a href="../logout.php">Logout</a></button>
+            <?php echo $sessionFirstName . " " . $sessionLastName; ?>
+            <button type="button" class="btn btn-light logout-btn" style="float: right;"><a href="../logout.php">Logout</a></button>
           </div>
         </div>
       </nav>
     </header>
 
     <?php
-
-    session_start();
+    // from here 
     $sessionUserID = $_SESSION['sessionUserId'];
     $sessionRole = $_SESSION['sessionRole'];
     //check that the user has the role PATIENT, else logout 
     if ($sessionRole !== "PATIENT") {
       header("Location: ../login.php? err=Please login");
     }
+    // to here, we can delete? but it doesnt work
+
     //establish connection
     $conn = mysqli_connect("localhost", "root", "", "pregnancy");
     //check connection
@@ -196,11 +213,17 @@
         </tbody>
       </table>
     </section>
+    <section class="footer d-flex align-self-center">
+        <p>
+          Created for CS 441 by Carmen Lee, Cecilia Siu, Edward Sung
+        </p>
+        <img id="footer-img" src="../../imgs/sprout.jpg" alt="Sprout!">
+      </section>
   </div>
 
   </div>
 
-  <!-- Bootstrap JS -->
+    <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
   <!-- <script src="../js/patientInfo.js"></script> -->

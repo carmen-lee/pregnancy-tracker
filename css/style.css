@@ -1,35 +1,41 @@
 body {
-    background-color: whitesmoke;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-image: url("../imgs/login-bg.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Noto Sans JP', sans-serif;
+    
 }
 
 header {
     background-color: white;
-    border-top-left-radius: 10pt;
-    border-top-right-radius: 10pt;
+    /* border-top-left-radius: 10pt; */
+    /* border-top-right-radius: 10pt; */
     padding: 10px;
     text-align: center;
 }
 
 .body {
     background-color: white;
-    border-radius: 10pt;
+    /* border-radius: 10pt; */
     width: 80%;
+    min-width: 40vw;
+    max-width: 80vw;
     min-height: 100vh;
-    display: block;
+    /* padding-bottom: 150px; */
+    /* display: block;
     justify-content: center;
-    align-items: center;
-
+    align-items: center; */
 }
 
 section {
     background-color: whitesmoke;
     margin: 25px;
     padding: 15px;
-    border-radius: 10pt;
+    /* border-radius: 10pt; */
 }
 
 textarea {
@@ -48,4 +54,37 @@ textarea {
 
 .formfield {
     width: 100%;
+}
+
+.footer {
+    /* margin: 25px;
+    padding: 15px; */
+    background-color: white;
+    text-align: right;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    /* position: relative;
+    bottom: 0; */
+
+    /* text-align: right;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: right; */
+}
+
+#footer-img {
+    width:200px;
+}
+
+a, h3 {
+    color: green;
+}
+
+.logout-btn {
+    margin: 10px;
 }
