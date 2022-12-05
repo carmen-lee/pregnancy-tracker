@@ -110,13 +110,13 @@
             if ($weeks == -1) {
               echo '<img src="../../imgs/negative.jpeg" class="d-block mh-50" alt="negative">
             <div class="carousel-caption d-none d-md-block">
-              <h5 style = "color: black;">You are not pregnant!</h5>
+              <h5 style = "color: green;">You are not pregnant!</h5>
             </div>';
             } else if ($weeks > 26) {
               echo '<img src="../../imgs/third-trimester.jpeg" class="d-block mh-50" alt="3rd trimester">
             <div class="carousel-caption d-none d-md-block">
-              <h5>You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
-              <p>Baby is almost here!</p>
+              <h5 style = "color: green">You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
+              <p style = "color: green">Baby is almost here!</p>
               <div class="progress">
               <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
               Time till estimated birth: ', $months, ' months ', $days, ' days 
@@ -125,8 +125,8 @@
             } else if ($weeks > 12) {
               echo '<img src="../../imgs/second-trimester.jpeg" alt="2nd trimester" class="d-block w-100 center">
             <div class="carousel-caption d-none d-md-block">
-              <h5>You are ', $weeks, ' weeks into pregnancy (2nd Trimester)!</h5>
-              <p>Almost there!</p>
+              <h5 style = "color: green">You are ', $weeks, ' weeks into pregnancy (2nd Trimester)!</h5>
+              <p style = "color: green">Almost there!</p>
               <div class="progress">
               <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
               Time till estimated birth: ', $months, ' months ', $days, ' days 
@@ -135,8 +135,8 @@
             } else {
               echo '<img src="../../imgs/first-trimester.jpeg" alt="1st trimester" class="d-block w-100">
               <div class="carousel-caption d-none d-md-block">
-                <h5>You are ', $weeks, ' weeks into pregnancy (1st Trimester)!</h5>
-                <p>Congrats!</p>
+                <h5 style = "color: green;">You are ', $weeks, ' weeks into pregnancy (1st Trimester)!</h5>
+                <p style = "color: green;">Congrats!</p>
                 <div class="progress">
                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
                 Time till estimated birth: ', $months, ' months ', $days, ' days 
