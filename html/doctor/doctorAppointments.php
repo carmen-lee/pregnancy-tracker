@@ -53,7 +53,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Requested Appointments</h3>
       <br>
       <?php
@@ -64,15 +64,6 @@
         echo '<p style="color: green;">', $_GET['requestSucc'], '</p>';
       }
       ?>
-      <table class="table table-hover">
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Time</th>
-          <th scope="col">Patient First Name</th>
-          <th scope="col">Patient Last Name</th>
-          <th scope="col">Reason</th>
-          <th scope="col">Status</th>
-        </tr>
         <?php
         //establish connection
         $conn = mysqli_connect("localhost", "root", "", "pregnancy");
@@ -124,7 +115,9 @@
                 <td>
                   <a href='doctorCancelApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm' title='Cancel'><i class='fa-solid fa-xmark'></i></a>
                   <a href='doctorAcceptApptAction.php?appointmentId=".$row['id']."' class='btn btn-light btn-sm'><i class='fa-solid fa-check' title='Accept'></i></a>
-                  <a href='doctorPregnancy.php?a=".$row['patientId']."' class='btn btn-light btn-sm'><i class='fa-solid fa-check' title='Accept'></i></a>
+                </td>
+                <td>
+                  <a href='doctorPregnancy.php?a=".$row['patientId']."' class='btn btn-light btn-sm'><i class='fa-solid fa-circle-info' title='Accept'></i></a>
                 </td>
               </tr>
             ";
@@ -184,7 +177,7 @@
 
     </section>
 
-    <section>
+    <section style = "overflow-x: scroll">
       <h3>Upcoming Appointments</h3>
       <br>
       <?php
@@ -203,6 +196,7 @@
           <th scope="col">Patient Last Name</th>
           <th scope="col">Reason</th>
           <th scope="col">Status</th>
+          <th scope="col">Full Info</th>
         </tr>
         <?php
         //establish connection
@@ -233,6 +227,9 @@
                 <td>
                   <a href='doctorCancelApptAction.php?appointmentId=" . $row['id'] . "' class='btn btn-light btn-sm' title='Cancel'><i class='fa-solid fa-xmark'></i></a>
                   <a href='doctorCompleteApptAction.php?appointmentId=" . $row['id'] . "' class='btn btn-light btn-sm' title='Complete'><i class='fa-solid fa-check'></i></a>
+                </td>
+                <td>
+                  <a href='doctorPregnancy.php?a=".$row['patientId']."' class='btn btn-light btn-sm'><i class='fa-solid fa-circle-info' title='Accept'></i></a>
                 </td>
               </tr>
             ";
