@@ -156,7 +156,7 @@
       <br>
       <p>
         <label for="username">Search by Name &nbsp</label>
-        <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="">
+        <input class="searchbar" type="text" id="myInput2" onkeyup="myFunction2()" placeholder="">
       </p>
 
       <table class="table table-hover" id="myTable2">
@@ -244,7 +244,7 @@
       <br>
       <p>
         <label for="username">Search by Name &nbsp</label>
-        <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="">
+        <input class="searchbar" type="text" id="myInput3" onkeyup="myFunction3()" placeholder="">
       </p>
 
       <table class="table table-hover " id="myTable3">
