@@ -44,33 +44,89 @@
     if ($sessionRole !== "PATIENT") {
       header("Location: ../login.php? err=Please login");
     }
+    //establish connection
+    $conn = mysqli_connect("localhost", "root", "", "pregnancy");
+    //check connection
+    if (!$conn) {
+      echo 'Connection failed' . mysqli_connect_error();
+    }
+
+    $sql = "SELECT * FROM pregnancies WHERE patientID = '$sessionUserID' AND status = 'CURRENT'";
+    $result = mysqli_query($conn, $sql);
+    $resultsArray = mysqli_fetch_all($result);
+
+    date_default_timezone_set('America/Los_Angeles');
+    $today = Date("Y-m-d");
+    $diff = strtotime($resultsArray[0][4]) - strtotime($today);
+
+    // Calculate Dates
+    $years = floor($diff / (365 * 60 * 60 * 24));
+    $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+    $monthNoFloor = ($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24);
+    $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+    // Calculate Trimester
+    $weeks = 36 - floor($diff / (7 * 60 * 60 * 24));
+
+
+    // Calculate Percent
+    $totalMonth = 9;
+    $totalDays = 0;
+    $mPercent = 100 - ($monthNoFloor / $totalMonth);
+
+
     ?>
 
-
+    <section>
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <?php
+            if ($weeks > 26) {
+              echo '<img src="../../imgs/third-trimester.jpeg" class="d-block w-100" alt="3rd trimester">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
+              <p>Baby is almost here!</p>
+              <div class="progress">
+              <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+              Time till estimated birth: ', $months, ' months ', $days, ' days 
+              </div>
+            </div>';
+            } else if ($weeks > 12) {
+              echo '<img src="../../imgs/second-trimeseter.jpeg" alt="2nd trimester" class="d-block w-100">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>You are ', $weeks, ' weeks into pregnancy (2nd Trimester)!</h5>
+              <p>Almost there!</p>
+              <div class="progress">
+              <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+              Time till estimated birth: ', $months, ' months ', $days, ' days 
+              </div>
+            </div>';
+            } else {
+              echo '<img src="../../imgs/first-trimester.jpeg" alt="1st trimester" class="d-block w-100">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>You are ', $weeks, ' weeks into pregnancy (1st Trimester)!</h5>
+                <p>Congrats!</p>
+                <div class="progress">
+                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+                Time till estimated birth: ', $months, ' months ', $days, ' days 
+                </div>
+              </div>';
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+    </section>
     <section>
       <h3>Current pregnancy</h3>
-      <?php
-      //establish connection
-      $conn = mysqli_connect("localhost", "root", "", "pregnancy");
-      //check connection
-      if (!$conn) {
-        echo 'Connection failed' . mysqli_connect_error();
-      }
-
-      $sql = "SELECT * FROM pregnancies WHERE patientID = '$sessionUserID' AND status = 'CURRENT'";
-      $result = mysqli_query($conn, $sql);
-      $resultsArray = mysqli_fetch_all($result);
-
-      ?>
-
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%;">Days Left : ???</div>
-      </div>
       <table class="table table-hover table-stripped">
         <thead>
           <tr>
             <th>Due date</th>
             <th>Baby's Name</th>
+            <th>Baby's Health</th>
+            <th>Mom's Health</th>
           </tr>
         </thead>
         <tbody>
@@ -79,13 +135,15 @@
             echo "<tr>";
             echo "<td>", $resultsArray[$i][4], "</td>";
             echo "<td>", $resultsArray[$i][7], "</td>";
+            echo "<td>", $resultsArray[$i][3], "</td>";
+            echo "<td>", $resultsArray[$i][2], "</td>";
             echo "</tr>";
           }
           ?>
         </tbody>
       </table>
-
     </section>
+
 
     <section>
       <h3>Past Pregnancies</h3>
@@ -108,6 +166,8 @@
           <tr>
             <th>Due date</th>
             <th>Baby's Name</th>
+            <th>Baby's Health</th>
+            <th>Mom's Health</th>
           </tr>
         </thead>
         <tbody>
@@ -116,9 +176,13 @@
             echo "<tr>";
             echo "<td>", $resultsArray[$i][4], "</td>";
             echo "<td>", $resultsArray[$i][7], "</td>";
+            echo "<td>", $resultsArray[$i][3], "</td>";
+            echo "<td>", $resultsArray[$i][2], "</td>";
             echo "</tr>";
           }
           ?>
+        </tbody>
+      </table>
     </section>
   </div>
 
