@@ -101,7 +101,7 @@
             </div>
         </section>
         <form method="post" action="patientEditMyInfoAction.php">
-            <section>
+            <section style="overflow-x: scroll">
                 <h3>My Information</h3>
                 <table class="table table-hover">
                     <tbody>
@@ -151,7 +151,7 @@
 
             </section>
 
-            <section>
+            <section style="overflow-x: scroll">
                 <h3>Emergency Contact Information</h3>
                 <table class="table table-hover">
                     <tbody>

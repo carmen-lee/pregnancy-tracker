@@ -31,7 +31,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Admin Editied Before</h3>
       <table class="table table-hover">
         <tr>
@@ -69,7 +69,7 @@
       </table>
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Admin Editied After</h3>
       <table class="table table-hover">
         <tr>

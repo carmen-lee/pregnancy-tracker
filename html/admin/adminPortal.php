@@ -58,7 +58,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>
         Admin
         <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#addAdminModal">
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>
         Doctors
         <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#addDoctorModal">

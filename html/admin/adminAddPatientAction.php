@@ -34,7 +34,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
 	<?php
     $assignedDoctorID = $_POST['assignedDoctorId'];
 		$firstName = $_POST['firstName'];

@@ -33,7 +33,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Doctor Deleted</h3>
       <table class="table table-hover">
         <tr>

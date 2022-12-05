@@ -61,7 +61,7 @@
     }
     ?>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Prescribed Medications</h3>
       <!-- <form name="frmContact" method="post" action="doctorMedicationAction.php"> -->
       <form name="frmContact" method="post">

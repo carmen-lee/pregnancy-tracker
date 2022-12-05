@@ -65,7 +65,7 @@
         $resultsArray1 = mysqli_fetch_all($result);
         ?>
         <!-- <form method="post" action="doctorPregnancyAction.php"> -->
-        <section>
+        <section style="overflow-x: scroll">
             <h3>Current Pregnancy</h3>
             <table class="table table-hover table-stripped">
                 <thead>
@@ -104,7 +104,7 @@
             </table>
         </section>
 
-        <section>
+        <section style="overflow-x: scroll">
             <h3>Past Pregnancies</h3>
             <?php
             //establish connection
@@ -158,7 +158,7 @@
 
         </section>
 
-        <section>
+        <section style="overflow-x: scroll">
 
             <h3>Add Pregnancy</h3>
             <table class="table table-hover table-stripped">

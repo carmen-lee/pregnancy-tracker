@@ -116,7 +116,7 @@
 
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Upcoming Appointments</h3>
       <br>
       <?php
@@ -161,7 +161,7 @@
 
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Previous Appointments</h3>
       <br>
       <?php

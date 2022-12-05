@@ -91,7 +91,7 @@
       </h2>
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>
         My Information
         <button type="button" class="btn btn-light btn-sm" style="float: right;">
@@ -203,7 +203,7 @@
       </div>
     </div>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Emergency Contact Information</h3>
       <table class="table table-hover">
         <tbody>

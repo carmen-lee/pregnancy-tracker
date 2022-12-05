@@ -118,7 +118,7 @@
               <h5>You are ', $weeks, ' weeks into pregnancy (3rd Trimester)!</h5>
               <p>Baby is almost here!</p>
               <div class="progress">
-              <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
               Time till estimated birth: ', $months, ' months ', $days, ' days 
               </div>
             </div>';
@@ -127,8 +127,8 @@
             <div class="carousel-caption d-none d-md-block">
               <h5>You are ', $weeks, ' weeks into pregnancy (2nd Trimester)!</h5>
               <p>Almost there!</p>
-              <div class="progress bg-info">
-              <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+              <div class="progress">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
               Time till estimated birth: ', $months, ' months ', $days, ' days 
               </div>
             </div>';
@@ -138,7 +138,7 @@
                 <h5>You are ', $weeks, ' weeks into pregnancy (1st Trimester)!</h5>
                 <p>Congrats!</p>
                 <div class="progress">
-                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ', $mPercent, '%;">
                 Time till estimated birth: ', $months, ' months ', $days, ' days 
                 </div>
               </div>';
@@ -148,7 +148,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Current Pregnancy</h3>
       <table class="table table-hover table-stripped">
         <thead>
@@ -175,7 +175,7 @@
     </section>
 
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Past Pregnancies</h3>
       <?php
       //establish connection

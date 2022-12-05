@@ -65,7 +65,7 @@
       </nav>
     </header>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3>Prescribed Medications</h3>
       <br>
       <table class="table table-hover table-stripped">

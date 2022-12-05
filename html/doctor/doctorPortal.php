@@ -59,7 +59,7 @@ if ($sessionRole !== "DOCTOR") {
       </h2>
     </section>
 
-    <section>
+    <section style="overflow-x: scroll">
       <h3 class="card-title">Your Patients</h3>
       <br>
       <p>
